@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adilson Chicória - Resume - Experienced software engineer with a strong focus on user experience and experimentation">
+    <title>Adilson Chicória - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .resume-container {
+            max-width: 900px;
+        }
+        
+        .resume-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .resume-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .resume-header .tagline {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .resume-header .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--accent-color);
+        }
+        
+        .resume-section {
+            margin-bottom: 3rem;
+        }
+        
+        .resume-section h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .resume-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .experience-date {
+            color: var(--accent-color);
+            font-size: 0.95rem;
+        }
+        
+        .experience-location {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .experience-responsibilities {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .experience-item li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .experience-item li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-category h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .skill-list {
+            color: var(--accent-color);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .education-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.25rem;
+        }
+        
+        .certification-item {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+        
+        .certification-item a {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+        
+        .talk-item, .workshop-item {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+        }
+        
+        .publication-item {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .publication-item a {
+            color: var(--link-color);
+            word-break: break-all;
+        }
+        
+        @media print {
+            .back-link {
+                display: none;
+            }
+            
+            .resume-section {
+                page-break-inside: avoid;
+            }
+            
+            .experience-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Blog</a>
+            <a href="/resume.html">Resume</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container resume-container">
+            <a href="/" class="back-link">← Back to blog</a>
+            
+            <div class="resume-header">
+                <h1>ADILSON CHICÓRIA</h1>
+                <p class="tagline">Helping engineering and product VPs through radical collaboration and user-driven perspective</p>
+                <div class="contact-info">
+                    <span>+351 915 787 088</span>
+                    <span>⋄</span>
+                    <span>Lisbon, Portugal</span>
+                    <span>⋄</span>
+                    <span><a href="mailto:chicoria@gmail.com" style="color: var(--link-color); text-decoration: none;">chicoria@gmail.com</a></span>
+                    <span>⋄</span>
+                    <span><a href="https://www.linkedin.com/in/adilsonchicoria/" target="_blank" style="color: var(--link-color); text-decoration: none;">linkedin.com/in/adilsonchicoria</a></span>
+                </div>
+            </div>
+            
+            <section class="resume-section">
+                <h2>OBJECTIVE</h2>
+                <p>Experienced software engineer with a strong focus on user experience and experimentation. I specialize in helping engineering and product VPs collaborate effectively by emphasizing a user-driven approach to innovation.</p>
+            </section>
+            
+            <section class="resume-section">
+                <h2>SKILLS</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Technical Skills</h4>
+                        <div class="skill-list">
+                            Javascript ES6, ReactJS, Redux, Vue.js, TypeScript, Java EE, EJBs, JPA, Spring, Hibernate, Struts 2, Java Server Faces (RichFaces), JBoss, Tomcat, Maven 2, WebSphere AS, Bootstrap, Carbon Design System, Watson IoT Design System, Samora Design System, REST API, Microservices, Node.js, MongoDB, DB2, MySQL, AWS DynamoDB, AWS Aurora, Jenkins, Kubernetes, Docker, Nginx, Jest, Cypress, SCSS, CSS Flexbox, CSS Grid
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Soft Skills</h4>
+                        <div class="skill-list">
+                            Collaboration, Leadership, Problem Solving, Knowledge Transfer, Agile Methodologies, Strategic Planning, Stakeholder Management, Mentoring, Coaching, Cross-functional Team Coordination, Communication
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Collaboration Skills</h4>
+                        <div class="skill-list">
+                            Cross-team Collaboration, Leading Multi-disciplinary Teams, Co-creation Workshops, Distributed Teams, Event Organizing, Product Collaboration, Community Building
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Design Skills</h4>
+                        <div class="skill-list">
+                            Design Thinking, UX Design, High-Fidelity Prototyping, UI/UX Design, Service Design, Innovation Facilitation, User Journeys, Personas, Storyboarding, User Testing, Stakeholder Evaluation, User Research, Service Blueprints
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Tools</h4>
+                        <div class="skill-list">
+                            Jira, Confluence, Subversion, Git, Github, Gitlab, Maven 2, Jenkins, Docker, Kubernetes, Nginx, Checkstyle, PMD, Cyclomatic Complexity (Eclipse/Ant), Sonar, InVision, Sketch, Mural, Figma, Trello, Google Analytics, Pentaho, Liferay, AWS, IBM Cloud
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="resume-section">
+                <h2>EXPERIENCE</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Senior Software Engineer</span>
+                        <span class="experience-date">2020 – 2023</span>
+                    </div>
+                    <div class="experience-location">OutSystems | Lisbon, Portugal</div>
+                    <div class="experience-responsibilities">30% frontend, 40% standalone application, 30% backend responsibilities</div>
+                    <ul>
+                        <li>Developed the core transaction manager component for the new Edit Data experience, enabling developers to edit app data directly in OutSystems IDE.</li>
+                        <li>Created new experiences and web components for the multi-platform (Windows/Mac) OutSystems IDE using C#, React, and TypeScript.</li>
+                        <li>Designed and implemented the new Onboarding Experience for the OutSystems IDE, allowing prospective users to perceive value within just 5 minutes.</li>
+                        <li>Engineered a Guided Tour Framework for the OutSystems IDE Onboarding Experience by interfacing Avalonia, C#, and Web layers, enabling engineers to create guided tours highlighting IDE features.</li>
+                        <li>Developed a new application group mapping REST API for the Identity Platform backend in the Cloud Native OutSystems, enabling the application of authorization rules to app groups.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend: TypeScript, ReactJS, SCSS, REST API, OutSystems Web Component Library, Jest, GitHub<br>
+                        • Standalone Application: C#, Avalonia<br>
+                        • Backend: RESTful API with C#, NUnit, microservices, Kubernetes, AWS DynamoDB, AWS Aurora
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Senior Frontend Engineer</span>
+                        <span class="experience-date">2019 – 2020</span>
+                    </div>
+                    <div class="experience-location">Unbabel | Lisbon, Portugal</div>
+                    <div class="experience-responsibilities">100% frontend development responsibilities</div>
+                    <ul>
+                        <li>Refactored the UI for the main workflow interaction in the Glossary Tool, catering to three different user types and generating customized glossaries for client brands.</li>
+                        <li>Designed and implemented an end-to-end testing scenario using the Cypress automation tool.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend: JavaScript ES6, Vue.js, SCSS, REST API, Samora Design System, Jest, Cypress, GitLab
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Lead Frontend Engineer & Innovation Catalyst</span>
+                        <span class="experience-date">2016 – 2019</span>
+                    </div>
+                    <div class="experience-location">IBM | São Paulo, Brazil</div>
+                    <div class="experience-responsibilities">30% frontend, 10% backend, 10% UX, 50% leadership responsibilities</div>
+                    <ul>
+                        <li>Led the redesign of the IBM IoT Customer Communication Center application, ensuring GDPR compliance for enterprise clients of IBM Watson IoT Offerings.</li>
+                        <li>Facilitated requirement gathering for the IBM IoT Automation Console through remote design thinking workshops over three sprints (6 weeks), identifying challenges and co-creating user-focused solutions.</li>
+                        <li>Enabled non-software engineers to provision IBM Maximo and IBM TRIRIGA SaaS environments and trigger complex tasks without requiring Senior DevOps involvement.</li>
+                        <li>Performed Product Owner Scrum role, breaking down design thinking storyboards, user journeys, and needs into Epics and Stories.</li>
+                        <li>Designed high-fidelity prototypes for Epics and Stories using Carbon Design System in Sketch, validated with users and stakeholders using InVision.</li>
+                        <li>Defined and implemented a modern web JavaScript frontend architecture with React and Redux.</li>
+                        <li>Developed RESTful/RPC backend APIs using Java WS, Jersey, Morphia, and MongoDB to support frontend functionality.</li>
+                        <li>Designed and deployed microservices on Kubernetes in IBM Cloud with continuous integration pipelines using Maven 2 and Jenkins.</li>
+                        <li>Led and coached teams of 3–7 frontend engineers in building scalable, reliable software with modern JavaScript and user-centered design patterns.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend: JavaScript ES6, React, Redux, Node, Webpack, REST API, CSS Flexbox, CSS Grid, SCSS, Carbon Design System, Watson IoT Design System, Jest, Cypress<br>
+                        • Backend: Java WS, Jersey, MongoDB, Maven 2, Jenkins, Kubernetes, IBM Cloud, Nginx<br>
+                        • Design Thinking: Problem Definition, User Interviews, Stakeholder Mapping, Personas, User Journeys, Workshop Facilitation, Storyboarding, Prototyping (Mural)<br>
+                        • UX Design: High-fidelity Prototyping (Sketch, InVision), User Testing, Stakeholder Evaluation
+                    </div>
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Additional leadership and collaboration initiatives:</h3>
+                    <ul>
+                        <li><strong>Scaling IBM Design Thinking</strong> (2014 – 2019) – Role: Innovation Catalyst & Design Thinking Facilitator – Delivered over 30 Enterprise Design Thinking training workshops for employees and led client workshops to uncover opportunities for introducing IBM Cloud products and hardware solutions.</li>
+                        <li><strong>IBM Brazil Lab Tech Day</strong> (2018) – Role: Lead Coordinator – Led a team of volunteers through the Design Thinking process to understand the audience and organize a call for papers process, bringing together the IBM community to coordinate tracks and submit talks for the event.</li>
+                        <li><strong>IBM Enterprise Thinking Conference - Brazil Edition</strong> (2019) – Role: Event Organizer & Speaker – Accelerated the adoption of Enterprise Design Thinking among practitioners, managers, executives, and clients.</li>
+                        <li><strong>São Paulo Design Thinking Chapter</strong> (2018) – Role: Enterprise Design Thinking Chapter Head – Established the chapter to support IBMers in São Paulo in advancing their Enterprise Design Thinking practices through meetings, sharing challenges, and coaching participants to earn certifications.</li>
+                        <li><strong>Javelin Program for Bradesco Banking</strong> (2019) – Role: Design Thinking Facilitator – Supported the IBM executive team in adopting Enterprise Design Thinking practices during the "Javelin Program" for Bradesco, Brazil's largest bank.</li>
+                        <li><strong>Saint Paul Innovation Lab</strong> (2018) – Role: Design Thinking Facilitator – Collaborated with Saint Paul Business School to create a strategic innovation lab for leaders to explore disruptive technologies and innovation tools.</li>
+                        <li><strong>TREE Lab – FDC-IBM</strong> (2018) – Role: Service Designer & Design Thinking Facilitator – Designed and built the first cognitive lab within a business university, leveraging user-centered design principles.</li>
+                        <li><strong>Lab Studio Activation Program</strong> (2018) – Role: Service Designer & Design Thinking Facilitator – Implemented the 2016 Studio Collaboration strategy by integrating Design Thinking, Agile, and DevOps methodologies, engaging over 150 participants since its launch in 2017.</li>
+                        <li><strong>IBM Studios External Eminence</strong> (2017) – Role: Program Lead – Promoted IBM Design practices within design and engineering communities and inspired global leaders at the IBM Studios Summit 2017, engaging representatives from 58 studios worldwide.</li>
+                        <li><strong>IBM Studios Summit '16</strong> (2016) – Role: Studio Leader – Developed the 2016-2017 studio strategy to enhance design practices and foster collaboration at IBM Brazil.</li>
+                        <li><strong>Bootstrap IBM Studios São Paulo</strong> (2015) – Role: Studio Leader – Established a design studio within IBM Brazil's Software Lab, promoting collaboration practices using IBM's Design Thinking framework to help engineers, managers, and directors adopt a user-centric strategy.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Full Stack Engineer Lead & UX Engineer</span>
+                        <span class="experience-date">2014 – 2016</span>
+                    </div>
+                    <div class="experience-location">IBM | São Paulo, Brazil</div>
+                    <div class="experience-responsibilities">50% frontend, 40% backend, 10% UX responsibilities</div>
+                    <ul>
+                        <li><strong>IBM IoT Status Dashboard:</strong> Redefined the entire user experience for the Watson IoT Platform Service Status page, catering to both the general public and over 290 dedicated clients. Delivered a highly responsive and modern web interface using React, Bootstrap, Node.js, REST APIs, and Java EE.</li>
+                        <li><strong>IBM IoT Executive Dashboard:</strong> Designed and implemented an Executive Dashboard for the IBM Watson IoT division, enabling data-driven decision-making through aggregated client data and IoT offering visualizations. Developed the frontend architecture with JavaScript ES6 and modern web frameworks.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend & Backend: React, Bootstrap, Node.js, REST API, Java REST, Microservices, Docker, MongoDB, Watson IoT React Components Library, Box API<br>
+                        • UX Design: High-fidelity Prototyping (Sketch, InVision), Watson IoT React Components Library, User Testing, Stakeholder Evaluation<br>
+                        • Frontend (Executive Dashboard): JavaScript ES6, React, Redux, REST API, CSS Flexbox, CSS Grid, SCSS, Watson IoT Design System, Watson IoT React Library, Webpack, Jest
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Java Career Evangelist</span>
+                        <span class="experience-date">2012 – 2013</span>
+                    </div>
+                    <div class="experience-location">Globalcode | São Paulo, Brazil</div>
+                    <div class="experience-responsibilities">Teaching and mentoring responsibilities with a focus on innovative learning techniques</div>
+                    <ul>
+                        <li>Delivered 432 hours of hands-on classes, teaching professionals Java and JEE Web technologies using an innovative storytelling approach inspired by the Head First book series.</li>
+                        <li>Experimented with storytelling and visual thinking techniques to accelerate the understanding of abstract concepts such as data structures, Object-Oriented Programming (OOP), and Java internals.</li>
+                        <li>Enhanced learning by leveraging methods from O'Reilly's Head First books, simplifying the comprehension of complex technical material.</li>
+                        <li>Focused on creating an engaging and interactive learning environment, ensuring students could apply theoretical knowledge through practical, real-world programming exercises.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skill Set:</strong><br>
+                        • Technologies: Java, JEE Web Technologies<br>
+                        • Teaching Methods: Hands-on Learning, Interactive Exercises, O'Reilly Head First Approach, Visual Thinking Techniques, Storytelling
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Fullstack Engineer</span>
+                        <span class="experience-date">2010 – 2014</span>
+                    </div>
+                    <div class="experience-location">IBM | Hortolândia, Brazil</div>
+                    <div class="experience-responsibilities">50% frontend, 50% backend responsibilities</div>
+                    <ul>
+                        <li><strong>IBM GBS On/Off Boarding Tool:</strong> Designed, developed, and maintained the On/Off Boarding Tool, used by over 50% of IBM's contractor population, ensuring efficient onboarding and offboarding processes.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend & Backend: HTML/CSS, Dojo, Vanilla JavaScript, Java EE, Websphere AS, Struts 2, Spring, JPA, DB2, ANT<br>
+                        • Modeling: IBM Rational Software Architect Designer
+                    </div>
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Additional Initiatives:</h3>
+                    <ul>
+                        <li><strong>Accelerating the Graduate Hiring Program for Global Delivery Center</strong> – Role: Program Coordinator – Established a program to bring IBM professionals into universities and technical schools to train undergraduates. Developed and communicated the program to three target audiences (executives, students, and school teachers) across five cities and 10 universities in São Paulo. Managed execution of 20-hour classes, coordinating with universities and school facilities, ensuring smooth interaction between students and instructors. Created a pool of over 500 undergraduates trained in Java, SQL, .NET, shell scripting, and COBOL within six months to meet the growing demand for GBS projects. Managed the execution and logistics of training classes, coordinated with technical professionals, and tracked progress with HR partners.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Founder & CTO</span>
+                        <span class="experience-date">2007 – 2011</span>
+                    </div>
+                    <div class="experience-location">Potere | Campinas, Brazil</div>
+                    <div class="experience-responsibilities">50% backend - 10% frontend - 40% other activities</div>
+                    <p style="margin-bottom: 1rem;">Led the development of a product aimed at the Pharma industry, overcoming challenges in product-market fit and shifting from a quality-driven mindset to customer development (Steve Blank).</p>
+                    <h3>Key Projects:</h3>
+                    <ul>
+                        <li><strong>Project: Unimed of Brazil</strong> (2008) – Role: Lead Technical Consultant – Conducted a due diligence audit for Unimed of Brazil (Health Insurance), focusing on best practices and security across 27 applications. Developed a custom tracking system using Jira and Confluence to monitor interactions, integrated with Sonar for code analysis.</li>
+                        <li><strong>Project: São Paulo City Health Department</strong> (2007 – 2009) – Role: Lead Architect & Developer – Led the design and development of Purchasing Management Software and "Medicine at Home" health program software for the São Paulo City Health Department using Spring, JSF (RichFaces), JPA, MySQL, and Maven 2.</li>
+                        <li><strong>Project: Fundepag</strong> (2008 – 2009) – Role: Lead Architect – Designed and led the development of a web software system to track customized service offerings, integrating Spring, Struts 2, JPA, MySQL, MS SQL, and Microsiga.</li>
+                        <li><strong>Project: 3M Brazil</strong> (2009) – Role: Lead Architect & Developer – Designed the Reference Architecture for Java EE Intranet Applications at 3M Brazil. Led the design and implementation of two intranet applications for 3M Brazil to track government-controlled substances and run cost forecasts.</li>
+                        <li><strong>Project: EMS Pharma</strong> (2008 – 2009) – Role: Lead Architect & Developer – Designed and developed Business Intelligence solutions for EMS Pharma, including a portal architecture using Liferay and software to synchronize controlled medicine records. Contributed to saving R $500K monthly in mobile services.</li>
+                        <li><strong>Co-creation of "Business Model Generation" Book</strong> (2009) – Role: Co-Creator – Contributed to the creation of the "Business Model Generation" book, focusing on processes and tools to analyze and design innovative business models using visual thinking.</li>
+                    </ul>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Full Stack Engineer</span>
+                        <span class="experience-date">2005 – 2007</span>
+                    </div>
+                    <div class="experience-location">CpqD | Campinas, Brazil</div>
+                    <div class="experience-responsibilities">80% Backend - 20% Frontend</div>
+                    <p style="margin-bottom: 1rem;"><strong>Project: CpqD Telecom Utilities Billing Solution</strong></p>
+                    <ul>
+                        <li>Designed, developed, and maintained the solution's core business components following Java EE best practices, utilizing EJB components, persistence layers, and an in-house tag library.</li>
+                        <li>Implemented a test-driven development approach using Ant, Maven (1 & 2), and shell scripts within an in-house continuous integration framework.</li>
+                        <li>Ensured consistency of core components across multiple industries and branches, leveraging ClearCase for version control.</li>
+                        <li>Fulfilled multiple roles in the Rational Unified Process (RUP) lifecycle, including developer, designer, and architect, from requirements analysis to testing.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend: HTML, CSS, Vanilla JavaScript, Struts, Struts 2<br>
+                        • Backend: Java EE (EJB, Spring, Hibernate, iBatis), JUnit, DBUnit, Oracle<br>
+                        • Modeling Tools: Rational Rose<br>
+                        • Tools: Ant, Maven, ClearCase
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <span class="experience-title">Full Stack Engineer</span>
+                        <span class="experience-date">2003 – 2005</span>
+                    </div>
+                    <div class="experience-location">HST Card Technology | Campinas, Brazil</div>
+                    <div class="experience-responsibilities">60% Backend - 40% Frontend</div>
+                    <h3>Key Projects:</h3>
+                    <ul>
+                        <li><strong>Pamcary PAMCARD - Smart Card Payment for Freights:</strong> Simulated desktop application behavior using early JavaScript and frame sets, creating dynamic UIs for Internet Explorer and Firefox. Maintained transaction integrity during money uploads to smart cards via OCX and JavaScript integrations. Developed Web Services (SOAP) using Apache Axis to ensure compatibility with Delphi systems for transportation clients.</li>
+                        <li><strong>SIGEN - Telemetric Utilities Management:</strong> Designed web-based applications to simulate desktop experiences using JavaScript and synchronized agent/command processes.</li>
+                        <li><strong>ETMS - ATM Management System:</strong> Built the company's first product funded by HSBC Bank while maintaining Java 1.3 compatibility. Created a monitoring interface using vanilla JavaScript and Java applets, employing frame sets to mimic AJAX functionalities.</li>
+                    </ul>
+                    <div class="skill-list" style="margin-top: 1rem;">
+                        <strong>Skills Set:</strong><br>
+                        • Frontend: HTML, CSS, Vanilla JavaScript, Java Applets<br>
+                        • Backend: Java EE (EJB, MDBs, Spring, Hibernate), Java EE Connectors, Struts, SOAP<br>
+                        • Tools: Argo UML, Apache Axis, Jasper Reports
+                    </div>
+                </div>
+            </section>
+            
+            <section class="resume-section">
+                <h2>EDUCATION</h2>
+                <div class="education-item">
+                    <div class="education-header">
+                        <span><strong>Hivelab - Service Innovation Journey</strong> – 160 hours</span>
+                        <span>2013</span>
+                    </div>
+                    <p style="color: var(--accent-color);">The Hivelab blended service design, design thinking, and lean startup methods to create innovative solutions and foster a collaborative, impactful community</p>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <span><strong>Design Thinking - ESPM</strong> – 40 hours</span>
+                        <span>2011</span>
+                    </div>
+                    <p style="color: var(--accent-color);">The first Design Thinking program in Brazil</p>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <span><strong>Java EE Architect Academy - Globalcode</strong> – 70 hours</span>
+                        <span>2005</span>
+                    </div>
+                    <p style="color: var(--accent-color);">Scaling architectures from 10 to 10,000 users</p>
+                </div>
+                
+                <div class="education-item">
+                    <div class="education-header">
+                        <span><strong>UNICAMP - Information Technology</strong></span>
+                        <span>2001 - 2006</span>
+                    </div>
+                    <p style="color: var(--accent-color);">Bachelor's degree in Information Technology from a top 40-ranked university</p>
+                </div>
+            </section>
+            
+            <section class="resume-section">
+                <h2>AWARDS & CERTIFICATIONS</h2>
+                
+                <h3>Award</h3>
+                <div class="certification-item">
+                    <strong>The Developer's Conference Rockstar</strong><br>
+                    The award honors exceptional professionals who elevate The Developer's Conference with their expertise, innovation, and dedication.<br>
+                    <a href="https://thedevconf.com/rockstar/AdilsonChicoria" target="_blank">https://thedevconf.com/rockstar/AdilsonChicoria</a>
+                </div>
+                
+                <h3>Java Certification</h3>
+                <div class="certification-item">
+                    <strong>Sun Certified Java Programmer (SCJP)</strong> (2003): Focused on core Java programming skills, with versions for Java SE 1.2, 1.4, 5, and 6.
+                </div>
+                <div class="certification-item">
+                    <strong>Sun Certified Web Component Developer (SCWCD)</strong> (2004): Focused on Java web applications, including servlets and JSP.
+                </div>
+                <div class="certification-item">
+                    <strong>Sun Certified Business Component Developer (SCBCD)</strong> (2005): Focused on Enterprise JavaBeans (EJB).
+                </div>
+                
+                <h3>Agile and Scrum</h3>
+                <div class="certification-item">
+                    <strong>Professional Scrum Master ™I (PSM I)</strong> (Scrum.org, 2018) - A certification showing foundational Scrum mastery, awarded after passing the PSM I assessment.<br>
+                    <a href="https://www.credly.com/badges/71561383-b441-441b-909d-024f1805c919" target="_blank">https://www.credly.com/badges/71561383-b441-441b-909d-024f1805c919</a>
+                </div>
+                <div class="certification-item">
+                    <strong>IBM Agile Explorer</strong> (IBM, 2018) - Recognizes foundational understanding of Agile principles and practices.<br>
+                    <a href="https://www.credly.com/badges/36e27a0f-366a-4761-b625-c4bc292e0a99" target="_blank">https://www.credly.com/badges/36e27a0f-366a-4761-b625-c4bc292e0a99</a>
+                </div>
+                
+                <h3>Mentorship</h3>
+                <div class="certification-item">
+                    <strong>IBM Mentor</strong> (IBM, 2018) - Acknowledges mentors who contribute to career development and support protégé growth.<br>
+                    <a href="https://www.credly.com/badges/db1aba3f-81b1-405a-8d65-27444b3002c8" target="_blank">https://www.credly.com/badges/db1aba3f-81b1-405a-8d65-27444b3002c8</a>
+                </div>
+                
+                <h3>Design Thinking</h3>
+                <div class="certification-item">
+                    <strong>Enterprise Design Thinking - Team Essentials for AI</strong> (IBM, 2019) - Demonstrates proficiency in applying Enterprise Design Thinking to design AI systems, ensuring ethical and user-centered practices.<br>
+                    <a href="https://www.credly.com/badges/fa29717a-1f3c-4cf4-84cf-ab3dcdb32667" target="_blank">https://www.credly.com/badges/fa29717a-1f3c-4cf4-84cf-ab3dcdb32667</a>
+                </div>
+                <div class="certification-item">
+                    <strong>Enterprise Design Thinking Advocate</strong> (IBM, 2018) - Demonstrates leadership in applying Design Thinking across teams to deliver user-centered solutions.<br>
+                    <a href="https://www.credly.com/badges/7a6b0df3-7dee-4fcc-9f38-d322978a807b" target="_blank">https://www.credly.com/badges/7a6b0df3-7dee-4fcc-9f38-d322978a807b</a>
+                </div>
+                <div class="certification-item">
+                    <strong>Enterprise Design Thinking Coach</strong> (IBM, 2017) - Recognizes expertise in guiding teams through Design Thinking processes to foster innovation.<br>
+                    <a href="https://www.credly.com/badges/165d98e8-0f1d-41a6-82bf-9a339558e8d4" target="_blank">https://www.credly.com/badges/165d98e8-0f1d-41a6-82bf-9a339558e8d4</a>
+                </div>
+                <div class="certification-item">
+                    <strong>Enterprise Design Thinking Co-Creator</strong> (IBM, 2017) - Acknowledges the ability to co-create user-centered solutions in teams using Design Thinking.<br>
+                    <a href="https://www.credly.com/badges/30ffd56d-d17f-4dc9-8ec7-e6257bd34a61" target="_blank">https://www.credly.com/badges/30ffd56d-d17f-4dc9-8ec7-e6257bd34a61</a>
+                </div>
+                <div class="certification-item">
+                    <strong>Enterprise Design Thinking Practitioner</strong> (IBM, 2016) - Recognizes proficiency in applying Design Thinking principles to solve complex challenges.<br>
+                    <a href="https://www.credly.com/badges/2609c121-d100-4fc7-baf1-741f48eab0bb" target="_blank">https://www.credly.com/badges/2609c121-d100-4fc7-baf1-741f48eab0bb</a>
+                </div>
+                
+                <h3>Public Speaking</h3>
+                <div class="certification-item">
+                    <strong>IBM Recognized Speaker/Presenter</strong> (IBM, 2018) - Multiple certifications acknowledging expertise in presenting at major events and influencing audience understanding.<br>
+                    <a href="https://www.credly.com/badges/62a1ff5a-f400-4162-9605-dfeaa80ae858" target="_blank">Badge 1</a> | 
+                    <a href="https://www.credly.com/badges/6560bbee-9803-4d55-ad1b-d813ed2c4ab9" target="_blank">Badge 2</a> | 
+                    <a href="https://www.credly.com/badges/af19f57b-4eff-4823-ace9-9529f83c0e11" target="_blank">Badge 3</a> | 
+                    <a href="https://www.credly.com/badges/11fab9be-58b0-4960-b2af-f1643f98813e" target="_blank">Badge 4</a> | 
+                    <a href="https://www.credly.com/badges/8b6ae803-8263-4367-b600-1442b900e468" target="_blank">Badge 5</a>
+                </div>
+                <div class="certification-item">
+                    <strong>IBM Brazil Regional Technical Exchange (RTE) Advocate</strong> (IBM, 2017) - Awarded to those who present at IBM's Brazil Regional Technical Exchange, demonstrating expertise in emerging technologies.<br>
+                    <a href="https://www.credly.com/badges/f9585c11-b0d6-45fb-8c30-b851494142d7" target="_blank">https://www.credly.com/badges/f9585c11-b0d6-45fb-8c30-b851494142d7</a>
+                </div>
+                <div class="certification-item">
+                    <strong>IBM Mentor</strong> (IBM, 2018) - Additional badge recognizing mentors who contribute to career development.<br>
+                    <a href="https://www.credly.com/badges/bfaacdc1-0084-4031-b477-f66c087d59fc" target="_blank">https://www.credly.com/badges/bfaacdc1-0084-4031-b477-f66c087d59fc</a>
+                </div>
+            </section>
+            
+            <section class="resume-section">
+                <h2>PUBLIC SPEAKING & COMMUNITY BUILDING LEADERSHIP</h2>
+                <p style="margin-bottom: 2rem;">The Developer's Conference is the largest tech event happening in Brazil for developers and tech companies. Over 4 years I have delivered 19 talks and panels across multiple editions advocating the enterprise design thinking from IBM and the service design sprints practice for startups.</p>
+                <p style="margin-bottom: 2rem;">In 2015 after the success of my talks on design, I created the Design Thinking Track, which has been featured in 14 editions across four cities, totaling over 96 hours of content and reaching out to an audience of more than 1200 developers, managers, and C-level professionals directly and more than 3000 through the online platform.</p>
+                <p style="margin-bottom: 2rem;">My leadership in curating impactful content earned me the TDC Rockstar Award, recognizing my commitment to empowering the tech community and elevating design thinking's role as collaboration in the industry.</p>
+                
+                <h3>Talks</h3>
+                <ol style="list-style: decimal; padding-left: 2rem; line-height: 2;">
+                    <li>Enterprise Design Thinking? - Design Thinking Track – The Developer's Conference - Porto Alegre (Dec 7, 2018) - <a href="https://thedevconf.com/tdc/2018/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Scaling the Culture of Design - Design Thinking Track – The Developer's Conference - Porto Alegre (Nov 10, 2017) - <a href="https://thedevconf.com/tdc/2017/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking and the Future of Jobs - Design Thinking Track – The Developer's Conference - São Paulo (Jul 18, 2017) - <a href="https://thedevconf.com/tdc/2017/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>IBM Studios: Where Tech, Design, and Business Connect - Design Thinking Track – The Developer's Conference - Porto Alegre (Oct 8, 2016) - <a href="https://thedevconf.com/tdc/2016/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>IBM Studios: Understanding Our Users to Create Disruptive Experiences Involving IoT - UX Design Track – The Developer's Conference - Porto Alegre (Oct 7, 2016) - <a href="https://thedevconf.com/tdc/2016/portoalegre/trilha-ux-design" target="_blank">Link</a></li>
+                    <li>IBM Studios: Where Tech, Design, and Business Connect - Design Thinking Track – The Developer's Conference - São Paulo (Jul 6, 2016) - <a href="https://thedevconf.com/tdc/2016/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Panel - Design Thinking Track – The Developer's Conference - São Paulo (Jul 6, 2016) - <a href="https://thedevconf.com/tdc/2016/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>IBM Studios: Understanding Our Users to Create Disruptive Experiences Involving IoT - UX Design Track – The Developer's Conference - São Paulo (Jul 5, 2016) - <a href="https://thedevconf.com/tdc/2016/saopaulo/trilha-ux-design" target="_blank">Link</a></li>
+                    <li>What is Design Thinking - Design Thinking Track – The Developer's Conference - Florianópolis (May 14, 2016) - <a href="https://thedevconf.com/tdc/2016/florianopolis/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>IBM Design: Design at Scale - 20 min - Design Thinking Track – The Developer's Conference - Porto Alegre (Sep 26, 2015) - <a href="https://thedevconf.com/tdc/2015/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Sprint: Impacting Your Business in 4 Days (25 min) - Business Analysis Track – The Developer's Conference - Porto Alegre (Sep 25, 2015) - <a href="https://thedevconf.com/tdc/2015/portoalegre/trilha-analise-de-negocios" target="_blank">Link</a></li>
+                    <li>Which Design Sprint is Best to Accelerate My Business? - Startups Track – The Developer's Conference - Porto Alegre (Sep 25, 2015) - <a href="https://thedevconf.com/tdc/2015/portoalegre/trilha-startups" target="_blank">Link</a></li>
+                    <li>Accelerating Startups with Design Thinking Sprint - Design Thinking Track – The Developer's Conference - São Paulo (Jul 23, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design@Scale - Design Thinking Track – The Developer's Conference - São Paulo (Jul 23, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Good Design is Good Business - Business Analysis Track – The Developer's Conference - São Paulo (Jul 21, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/trilha-analise-de-negocios" target="_blank">Link</a></li>
+                    <li>Design Thinking Sprints: Your MVS in 5 Days - Startups Track – The Developer's Conference - Florianópolis (May 16, 2015) - <a href="https://thedevconf.com/tdc/2015/florianopolis/trilha-startups" target="_blank">Link</a></li>
+                    <li>Good Design is Good Business - Business Analysis Track – The Developer's Conference - Florianópolis (May 15, 2015) - <a href="https://thedevconf.com/tdc/2015/florianopolis/trilha-analise-de-negocios" target="_blank">Link</a></li>
+                    <li>'We NEED Design'. Integrating Lean Startup and Design Thinking, the MVS Model (STADIUM) - Startups Track – The Developer's Conference - Porto Alegre (Oct 17, 2014) - <a href="https://thedevconf.com/tdc/2014/portoalegre/trilha-startups" target="_blank">Link</a></li>
+                    <li>'We NEED Design'. How to Integrate Lean Startup and Design, the MVS Model - Startups Track – The Developer's Conference - São Paulo (Aug 9, 2014) - <a href="https://thedevconf.com/tdc/2014/saopaulo/trilha-startups" target="_blank">Link</a></li>
+                </ol>
+                
+                <h3>Workshops</h3>
+                <ol style="list-style: decimal; padding-left: 2rem; line-height: 2;">
+                    <li>Service Design Thinking Sprint Workshop – The Developer's Conference – São Paulo (Jul 21, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/workshop-service-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Workshop – The Developer's Conference – Florianópolis (May 12, 2016) - <a href="https://thedevconf.com/tdc/2016/florianopolis/workshop-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Workshop – The Developer's Conference – Florianópolis (May 13, 2015) - <a href="https://thedevconf.com/tdc/2015/florianopolis/workshop-design-thinking" target="_blank">Link</a></li>
+                </ol>
+                
+                <h3>Lead and Track Curator</h3>
+                <ol style="list-style: decimal; padding-left: 2rem; line-height: 2;">
+                    <li>Design Thinking Track – The Developer's Conference – São Paulo (Jul 16, 2019) - <a href="https://thedevconf.com/tdc/2019/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Belo Horizonte (Jun 14, 2019) - <a href="https://thedevconf.com/tdc/2019/belohorizonte/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Florianópolis (Apr 25, 2019) - <a href="https://thedevconf.com/tdc/2019/florianopolis/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Porto Alegre (Dec 7, 2018) - <a href="https://thedevconf.com/tdc/2018/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – São Paulo (Jul 20, 2018) - <a href="https://thedevconf.com/tdc/2018/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Florianópolis (Apr 20, 2018) - <a href="https://thedevconf.com/tdc/2018/florianopolis/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Porto Alegre (Nov 10, 2017) - <a href="https://thedevconf.com/tdc/2017/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – São Paulo (Jul 18, 2017) - <a href="https://thedevconf.com/tdc/2017/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Florianópolis (May 3, 2017) - <a href="https://thedevconf.com/tdc/2017/florianopolis/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Porto Alegre (Oct 8, 2016) - <a href="https://thedevconf.com/tdc/2016/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – São Paulo (Jul 6, 2016) - <a href="https://thedevconf.com/tdc/2016/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Florianópolis (May 14, 2016) - <a href="https://thedevconf.com/tdc/2016/florianopolis/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – Porto Alegre (Sep 26, 2015) - <a href="https://thedevconf.com/tdc/2015/portoalegre/trilha-design-thinking" target="_blank">Link</a></li>
+                    <li>Startups Track – The Developer's Conference – São Paulo (Jul 24, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/trilha-startups" target="_blank">Link</a></li>
+                    <li>Design Thinking Track – The Developer's Conference – São Paulo (Jul 23, 2015) - <a href="https://thedevconf.com/tdc/2015/saopaulo/trilha-design-thinking" target="_blank">Link</a></li>
+                </ol>
+                
+                <h3>Other Events</h3>
+                <ul style="line-height: 2;">
+                    <li>Design and Technology talks curator – ISA 17 - Interaction South America – Florianópolis (November, 2017)</li>
+                    <li>Design Thinking: How to Innovate in Your Daily Life - 6th National Water Meeting - São Paulo (2016)</li>
+                    <li>5 Days Service Design Sprint at Startup Accelerator GEMA Ventures - São Paulo (Jul 2015)</li>
+                    <li>Design Thinking Workshop - From Hero to Use: The Journey - Campus Party (2014)</li>
+                    <li>Multiplying your relevance with Design Thinking - Campus Party - São Paulo (2014)</li>
+                    <li>IBM Design Thinking Workshop - Oxigenar event - Joinville (November, 2015)</li>
+                </ul>
+            </section>
+            
+            <section class="resume-section">
+                <h2>PUBLICATIONS</h2>
+                
+                <h3>Author</h3>
+                <div class="publication-item">
+                    <strong>Lucena, P., Braz, A., Chicoria, A., Tizzei, L.</strong> (2017). IBM Design Thinking Software Development Framework. In: Silva da Silva, T., Estácio, B., Kroll, J., Mantovani Fontana, R. (eds) Agile Methods. WBMA 2016. Communications in Computer and Information Science, vol 680. Springer, Cham. Conference paper, First Online: 24 March 2017, pp 98–10.<br>
+                    <a href="https://bit.ly/adilsonchicoria-ibm-design-thinking-article" target="_blank">https://bit.ly/adilsonchicoria-ibm-design-thinking-article</a>
+                </div>
+                
+                <h3>Contributions to Published Work</h3>
+                <div class="publication-item">
+                    Acknowledged in the book for contributing to discussions and providing insights during its development.<br>
+                    <strong>T Pinheiro, J Stein.</strong> (2014) The Service Startup: Design Thinking gets Lean: The First practical guide to Service Design Sprint.<br>
+                    <a href="https://a.co/d/deY28Lf" target="_blank">https://a.co/d/deY28Lf</a>
+                </div>
+                <div class="publication-item">
+                    Acknowledged in the book as co-creator<br>
+                    <strong>Osterwalder, A., & Pigneur, Y.</strong> (2010). Business model generation. John Wiley & Sons. (Business Innovation, Leadership, Startup).<br>
+                    <a href="https://www.strategyzer.com/library/business-model-generation" target="_blank">https://www.strategyzer.com/library/business-model-generation</a>
+                </div>
+                
+                <h3>Social Media & Additional Links</h3>
+                <ul style="line-height: 2;">
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/adilsonchicoria/" target="_blank">linkedin.com/in/adilsonchicoria</a></li>
+                    <li>Twitter/X: <a href="https://x.com/brjavaman" target="_blank">@brjavaman</a></li>
+                    <li>The Developer's Conference: <a href="https://thedevconf.com/" target="_blank">thedevconf.com</a></li>
+                </ul>
+                
+                <h3>Recorded Videos talks and Podcasts</h3>
+                <ul style="line-height: 2;">
+                    <li>What is Design Thinking? live interview for twitter Java Channel by Bruno Souza - São Paulo (Jul 5, 2016) - <a href="https://x.com/java/status/750399563354165248" target="_blank">Twitter/X</a></li>
+                    <li>IBM Design Thinking - User-Centered Results with Speed and Scale - 7Masters - São Paulo (April, 2016) - <a href="https://www.youtube.com/watch?v=VS_Li3JvjvU&list=PLXHrMWvxds3HRIkAzHRwV9AZtRmi7u6jP&index=13" target="_blank">YouTube</a></li>
+                    <li>Design Thinking discussion - Podcast - Papo de cabeça on the Event Oxigenar - Joinville (2015) - <a href="https://soundcloud.com/raws-ao-vivo-1/de-cabeca-com-adilson-chicoria-ibm" target="_blank">SoundCloud</a></li>
+                    <li>Good Design is Good Business - Business Analysis Track – The Developer's Conference - São Paulo (Jul 21, 2015) - <a href="https://www.youtube.com/watch?v=cugTKbI50p0&list=PLXHrMWvxds3HRIkAzHRwV9AZtRmi7u6jP&index=6" target="_blank">YouTube</a></li>
+                    <li>Good Design is Good Business - Startups Track – The Developer's Conference - São Paulo (Jul 21, 2015) - <a href="https://www.youtube.com/watch?v=rJAtAg1UQJE&list=PLXHrMWvxds3HRIkAzHRwV9AZtRmi7u6jP&index=1" target="_blank">YouTube</a></li>
+                    <li>Additional video - <a href="https://www.youtube.com/watch?v=1XSBNXPtRyc&list=PLXHrMWvxds3HRIkAzHRwV9AZtRmi7u6jP&index=13" target="_blank">YouTube</a></li>
+                    <li>Additional video - <a href="https://www.youtube.com/watch?v=9EaTq3uVu8I&list=PLXHrMWvxds3HRIkAzHRwV9AZtRmi7u6jP&index=3&t=7s" target="_blank">YouTube</a></li>
+                </ul>
+                
+                <h3>Online Presentations</h3>
+                <ul style="line-height: 2;">
+                    <li>Acelerando Startups com Design Thinking Sprints - <a href="https://www.slideshare.net/AdilsonJardim/acelerando-startups-com-design-thinking-sprints" target="_blank">SlideShare</a></li>
+                    <li>All presentations - <a href="https://www.slideshare.net/AdilsonJardim/presentations" target="_blank">SlideShare Profile</a></li>
+                    <li>Design Sprints side-by-side service design sprints vs google venture sprints - Business Analysis Track – The Developer's Conference - Porto Alegre (Dec, 2015) - <a href="https://www.slideshare.net/slideshow/design-sprints-sidebyside-service-design-sprints-vs-google-venture-sprints/78635176" target="_blank">SlideShare</a></li>
+                    <li>IBM Design Studio Brasil - IBM Design Thinking Workshop - Oxigenar 2015 - <a href="https://www.slideshare.net/slideshow/ibm-design-studio-brasil-ibm-design-thinking-workshop-oxigenar-2015-55750688/55750688" target="_blank">SlideShare</a></li>
+                    <li>Design Thinking como inovar no seu dia-a-dia - 6º ENA - <a href="https://abconsindcon.com.br/wp-content/uploads/2018/06/6%C2%BA-ENA-Design-Thinking-como-inovar-no-seu-dia-a-dia.pdf" target="_blank">PDF</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+</body>
+</html>
+
