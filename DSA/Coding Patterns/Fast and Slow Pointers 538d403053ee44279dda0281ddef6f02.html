@@ -1,0 +1,733 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Fast and Slow Pointers</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="538d4030-53ee-4427-9dda-0281ddef6f02" class="page sans"><header><h1 class="page-title"><strong><strong>Fast and Slow Pointers</strong></strong></h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>What</th><td>uses two pointers to traverse an iterable data structure, but at <strong>different speeds to detect patterns or properties within the data structure like cycles and intersections.</strong></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>How</th><td>The key idea is that the pointers start at the same location and then start moving at different speeds. <br/><br/>Generally, the <br/>- 🐢 <strong>slow</strong> pointer moves forward by a factor of <strong>one</strong>, and <br/>- the 🐇 <strong>fast</strong> pointer moves by a factor of <strong>two</strong>. <br/><br/>This approach enables the algorithm <strong>to detect patterns or properties</strong> within the data structure, such as <strong>cycles</strong> or <strong>intersections</strong>. <br/><br/>If there is a <strong>cycle</strong>, the <strong>two pointers are bound to meet</strong> at some point during the traversal. </td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Analogies</th><td>think of two runners on a track. While they start from the same point, they have different running speeds. If the track is circular, the faster runner will overtake the slower one after completing a lap.</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Coding Problems</th><td><a href="../Coding%20Problems/Middle%20of%20the%20linked%20list%20a1f321eb2d774bb3bd69311f44a70a29.html">
+Middle of the linked list</a>, <a href="../Coding%20Problems/Detect%20cycle%20in%20an%20array%20fd186bbceb714172abad7727ede221d0.html"><img class="icon notion-static-icon" src="https://www.notion.so/icons/arrow-southeast_gray.svg"/>Detect cycle in an array</a>, <a href="../Coding%20Problems/Detect%20irregularities%20or%20abnormalities%20in%20heart%20rh%20c8ea96cfb09545299b7c8592a0bb8a75.html">Detect irregularities or abnormalities in heart rhythm.</a>, <a href="../Coding%20Problems/Happy%20Number%20890ace240ccb475295d0359bd9784c1f.html">Happy Number</a>, <a href="../Coding%20Problems/Linked%20List%20Cycle%2003dbf0bdfc154cb88dc3eb412227f9f5.html">Linked List Cycle</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Data Structures</th><td><span class="selected-value select-value-color-yellow">Array</span><span class="selected-value select-value-color-brown">LinkedList</span></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Date</th><td><time>@April 15, 2024 11:38 AM</time></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Does this pattern solve your problem?</th><td>Yes, if the following condition is fulfilled:<br/><br/>• <strong>Linear data structure:</strong> The input data can be traversed in a linear fashion, such as an array, linked list, or string.<br/><br/>In addition, if either of these conditions is fulfilled:<br/><br/>• <strong>Cycle or intersection detection:</strong> The problem involves <mark class="highlight-red_background">detecting a loop </mark>within a linked list or an array <mark class="highlight-red_background">or involves finding an intersection between two linked lists or arrays.<br/></mark><br/>• <strong>Find the starting element at the second quantile(</strong><mark class="highlight-blue"><em>A quantile is a statistical concept used to divide a dataset into equal-sized parts.)</em></mark><strong>:</strong> The problem involves finding the starting element of the second quantile, i.e., second half, second tertile, second quartile, etc. For example, the problem asks to find the middle element of an array or a linked list.</td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@October 16, 2024 10:50 AM</time></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review - 1d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review 2d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>Traversal approach</th><td><span class="selected-value select-value-color-green">Linear</span></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>When</th><td> often to identify patterns, detect cycles, or find specific elements. <br/><br/></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td><span class="selected-value select-value-color-blue">Pattern</span></td></tr></tbody></table></header><div class="page-body"><figure id="2ebdf0cb-b241-41ec-bd94-e1f1f8cc56db" class="image"><a href="Fast%20and%20Slow%20Pointers/Untitled.png"><img style="width:567.9921875px" src="Fast%20and%20Slow%20Pointers/Untitled.png"/></a></figure><p id="d4d6f9da-980d-48c1-879a-4f9270c54577" class="">
+</p><h2 id="faf6c1ba-df54-4f17-acc1-65a4012002e3" class=""><strong>Real-world problems</strong></h2><p id="3f1103f0-def2-46dc-b9c3-18a093867171" class="">Many problems in the real world use the fast and slow pointers pattern. Let’s look at some examples.</p><ul id="133a3809-b3db-4e88-a1a0-02a1d8562a76" class="bulleted-list"><li style="list-style-type:disc"><strong>Symlink verification:</strong> A symbolic link, or symlink, is simply a shortcut to another file. Essentially, it’s a file that points to another file. Symlinks can easily create loops or cycles where shortcuts point to each other. To avoid such occurrences, a symlink verification utility can be used, and fast and slow pointers are useful in that case.</li></ul><ul id="f9dd16af-51c4-4448-b682-577bd4a9493b" class="bulleted-list"><li style="list-style-type:disc"><strong>Compiling an object-oriented program:</strong> Compiling object-oriented programs often involves managing dependencies between various modules stored in separate files for easier maintenance. However, these dependencies can sometimes form cyclic relationships, leading to compilation errors. By employing the fast and slow pointers pattern, these cycles can be detected and resolved, ensuring smooth compilation and execution of the program.</li></ul><h2 id="e80eae22-1d5a-4047-97ae-93314468f5ec" class="">GPT</h2><p id="578c0557-5c2e-4c24-b533-63ddf239efb5" class="">provide problems (that person with no background in computer science) in the real world are solved by the application that uses the fast and slow pointers pattern.</p><p id="92b89e18-a617-4753-a28f-bdfc184d552f" class="">
+</p><p id="7625c5c9-8d96-42c5-bb30-a180be61a5a1" class=""><strong>ChatGPT</strong></p><p id="1202823b-4cff-42d5-95a6-e1a14785f8f4" class="">Certainly! Here are some real-world problems that can be solved using the Fast and Slow pointers pattern, explained in a way that someone with no background in computer science can understand:</p><ol type="1" id="35093a87-7684-4424-8e13-623f5ec5d352" class="numbered-list" start="1"><li><strong>Detecting Traffic Jams on Highways</strong>:<ul id="13e21d49-e89d-4c0b-9fca-35aaabaff899" class="bulleted-list"><li style="list-style-type:disc">Imagine you&#x27;re driving on a highway, and you want to detect areas where traffic is slowing down or coming to a standstill. By using sensors placed at regular intervals along the highway, you can collect data on the speed of vehicles passing by.</li></ul><ul id="f78277ca-0e6c-479b-aab3-eb11b4e20ee1" class="bulleted-list"><li style="list-style-type:disc">Using the Fast and Slow pointers pattern, you can analyze this data by moving two &quot;pointers&quot; along the highway. The fast pointer moves faster than the slow pointer. If there&#x27;s a significant difference in speed between the two pointers, it indicates a potential traffic jam.</li></ul><ul id="303cf8e4-27bc-40f6-b7b6-09827d08c298" class="bulleted-list"><li style="list-style-type:disc">This approach helps transportation authorities identify congested areas and take appropriate measures to manage traffic flow.</li></ul></li></ol><ol type="1" id="361c1036-6731-4209-a924-03da0097a8af" class="numbered-list" start="2"><li><strong>Tracking Wildlife Migration Patterns</strong>:<ul id="c0bcf660-acd1-44b6-b83b-cf74f4b06e83" class="bulleted-list"><li style="list-style-type:disc">Wildlife conservationists often track the movement of animals, such as migratory birds or marine mammals, to understand their behavior and protect their habitats.</li></ul><ul id="a6ad19c3-954d-440e-8839-cb6d0df2bf62" class="bulleted-list"><li style="list-style-type:disc">Using GPS tracking devices attached to the animals, data on their location and movement can be collected over time.</li></ul><ul id="d8d9f747-0d0b-43ab-b792-bd4b3a49efa9" class="bulleted-list"><li style="list-style-type:disc">By applying the Fast and Slow pointers pattern to analyze this data, researchers can identify patterns in migration routes. The fast pointer represents the current location of the animal, while the slow pointer represents its historical locations. Any deviation or change in speed between the two pointers may indicate a change in migration pattern or behavior.</li></ul></li></ol><ol type="1" id="6eccad2b-4272-4f5e-8023-4240984e8d5a" class="numbered-list" start="3"><li><strong>Monitoring Water Flow in Rivers</strong>:<ul id="43d24406-d129-48d6-b31a-cf65579b9b27" class="bulleted-list"><li style="list-style-type:disc">Engineers and hydrologists monitor water flow in rivers and streams to assess water quality, predict floods, and manage water resources.</li></ul><ul id="e5108a42-a55c-4b2b-8bac-bd7f0088ffca" class="bulleted-list"><li style="list-style-type:disc">Using sensors placed at different points along a river, data on water level and flow rate can be collected continuously.</li></ul><ul id="45c7e268-b9ea-4a9b-98a5-a4af91045870" class="bulleted-list"><li style="list-style-type:disc">By applying the Fast and Slow pointers pattern to analyze this data, experts can identify trends and anomalies in water flow. The fast pointer represents the current data point, while the slow pointer represents historical data. Differences in water flow rates between the two pointers may indicate changes in river dynamics or potential environmental issues.</li></ul></li></ol><ol type="1" id="46e2b906-69fd-4f37-8550-913bf4a9f7f8" class="numbered-list" start="4"><li><strong>Detecting Heart Rate Irregularities</strong>: <figure id="c8ea96cf-b095-4529-9b7c-8592a0bb8a75" class="link-to-page"><a href="../Coding%20Problems/Detect%20irregularities%20or%20abnormalities%20in%20heart%20rh%20c8ea96cfb09545299b7c8592a0bb8a75.html">Detect irregularities or abnormalities in heart rhythm.</a></figure><ul id="382a4fa3-806c-47c8-8a58-c8dca8268d98" class="bulleted-list"><li style="list-style-type:disc">Wearable devices, such as fitness trackers and smartwatches, often monitor users&#x27; heart rates to provide insights into their health and fitness levels.</li></ul><ul id="80b338f5-5914-40cc-a8e5-734cc47f4f16" class="bulleted-list"><li style="list-style-type:disc">By continuously measuring heart rate data over time, these devices can detect irregularities or abnormalities in heart rhythm.</li></ul><ul id="29dcbd37-b08c-4602-a57f-f0b695f9f916" class="bulleted-list"><li style="list-style-type:disc">Using the Fast and Slow pointers pattern, the device can compare the current heart rate with historical data. The fast pointer represents the current heart rate, while the slow pointer represents the average or baseline heart rate. Any significant deviation or fluctuation between the two pointers may indicate a potential health concern that requires further investigation.</li></ul></li></ol><p id="e224bc8e-b5ac-47f2-ae4d-8c358543224f" class="">These examples illustrate how the Fast and Slow pointers pattern can be applied to solve real-world problems in various domains, from transportation and wildlife conservation to environmental monitoring and healthcare.</p><p id="279ec281-f33b-4df0-bc02-4fc81af5d710" class="">Of course! Let&#x27;s visualize these concepts using examples:</p><h3 id="417d374e-36a3-471b-8449-79f059460dd0" class=""><strong>Example 1: Second Half</strong></h3><p id="7ff5a5a1-f097-461d-a2b1-d78c71d7f3e6" class="">Consider an array with 10 elements:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d5689dbe-8abe-45e8-804b-dc1ce2575ffc" class="code code-wrap"><code class="language-C#" style="white-space:pre-wrap;word-break:break-all">
+[10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
+</code></pre><p id="772b6593-d9e1-43d3-8a20-eaa72690de32" class="">The first half consists of the first 5 elements <code><strong>[10, 20, 30, 40, 50]</strong></code>, and the second half consists of the remaining 5 elements <code><strong>[60, 70, 80, 90, 100]</strong></code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5e782926-7821-436d-bf6a-9d1d434edda6" class="code code-wrap"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">
+First Half            Second Half
+[10, 20, 30, 40, 50]  [60, 70, 80, 90, 100]
+
+</code></pre><h3 id="2e07d641-655d-4557-94c9-4405eab39146" class=""><strong>Example 2: Second Tertile</strong></h3><p id="60a12ec8-ff20-4c51-a105-81d2bceedfad" class="">Consider an array with 15 elements:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4172e749-a86e-4262-9e7d-c581e934c73a" class="code code-wrap"><code class="language-C#" style="white-space:pre-wrap;word-break:break-all">
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+</code></pre><p id="0380c365-81c5-4566-9a1d-24ed2706dc81" class="">Dividing this array into tertiles, we have:</p><p id="cba52eea-7178-403e-88d2-a0a14dfb826e" class="">
+</p><ul id="874b2669-42f4-4a8d-9f7d-7a168b851b0b" class="bulleted-list"><li style="list-style-type:disc">First Tertile: <code><strong>[1, 2, 3, 4, 5]</strong></code></li></ul><ul id="33a1f1a1-8a54-46b6-a902-ab4353965997" class="bulleted-list"><li style="list-style-type:disc">Second Tertile: <code><strong>[6, 7, 8, 9, 10]</strong></code></li></ul><ul id="ee67bacd-db49-4013-a10a-bc39295f709d" class="bulleted-list"><li style="list-style-type:disc">Third Tertile: <code><strong>[11, 12, 13, 14, 15]</strong></code></li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a83551a3-42d4-4a02-8443-e962d5796f65" class="code code-wrap"><code class="language-CSS" style="white-space:pre-wrap;word-break:break-all">
+First Tertile         Second Tertile       Third Tertile
+[1, 2, 3, 4, 5]       [6, 7, 8, 9, 10]     [11, 12, 13, 14, 15]
+
+</code></pre><h3 id="391dbfe5-9734-4a6f-bb72-e286f4467157" class=""><strong>Example 3: Second Quartile (Median)</strong></h3><p id="c6518d8f-9053-41ae-883f-914dc77e8e3e" class="">Consider an array with 8 elements:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a6c87c3f-d4c8-467a-9266-658ad5994bcf" class="code code-wrap"><code class="language-C#" style="white-space:pre-wrap;word-break:break-all">
+[10, 20, 30, 40, 50, 60, 70, 80]
+
+</code></pre><p id="dddf9bd9-cad8-4d1e-98ca-2ed8a07af5c0" class="">The median (second quartile) is the middle value of the sorted array. Since the array has an even number of elements, we take the average of the two middle values, which are <code><strong>40</strong></code> and <code><strong>50</strong></code>. So, the median is <code><strong>(40 + 50) / 2 = 45</strong></code>.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b0be29c-d1e9-430b-bd28-8f77a904e4a7" class="code code-wrap"><code class="language-C#" style="white-space:pre-wrap;word-break:break-all">
+           Median
+             |
+[10, 20, 30, 40, | 50, 60, 70, 80]
+             ^
+
+</code></pre><p id="e96cf19a-149a-4249-85ab-f49d8d088d49" class="">These visual representations help illustrate the concepts of the second half, second tertile, and second quartile (median) within a data set. They provide a clear understanding of how the data is divided and where the respective portions lie within the overall distribution.</p><p id="523bf255-92af-4889-b46a-f1944680c723" class="">Quantiles, tertiles, and quartiles are measures of the distribution of data within a dataset. They help to understand how the data is spread out and identify specific points or ranges within the dataset. Here&#x27;s how these measurements relate to each other and some related statistics:</p><h3 id="c4855786-ca84-4cae-8dce-121a91c29f8f" class=""><strong>Quantiles:</strong></h3><ul id="f1f10b9a-d1ab-4073-bc40-383cd7c9ca65" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition</strong>: Quantiles divide a dataset into equal portions. For example, quartiles divide a dataset into four equal portions, quintiles into five equal portions, and so on.</li></ul><ul id="0314ae4a-ff40-43fc-8164-5d1f7cde5094" class="bulleted-list"><li style="list-style-type:disc"><strong>Notation</strong>: The kth quantile is denoted as Q(k).</li></ul><ul id="b92eed97-5cba-4aeb-8f96-efe6af3893ac" class="bulleted-list"><li style="list-style-type:disc"><strong>Related Statistics</strong>:<ul id="3a386b71-0301-4af6-a088-08b5a8fc86be" class="bulleted-list"><li style="list-style-type:circle"><strong>Median (Second Quartile)</strong>: The median is the second quantile (Q2). It represents the middle value of the dataset when it is sorted in ascending order.</li></ul><ul id="ec86fd90-84cb-4140-9399-53424d06f569" class="bulleted-list"><li style="list-style-type:circle"><strong>Lower Quartile (First Quartile, Q1)</strong>: The first quartile is the value below which 25% of the data falls (Q1).</li></ul><ul id="93ff8c46-00ac-49eb-ba20-53122dc60f5e" class="bulleted-list"><li style="list-style-type:circle"><strong>Upper Quartile (Third Quartile, Q3)</strong>: The third quartile is the value below which 75% of the data falls (Q3).</li></ul></li></ul><h3 id="4392b588-5231-452e-b0d6-f2cdb7a0fb5f" class=""><strong>Tertiles:</strong></h3><ul id="8d0ebd4b-c484-4489-a4d5-d453a172313b" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition</strong>: Tertiles divide a dataset into three equal portions.</li></ul><ul id="acb76f87-4853-4967-a77a-3a6bbb00ddcb" class="bulleted-list"><li style="list-style-type:disc"><strong>Related Statistics</strong>:<ul id="21a3a73a-5a62-4435-b05b-d448ca2d30ed" class="bulleted-list"><li style="list-style-type:circle"><strong>First Tertile (Lower Tertile)</strong>: The value below which one-third of the data falls.</li></ul><ul id="53938f82-2b57-4bbe-8ddc-a9354e9c4c39" class="bulleted-list"><li style="list-style-type:circle"><strong>Second Tertile (Median)</strong>: The second tertile is the same as the median, representing the middle value of the dataset.</li></ul><ul id="be32affa-a433-43e1-80f1-4cefd8b0af67" class="bulleted-list"><li style="list-style-type:circle"><strong>Third Tertile (Upper Tertile)</strong>: The value below which two-thirds of the data falls.</li></ul></li></ul><h3 id="9a1beca7-7e75-4c19-b18a-7a45d8ca3103" class=""><strong>Quartiles:</strong></h3><ul id="b67bee77-e56f-431b-8ad5-a55684b6e059" class="bulleted-list"><li style="list-style-type:disc"><strong>Definition</strong>: Quartiles divide a dataset into four equal portions.</li></ul><ul id="33ebe02a-6320-4eed-9cc4-7625e6be5aad" class="bulleted-list"><li style="list-style-type:disc"><strong>Related Statistics</strong>:<ul id="9352c218-2db6-4fbc-bb40-7d82c69ea7f9" class="bulleted-list"><li style="list-style-type:circle"><strong>Lower Quartile (Q1)</strong>: The value below which one-quarter of the data falls.</li></ul><ul id="708af70d-8ea4-48aa-a24d-3f10574e2967" class="bulleted-list"><li style="list-style-type:circle"><strong>Second Quartile (Median, Q2)</strong>: The median represents the middle value of the dataset.</li></ul><ul id="4d84bb38-4eb4-4e91-a625-d8f1d623317c" class="bulleted-list"><li style="list-style-type:circle"><strong>Upper Quartile (Q3)</strong>: The value below which three-quarters of the data falls.</li></ul></li></ul><h3 id="8e34c697-8811-4eae-b76b-248b39b29236" class=""><strong>Other Related Statistics:</strong></h3><ul id="f6646397-bcf2-41f6-9636-f04083a7bf0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Interquartile Range (IQR)</strong>: The interquartile range is the difference between the upper quartile (Q3) and the lower quartile (Q1). It represents the spread of the middle 50% of the dataset.</li></ul><ul id="1df01bba-c1da-494c-81a6-8e9ae7f133a9" class="bulleted-list"><li style="list-style-type:disc"><strong>Outliers</strong>: Values that fall significantly above or below the quartiles may be considered outliers and can impact the analysis of the dataset.</li></ul><p id="609e6390-792f-4861-af23-074334d05388" class="">Understanding these statistics helps in summarizing the distribution of data and identifying key points such as the median, quartiles, and outliers within the dataset. They are essential tools in statistical analysis and data visualization.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

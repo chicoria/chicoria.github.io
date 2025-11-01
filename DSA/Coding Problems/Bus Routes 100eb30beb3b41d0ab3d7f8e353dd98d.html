@@ -1,0 +1,801 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Bus Routes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="100eb30b-eb3b-41d0-ab3d-7f8e353dd98d" class="page sans"><header><h1 class="page-title"><strong>Bus Routes</strong></h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Problem Statement</th><td>You are given an array, <code>routes</code>, representing bus routes where <code>routes[i]</code> is a bus route that the 𝑖𝑡ℎ<em>ith</em> bus repeats forever. Every route contains one or more stations. You have also been given the source station, <code>src</code>, and a destination station, <code>des</code>. Return the minimum number of buses someone must take to travel from <code>src</code> to <code>dest</code>, or return <code>-1</code> if there is no route.</td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Status</th><td><span class="status-value select-value-color-purple"><div class="status-dot status-dot-color-purple"></div>Studied</span></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Pattern</th><td><a href="../Coding%20Patterns/Graphs%207cf58eda14214b1fbee5904e9025368f.html"><img class="icon" src="https://algo.monster/sidebar/graph.svg"/>Graphs</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/hourglass_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Time</th><td><span class="selected-value select-value-color-gray">O(m x n)</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/database_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Space</th><td><span class="selected-value select-value-color-brown">O(m x n)</span></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created time</th><td><time>@July 21, 2024 1:28 AM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@July 21, 2024 2:05 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Companies</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="b4613dc4-99e6-420b-8c57-3757b294e5dd" class="image"><a href="Bus%20Routes/Untitled.png"><img style="width:705px" src="Bus%20Routes/Untitled.png"/></a></figure><p id="2379f36b-1382-4b88-8a13-b9ff0a568b91" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ff4a06ec-c658-4739-85a6-6fb1d7cca4c1" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">
+
+    public static int minimumBuses(int[][] busRoutes, int src, int dest) {
+        if (src == dest){
+            return 0;
+        }
+        var busByStation = new HashMap&lt;Integer, List&lt;Integer&gt;&gt;(); //station, bus
+        for (int i=0; i &lt; busRoutes.length; i++){
+            for (int j = 0; j &lt; busRoutes[i].length; j++) {
+                busByStation.computeIfAbsent(busRoutes[i][j], key -&gt; new ArrayList&lt;&gt;() ).add(i);
+            }
+        }
+        var busVisited = new HashSet&lt;Integer&gt;();
+
+        Queue&lt;int[]&gt; q = new ArrayDeque&lt;&gt;();
+        q.offer(new int[]{src, 0});
+
+        while (!q.isEmpty()){
+            var currentStationAndCountBus = q.poll();
+            var currentStation = currentStationAndCountBus[0];
+            var busTaken = currentStationAndCountBus[1];
+            if (currentStation == dest ){
+                return busTaken;
+            }
+            var busList = busByStation.getOrDefault(currentStation, new ArrayList&lt;&gt;());
+            for (var bus : busList) {
+                if (busVisited.contains(bus)) continue;;
+                busVisited.add(bus);
+
+                for (var station:  busRoutes[bus]) {
+                    q.offer(new int[]{station, busTaken +1});
+                }
+            }
+        }
+        return -1;
+    }
+
+    @Test
+    public void testMinimumBuses(){
+            var routes = new int[][]{{2,5,7},{4,6,7}};
+            Assertions.assertEquals(2, minimumBuses(routes, 2,6));
+    }
+
+    @Test
+    public void testMinimumBuses1() {
+        var routes = new int[][]
+                {{644,518,519,785,787,532,539,796,670,31,798,550,423,690,699,443,573,703,579,326,969,591,344,476,220,739,995,483,230,362,877,878,367,879,499},
+                        {1,899,774,523,524,14,399,144,400,15,793,923,931,163,168,937,568,954,317,455,204,462,592,337,210,342,221,94,481,484,868,740,373,758,763},
+                        {257,643,775,137,13,22,153,543,673,429,688,306,820,437,181,569,570,314,572,701,706,963,836,709,971,79,978,595,468,466,868,746,622,631,633,506},
+                                {776,393,137,402,660,408,410,284,33,929,427,430,178,691,60,829,319,64,711,200,329,586,721,978,84,980,853,728,91,605,378,496,116,506,508},
+                                {641,514,899,901,265,777,907,908,147,677,166,683,172,44,687,177,690,946,564,49,572,718,80,89,473,92,732,485,622,623,242,243,630,506,123},
+                                {769,133,12,404,916,537,409,923,286,671,167,938,823,827,957,704,449,961,451,836,580,460,345,224,865,354,864,105,617,491,623,240,884,374,250},
+                                {384,133,520,396,526,786,914,406,22,409,538,161,290,934,554,175,947,693,452,587,461,717,469,87,605,350,225,226,613,871,112,115,629,758,889,895},
+                                {768,636,519,776,904,650,266,268,657,19,537,926,295,552,52,56,958,575,191,452,968,204,595,860,861,737,356,101,357,869,366,239,378,635,764,253},
+                                {258,7,267,653,671,673,161,806,807,558,433,948,702,585,975,594,596,468,598,470,729,986,889,225,866,865,103,105,363,748,366,121,378,124,510},
+                                {385,898,520,138,906,397,910,657,533,662,26,541,799,415,289,418,164,557,692,187,454,967,205,206,725,91,479,228,360,242,627,501,375,120,890,893},
+                                {641,643,517,521,19,660,413,672,547,423,41,297,820,180,59,448,967,712,458,591,976,81,474,991,736,491,879,496,881,497,501,505,122,383},
+                                {2,392,917,921,538,159,164,38,550,807,553,426,303,178,949,696,825,711,969,843,973,82,220,864,993,610,483,356,740,873,235,882,117,633,251},
+                                {259,5,392,136,394,522,404,282,542,31,159,296,939,563,440,828,712,970,972,76,974,975,976,595,214,608,614,871,615,359,377,616,877,119,249,765},
+                                {769,518,776,909,781,912,913,145,919,410,669,802,677,814,689,565,182,183,954,703,63,705,64,69,205,342,598,987,732,221,481,743,368,889,636,895},
+                                {911,275,923,925,415,31,289,932,935,295,307,52,57,59,187,703,196,68,453,583,73,843,715,80,469,343,218,602,733,871,232,105,109,245,247,127},
+                                {902,903,904,908,399,273,919,410,795,412,163,171,183,696,824,313,697,959,832,321,972,460,973,722,213,347,476,353,355,998,489,879,625,885,631,381},
+                                {0,897,393,13,911,145,274,149,792,686,47,48,176,691,181,315,317,190,960,452,971,472,602,859,858,863,991,481,102,235,109,753,499,757,506},
+                                {641,4,653,18,663,415,930,549,682,428,46,434,819,822,567,189,62,578,196,197,454,328,969,589,979,989,734,867,368,631,633,506,123,124,895},
+                                {517,390,264,397,143,147,20,152,665,414,420,938,431,818,564,183,955,966,972,589,719,81,854,474,733,480,482,614,490,618,107,750,880,369,118,506},
+                                {1,3,390,775,138,14,271,274,787,276,533,918,534,551,685,813,174,562,60,63,710,70,207,211,344,219,732,992,739,743,874,365,881,120,382},
+                                {512,900,776,264,789,153,154,27,923,36,811,300,939,303,51,324,965,708,327,843,845,718,851,981,856,247,606,375,865,105,106,372,887,121,123,892},
+                                {902,136,269,13,15,913,804,678,39,942,945,439,699,316,829,446,190,701,192,830,455,712,718,591,467,347,861,608,229,109,237,881,372,244,634},
+                                {773,11,399,529,659,922,923,796,29,671,931,804,37,811,176,944,179,56,193,68,841,78,468,727,472,88,218,987,865,228,870,495,112,496,630,376},
+                                {256,259,132,134,394,651,524,399,911,400,786,15,20,790,664,934,173,819,692,949,183,837,839,584,460,719,208,727,856,477,350,492,237,879,113,756},
+                                {898,771,777,523,11,653,402,20,150,535,24,795,290,547,299,557,688,436,67,195,969,341,472,91,93,867,870,486,235,748,238,878,113,882,630,895},
+                                {389,518,10,268,766,274,660,152,922,539,414,287,159,546,45,174,557,943,688,442,828,446,455,973,84,602,731,95,101,743,104,361,876,374,122,510},
+                                {258,5,517,893,146,659,404,544,928,34,291,420,677,169,43,947,567,312,57,568,952,589,341,213,725,984,729,218,867,107,108,236,497,373,253,254},
+                                {643,261,652,525,398,17,532,28,925,677,811,48,563,821,565,439,694,955,446,707,835,841,970,204,719,853,600,476,989,480,484,614,629,502,636},
+                                {903,905,909,14,911,784,914,152,409,26,668,289,546,417,165,939,43,438,56,61,323,711,328,715,203,333,461,591,214,730,991,612,232,489,745,508},
+                                {512,386,515,133,518,775,904,5,138,23,668,162,296,553,818,436,52,955,702,574,195,198,967,200,463,211,984,473,93,735,225,615,111,118,120,254},
+                                {771,904,892,266,914,787,406,279,537,31,802,939,943,433,53,824,56,315,194,323,584,458,76,337,213,726,727,855,89,983,990,351,353,762,252,509},
+                                {770,3,899,262,528,22,284,682,938,940,45,175,818,564,442,58,700,320,961,71,73,845,208,978,982,214,89,218,858,475,610,362,363,874,887,893},
+                                {259,523,547,164,419,294,676,935,297,299,940,944,826,954,329,331,977,212,982,222,478,351,610,999,872,233,123,750,752,497,885,630,631,251,892},
+                                {132,392,907,785,914,407,152,668,285,286,296,938,433,180,59,964,324,198,839,329,850,852,854,984,603,226,867,235,622,880,881,499,379,250,123,254},
+                                {385,901,518,271,277,790,407,408,24,164,170,171,176,50,947,563,949,951,313,571,320,707,839,970,844,78,83,468,85,857,605,612,741,358,743,376},
+                                {129,4,133,137,9,14,400,26,923,29,297,170,425,44,941,305,689,695,833,968,74,213,981,86,856,88,729,734,223,991,486,630,762,637,255},
+                                {769,642,654,399,526,529,21,24,29,675,37,431,817,693,449,706,968,585,842,853,214,87,344,856,985,475,605,94,739,997,101,625,626,754,242,765},
+                                {640,4,905,139,396,660,278,411,925,30,678,422,294,423,45,307,700,189,64,840,77,590,466,211,119,89,733,734,101,614,617,108,372,244,756,629},
+                                {2,7,914,535,407,669,285,671,417,562,181,445,66,964,459,204,333,334,331,467,724,471,989,608,737,356,740,230,228,241,497,370,632,249,252},
+                                {768,261,6,138,780,273,278,157,542,426,812,698,826,447,578,326,967,713,81,83,340,85,472,729,604,220,992,229,618,106,236,878,112,626,761,892},
+                                {128,386,134,906,907,784,918,278,412,543,290,804,41,44,430,561,952,957,459,589,592,593,849,80,601,93,96,483,485,998,102,358,491,766,639},
+                                {130,393,778,140,397,400,274,662,670,803,293,808,54,445,191,320,195,70,839,972,973,206,721,211,598,87,476,481,870,231,998,882,627,628,502,127},
+                                {768,133,390,904,140,13,270,404,416,34,804,935,168,552,47,949,699,832,327,587,78,211,85,344,730,347,91,221,478,224,226,739,113,888,894,767}};
+
+                        Assertions.assertEquals(2, minimumBuses(routes, 257, 902));
+    }
+}
+</code></pre><p id="53900fb2-25f1-42e1-ad61-e7ef532f61ab" class="">
+</p><h3 id="98a6d705-3adb-4933-a3fb-d1924c62ef4a" class=""><strong>Time complexity</strong></h3><p id="07d28860-662f-4044-9ffc-79ba499bd83d" class="">The time complexity of this solution is 𝑂(𝑅×𝑆)<em>O</em>(<em>R</em>×<em>S</em>), where 𝑅<em>R</em> is the total number of routes and 𝑆<em>S</em> is the number of stations.</p><h3 id="1513869e-3f0e-44fe-9117-0de216c72b80" class=""><strong>Space complexity</strong></h3><p id="a88f8cfc-eee4-4eca-9654-6b04da1dd736" class="">We are using an adjacency list, queue, and visited buses set as additional memory. So, the space complexity of the algorithm is 𝑂(𝑅×𝑆)<em>O</em>(<em>R</em>×<em>S</em>), where 𝑅<em>R</em> is the total number of routes, and 𝑆<em>S</em> is the number of stations.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

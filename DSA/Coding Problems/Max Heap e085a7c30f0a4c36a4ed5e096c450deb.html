@@ -1,0 +1,802 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Max Heap</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e085a7c3-0f0a-4c36-a4ed-5e096c450deb" class="page sans"><header><h1 class="page-title">Max Heap</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Status</th><td><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>Studying</span></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Pattern</th><td><a href="../Coding%20Patterns/Heaps%20692a997b63884aaebcf780aac9b82487.html"><img class="icon" src="https://algo.monster/sidebar/priority_queue.svg"/>Heaps</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Source URL</th><td><a href="https://www.educative.io/courses/data-structures-coding-interviews-java/max-heap-implementation" class="url-value">https://www.educative.io/courses/data-structures-coding-interviews-java/max-heap-implementation</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/hourglass_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Time</th><td></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/database_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Space</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created time</th><td><time>@June 24, 2024 11:39 AM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@June 24, 2024 12:57 PM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Companies</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/formula_gray.svg" style="width:14px;height:14px;display:block"/></span>Source</th><td>Educative</td></tr></tbody></table></header><div class="page-body"><figure id="b4bbaf02-f8a2-455f-9944-be19e89b6374" class="image"><a href="Max%20Heap/Untitled.png"><img style="width:438px" src="Max%20Heap/Untitled.png"/></a></figure><p id="c17a867d-59b7-40e9-9b7b-01dec9ec56b6" class="">
+</p><p id="56adf9df-28d9-45c7-b5fe-cc8586352b96" class="">
+</p><figure id="12fe0fcf-5c4e-4cb1-8396-bc6cd8eb8915" class="image"><a href="Max%20Heap/Untitled%201.png"><img style="width:557px" src="Max%20Heap/Untitled%201.png"/></a><figcaption><a href="https://www.plantuml.com/plantuml/uml/jPDTQzim58RlpwyuU3Vx80mhJhrijBJDs1WKTn3Ohi-g4qT4be8ihsDZ_tsI9RSkv68tlSlpVaWl2hxiFJa_T1gWFoXp94STIjxHeFqdQtn37UELKwHdlh6IyGyW8bxJtQ5rTZ1oOxLrUAFQlV_ic4sohPFiadMjGtPKuy5pxU-pdWt6UiPYUqz737UmyKX6ujrUQLaWzRZzVlKLe0lsJtAAVcZkuu8zqt6hVZEUN-0Qi5Co_dhv82-mV8LlKU0vLXy0bP7ywtQt6Loyeh5oB2uVZ1joBVUZyOtq4DsJdL01rBppcpZmIqp4gC3Nf-9li0oL6j35n_dFIfpyBhuCc2WKvVWCJOcPgyHLnZfXFQL5ZWkSb5LMLlZY8xd3hIFJycHMsPoEMoTUPnG9HSPbmkNKFiljCu0mS27jlLbSn6rpgg6f7gaKJt45JJt3wWck8UGVKSmnpV0y_XtliI2Y8lYhoK-pu9ADZ5_GFm00">plantuml - max heap initial state</a></figcaption></figure><p id="442ec4a0-e436-47c7-a3fc-97ee7f97160d" class="">
+</p><p id="0945140d-6d8c-419a-ab99-b128b8f1e1bd" class="">
+</p><figure id="5b1b9a13-6334-48cb-a7f7-fe9adf7708ee" class="image"><a href="Max%20Heap/Untitled%202.png"><img style="width:438px" src="Max%20Heap/Untitled%202.png"/></a></figure><p id="68cf4916-4f18-4446-bb14-3ce3d68ddf46" class="">
+</p><figure id="f9376936-212a-4cba-81a0-c3d890dd77ec"><div class="source"><a href="https://www.plantuml.com/plantuml/png/jP9HRzem58NV_IkksfTsKrGI0XGDK0lLradTc3JKbsqF5t8JF1oxSfmDLlM_BoPUG0wJzh8d3lPtVC-vS5COrARC1IisN3wXnXpkE6Rsyva1J9LEIC-KK1eoJRlcQB7cgusaee2GlR05DuBW0sxXdl090aYvBWoigoyytG4tfD5m9TdHc8HIB8LvgwJvY3d1hUPu74EgXFOP0AQuscHQbJAfappmR6tUQI9PNn-5d8gAtP_QXu_FNlxhsupbLV5boKLYLs0Vj-q_yry4umaC6N2Pq7QUFc1XFg6cgdKLOYuNQxhL6dUMkcWi0OINS0KHZ25-qtXdfVvZj7XivzgnEMxltQgV_muV4kYCYlt58ufoVskl1QLcjguAlBUSFOtWrQdNNaC8Orj9srtzeyLM2JlmLLx0Q3b9aOkYvHyTTZQwMaukRR_3IeD4_PJ1vAWjOqmjlzFAm1dQ7NxfV3i3B00xxiVzKVUp_r4V3HqQUcZSHYE7HXuwQADTXtRz056RZHqR0vpVeTxCDSgCF5-lxUivNy-VSI9wtx5zZnssqO531nvw8lcrGwyzjDj6XmuTmlaZLuAC7xflFTY189W0XesA68QrwZOgPXZLgjUeFiDkhGQDkcOOrsh8RaWcPIv-0m00">https://www.plantuml.com/plantuml/png/jP9HRzem58NV_IkksfTsKrGI0XGDK0lLradTc3JKbsqF5t8JF1oxSfmDLlM_BoPUG0wJzh8d3lPtVC-vS5COrARC1IisN3wXnXpkE6Rsyva1J9LEIC-KK1eoJRlcQB7cgusaee2GlR05DuBW0sxXdl090aYvBWoigoyytG4tfD5m9TdHc8HIB8LvgwJvY3d1hUPu74EgXFOP0AQuscHQbJAfappmR6tUQI9PNn-5d8gAtP_QXu_FNlxhsupbLV5boKLYLs0Vj-q_yry4umaC6N2Pq7QUFc1XFg6cgdKLOYuNQxhL6dUMkcWi0OINS0KHZ25-qtXdfVvZj7XivzgnEMxltQgV_muV4kYCYlt58ufoVskl1QLcjguAlBUSFOtWrQdNNaC8Orj9srtzeyLM2JlmLLx0Q3b9aOkYvHyTTZQwMaukRR_3IeD4_PJ1vAWjOqmjlzFAm1dQ7NxfV3i3B00xxiVzKVUp_r4V3HqQUcZSHYE7HXuwQADTXtRz056RZHqR0vpVeTxCDSgCF5-lxUivNy-VSI9wtx5zZnssqO531nvw8lcrGwyzjDj6XmuTmlaZLuAC7xflFTY189W0XesA68QrwZOgPXZLgjUeFiDkhGQDkcOOrsh8RaWcPIv-0m00</a></div></figure><p id="51bd87de-eac8-4c95-956d-3556603d1415" class="">
+</p><p id="49e184b3-3b2e-451a-b464-30eacab90fe3" class="">
+</p><figure id="716399cd-3a59-406f-89a1-8b7157bc2c26"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/jP5DRvj048Rlyoj6oTbImM2AgaRvgDeSKbofKIvL3vCmjhTUTgrXQPrQ_ky5335UqcEExxxFp3uibwKZSLMXuLuvpVYLjdZBjC49BfIK3bTrK8jdL8w5dB86e5mhio6X0dDUKANTPsjSHWNZbIZIWzxOd747Y8ZNzBHUYgrCVcEr5RnJovNx8ipcK5l9MGxLjQxPzhHPF3pRl-bkW88s-5WfdRTFi8Fswx-hlumVBp05L2RdxNnnHwNxHiB6PRN4tDol-4g4dXig-l22tLJICsq3-yCD1MrlkrVT_Hy-NYPBBjlYWNJLjfWskuwcazp-CPEBmMO0i8-_-CdX6JLgFzxzF4CgCGkwD_jzs8K1x7qqwD38GwCn6dPeug7969ts0g5l48xXg8TZF7zGLhFpPcRZcRYVyRs3LyHd7PnwR3f6amxrlL_HVj-XKm-TZj6qjvtX-IUIzLp8BDaJZvkvB7ZvlrbqaXB8ecCAmjCOGvOCOdGIKwZvOmnFuxIEyM1s1fTiyghG_m00">https://cdn-0.plantuml.com/plantuml/png/jP5DRvj048Rlyoj6oTbImM2AgaRvgDeSKbofKIvL3vCmjhTUTgrXQPrQ_ky5335UqcEExxxFp3uibwKZSLMXuLuvpVYLjdZBjC49BfIK3bTrK8jdL8w5dB86e5mhio6X0dDUKANTPsjSHWNZbIZIWzxOd747Y8ZNzBHUYgrCVcEr5RnJovNx8ipcK5l9MGxLjQxPzhHPF3pRl-bkW88s-5WfdRTFi8Fswx-hlumVBp05L2RdxNnnHwNxHiB6PRN4tDol-4g4dXig-l22tLJICsq3-yCD1MrlkrVT_Hy-NYPBBjlYWNJLjfWskuwcazp-CPEBmMO0i8-_-CdX6JLgFzxzF4CgCGkwD_jzs8K1x7qqwD38GwCn6dPeug7969ts0g5l48xXg8TZF7zGLhFpPcRZcRYVyRs3LyHd7PnwR3f6amxrlL_HVj-XKm-TZj6qjvtX-IUIzLp8BDaJZvkvB7ZvlrbqaXB8ecCAmjCOGvOCOdGIKwZvOmnFuxIEyM1s1fTiyghG_m00</a></div></figure><p id="02015745-0887-48c9-a725-effab1c155cb" class="">
+</p><p id="6a9f081e-37c6-4bea-9c71-22b104ec781c" class="">
+</p><p id="666a061f-2b4e-4471-82d7-9d814abf0025" class="">
+</p><figure id="41290e2d-8e4a-4899-bf37-9b0ac87f63b5" class="image"><a href="Max%20Heap/Untitled%203.png"><img style="width:438px" src="Max%20Heap/Untitled%203.png"/></a></figure><p id="31910c39-9074-4c83-bb97-197785d0f2e2" class="">
+</p><p id="72494900-3046-4223-8c76-7abee94ccb53" class="">In this iteration the leftChild and rightChild values will be checked if they are greater than the their parent (array[3] = 12). </p><figure id="dc8335ec-8e0d-4ab7-b116-18594d2f0ca2"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/jP5FRzD04CNl-ob6vGQAXFyuhW-jsWP1aOg3HDKBuZ2jnycIzMurNaDAnNTdDx4R_maI5tnx-tvlzktuehR8jgcKk9LM4Np2BLmJFi8CIicrXRKJidm2QOdHIgE5g3TIFo9Z1GMLs2ZxtcYROqLmoH9LpzUc87WMuBuhVDYis3IwM1Xb66xaQcq_C97UsuOBuhrrfHoxE_M3-sU__-ji8IhtyFj6giAlm0_th_yYVn6SdKCcGEg2jilo1clx6PdSgrs9fRvTqoKpFdagVg4M3NU8Do9_Wx-WmkrrkzJdlyE7ktX5zSwuGzNiN6yhAkrYxQf-z9m_3U7riMbl880pI0Mmsyg_Ha8NEHM-yM4TiyByrBFpNdyXXBd_JWyMJj2__-lRRoU0DUH1-sD-x1j3u2QDqA15un4QJz6mHTCHcaxHg2iGmgjto9iberxHg4mupSLTBXatdq_Xf8FZCNoa_Bo5in6RJT6qHLttEsaKsM7YIEtJDX4TJqJJHDPrdu-x9nxEWvVVdCS3bOeyFgWW7Cf4v6bFnWEP2SSVP3YKaPD9BpiN5wIBfb9_0000">https://cdn-0.plantuml.com/plantuml/png/jP5FRzD04CNl-ob6vGQAXFyuhW-jsWP1aOg3HDKBuZ2jnycIzMurNaDAnNTdDx4R_maI5tnx-tvlzktuehR8jgcKk9LM4Np2BLmJFi8CIicrXRKJidm2QOdHIgE5g3TIFo9Z1GMLs2ZxtcYROqLmoH9LpzUc87WMuBuhVDYis3IwM1Xb66xaQcq_C97UsuOBuhrrfHoxE_M3-sU__-ji8IhtyFj6giAlm0_th_yYVn6SdKCcGEg2jilo1clx6PdSgrs9fRvTqoKpFdagVg4M3NU8Do9_Wx-WmkrrkzJdlyE7ktX5zSwuGzNiN6yhAkrYxQf-z9m_3U7riMbl880pI0Mmsyg_Ha8NEHM-yM4TiyByrBFpNdyXXBd_JWyMJj2__-lRRoU0DUH1-sD-x1j3u2QDqA15un4QJz6mHTCHcaxHg2iGmgjto9iberxHg4mupSLTBXatdq_Xf8FZCNoa_Bo5in6RJT6qHLttEsaKsM7YIEtJDX4TJqJJHDPrdu-x9nxEWvVVdCS3bOeyFgWW7Cf4v6bFnWEP2SSVP3YKaPD9BpiN5wIBfb9_0000</a></div></figure><p id="e727594e-3c27-4751-84e2-2405be30c41e" class="">
+</p><blockquote id="6be6e779-5cd6-483e-b03b-8122c06aa8c6" class="">Since array[3] = <strong>12 &gt; array[7] &gt; array[8]</strong> then we break the loop with the heap property satisfied. </blockquote><p id="c72b0706-1118-4653-b190-109692f660e2" class="">
+</p><p id="f08aba76-417a-4f95-b3f4-d682b69dc14f" class="">
+</p><p id="cb87c0b5-2bdb-41c1-af44-4e47b6d0da42" class="">Next iteration we visit the indexOfCurrentNode = 2</p><p id="17e75126-3b0f-4047-9d64-e8aa130d426d" class=""> </p><figure id="3d50c9dc-71b2-447a-8390-f8884cec76f8"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/jPBVRzCm4CVV_LUSjkSAaZeDGIFQLWH36YaIqrxG7gxBjJLrxCbnMCl4_uxT9aiJYqVwKdtlFlVZlivbRT7OffBiJbX9y1LtS4Fu11FOk3-nseEmPD0AhLpiOecFs_Txab8_vv9MThuHieGSq1ZS_n2gfDrYDM-C8MKBNT83VCWXuev8uUADhyuPgxT2FQ712afQOIFj9-reh0YkZ41vabUk1RmmSBzhLxiskb7bN4jju5QiD_Qp8LB7j3ObcMFgMZhs4FMDJsD__cjlnYhdtB9nbdWFVNDludVncxmD6OFMe5kixJViF5gekmrTUGCznHc4Dlf4x2Vu0HNkRjgtUVattCyoQweFYNkKpI4B2OFNr_lYEHVrGUCE7qLdpC_jZvgK-bbDyfCjtDrw-PCUBPmTFuEt3sU0DHHHQ--luro8NASH6hKe7w4yHECMJU7y8vhjmg1Qqx0g3QkctIxnU9auX7a79sDu5i991tCulnTQaXtLyB1crjPae_vPYAOj6W_9E2JVjUHqr7GQebctysnyOEBX8dfzte8FLCeAtgie7ig45Uc9v0EPCSVtCXxAgPD9BvtHbwJAff9_0G00">https://cdn-0.plantuml.com/plantuml/png/jPBVRzCm4CVV_LUSjkSAaZeDGIFQLWH36YaIqrxG7gxBjJLrxCbnMCl4_uxT9aiJYqVwKdtlFlVZlivbRT7OffBiJbX9y1LtS4Fu11FOk3-nseEmPD0AhLpiOecFs_Txab8_vv9MThuHieGSq1ZS_n2gfDrYDM-C8MKBNT83VCWXuev8uUADhyuPgxT2FQ712afQOIFj9-reh0YkZ41vabUk1RmmSBzhLxiskb7bN4jju5QiD_Qp8LB7j3ObcMFgMZhs4FMDJsD__cjlnYhdtB9nbdWFVNDludVncxmD6OFMe5kixJViF5gekmrTUGCznHc4Dlf4x2Vu0HNkRjgtUVattCyoQweFYNkKpI4B2OFNr_lYEHVrGUCE7qLdpC_jZvgK-bbDyfCjtDrw-PCUBPmTFuEt3sU0DHHHQ--luro8NASH6hKe7w4yHECMJU7y8vhjmg1Qqx0g3QkctIxnU9auX7a79sDu5i991tCulnTQaXtLyB1crjPae_vPYAOj6W_9E2JVjUHqr7GQebctysnyOEBX8dfzte8FLCeAtgie7ig45Uc9v0EPCSVtCXxAgPD9BvtHbwJAff9_0G00</a></div></figure><p id="12dd753e-1280-410b-b3b1-f2e1bb6043ac" class="">
+</p><p id="970b2b57-17eb-4737-a4dc-2c729903e9ec" class="">Since the array[5] is greater than the array[<strong>indexOfCurrentNode] </strong>we assign the <strong>leftChildIndex</strong> as the  <strong>indexOfLargestNodeValue</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c3de79e9-8746-4294-8943-e2ca02eeda3b" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">  
+  if (leftChildIndex &lt; heapSize &amp;&amp; 
+					  heapArray[leftChildIndex] &gt; heapArray[indexOfCurrentNode]) {
+      // update the largest index to current left child index
+      indexOfLargestNodeValue = leftChildIndex;
+}</code></pre><p id="2a7db15d-1b05-4a37-a9bd-05d979754dbf" class="">
+</p><p id="8c8aa5eb-b562-4b82-8539-6263e813d4ee" class="">In the same scope we check for the rightChild and since the value of the rightChild(array[6]=9) is less the value of the new largest value <strong>array[indexOfLargestNodeValue]=14</strong> we do nothing.</p><figure id="1b446d0b-06d0-4a20-8c38-00aabc42a4a7"><div class="source"><a href="https://www.plantuml.com/plantuml/png/TPDFRzD04CNlyob6wTab_cCdHiLjLGv5WWQ9gXV8OL9F4jFD6gtNDA7gTyUxNWoiarEUnhytCs-LkMeqATtk1DnNMZ1-eZtUClt00BVTJxK-OALPaQvgsTKkLlJuzFR0GjJFXQesMtsphKI91P9ITFXQoPBtY_L7KXjkz5rTyWE9bfTuYUyApB70C34QxsgyU6EQ5G2mw-QjsgwFdVm2TlINwXTR4-3GjT6VIR6qZHVoVilNPggXae6wQPL3h3s2rtx0ZlQtBj7BQHYF9x1VCGKKlEuZVp1SLpL5yn1UDGCpzs-eeAoVPL3yimK0rAll_AXnqh_TT3b1Qf2cPZz4_DdFnH1UVJHqQEYXoHYD71hXsNjIJmj5SiF_ksPZL-nSiRzBD6OJnoO-cutPrB4fdZrKjM3jMOu4o9mbEsx9nuwPSyoyXOxiFdVet4FZCPexDFTZfeQbAGP1WHGEAW8AUnKFAW6AUfKEAWEAUpKRr1mewLKE86lDE34dSMqNyVvjIonm-7Zw0B_9Fyyv76jggkueEtM9Qn8DsvGo1Chm_DoAr0cuObcsE_4R">https://www.plantuml.com/plantuml/png/TPDFRzD04CNlyob6wTab_cCdHiLjLGv5WWQ9gXV8OL9F4jFD6gtNDA7gTyUxNWoiarEUnhytCs-LkMeqATtk1DnNMZ1-eZtUClt00BVTJxK-OALPaQvgsTKkLlJuzFR0GjJFXQesMtsphKI91P9ITFXQoPBtY_L7KXjkz5rTyWE9bfTuYUyApB70C34QxsgyU6EQ5G2mw-QjsgwFdVm2TlINwXTR4-3GjT6VIR6qZHVoVilNPggXae6wQPL3h3s2rtx0ZlQtBj7BQHYF9x1VCGKKlEuZVp1SLpL5yn1UDGCpzs-eeAoVPL3yimK0rAll_AXnqh_TT3b1Qf2cPZz4_DdFnH1UVJHqQEYXoHYD71hXsNjIJmj5SiF_ksPZL-nSiRzBD6OJnoO-cutPrB4fdZrKjM3jMOu4o9mbEsx9nuwPSyoyXOxiFdVet4FZCPexDFTZfeQbAGP1WHGEAW8AUnKFAW6AUfKEAWEAUpKRr1mewLKE86lDE34dSMqNyVvjIonm-7Zw0B_9Fyyv76jggkueEtM9Qn8DsvGo1Chm_DoAr0cuObcsE_4R</a></div></figure><p id="30a71698-616d-4803-a2c8-a92753d002f6" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="db6a73d5-f76d-46f4-af74-926dc1678750" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">  if (rightChildIndex &lt; heapSize &amp;&amp; 
+					  heapArray[rightChildIndex] &gt; heapArray[indexOfLargestNodeValue]) {
+      // update the largest index to current RIGHT child index
+      indexOfLargestNodeValue = rightChildIndex;
+  }</code></pre><p id="d9af9bde-53e3-4e92-8913-0b948e09c94e" class="">
+</p><p id="f4954640-c80c-46cd-a6ae-f392dad31d2c" class="">The next step is the to SWAP the values of array[2] and array[5].</p><figure id="d6b7425b-d6f5-4f30-ae55-d939cf7457e0"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/TTFFRzCm50Vm-_ihdie53XdDZwGDAj7GBaC2XhHf5xJ3Q_Ew65odIXpQClL_9uvDYXmuzIlxOt_zAkMwrTJeRYVXGMZ9-9cEUCkqnm2h_aTiJoWqDwH5hVgrrPesFzwTMChwKBG7sk-vH5qnRhgcOQLHrINZGUWA9M_rJILa-PgQXaxVqgStk7fhpXS0iEihrbs_EvIzmD1sBtunlYym1nIgvEFTzXEr-YkPcx_q5z-fXue_cDkCIaPrOyejCHiHd6t1ZewtReYN_-DBL_FCxR3nIB8RTZ65oo0VZJEh_M8ZdYjlDGFJUnagAEk32eg_NW40zVexRpJEx7yoVveXjKXpypv4_6bxCOIpJqD7GuycKnev6k6hHr5Brjxb_pWIkoCnUZQQsiJPnBVPrAREffvTJ6dcQERHV4eNZYuy6atfqj6bH-CfpHtD_RbIOscEGL0WXMEAW4ARuZ4bG95DwPWoeDYcnPYMG8bDEO2gDUFitdvDmnjKtvBYwkfgID6VTCsgx7RoDm00">https://cdn-0.plantuml.com/plantuml/png/TTFFRzCm50Vm-_ihdie53XdDZwGDAj7GBaC2XhHf5xJ3Q_Ew65odIXpQClL_9uvDYXmuzIlxOt_zAkMwrTJeRYVXGMZ9-9cEUCkqnm2h_aTiJoWqDwH5hVgrrPesFzwTMChwKBG7sk-vH5qnRhgcOQLHrINZGUWA9M_rJILa-PgQXaxVqgStk7fhpXS0iEihrbs_EvIzmD1sBtunlYym1nIgvEFTzXEr-YkPcx_q5z-fXue_cDkCIaPrOyejCHiHd6t1ZewtReYN_-DBL_FCxR3nIB8RTZ65oo0VZJEh_M8ZdYjlDGFJUnagAEk32eg_NW40zVexRpJEx7yoVveXjKXpypv4_6bxCOIpJqD7GuycKnev6k6hHr5Brjxb_pWIkoCnUZQQsiJPnBVPrAREffvTJ6dcQERHV4eNZYuy6atfqj6bH-CfpHtD_RbIOscEGL0WXMEAW4ARuZ4bG95DwPWoeDYcnPYMG8bDEO2gDUFitdvDmnjKtvBYwkfgID6VTCsgx7RoDm00</a></div></figure><p id="7d9bd024-342c-4f62-8f74-34f4dbddf3cb" class="">
+</p><p id="47ea8ee2-3fd9-46bb-a64f-21c776a8e5d6" class="">
+</p><figure id="e1fc2be2-59fc-435f-b481-2aed1ab7f9d4"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/TPDDRzim38Rl_1L4SdONV-J3GsPqw0uTi2q5MlIoxi34JAn5aGr5Nf8L---RRDLTvUJsGdmUaOIjwxqXRUgTX0TX9EDNEk8jKuK15aoLM9zG6DPaHAammFcILjlt9vQoF6HQR0fpKmYPOuQIrrrUrLgpClDtbiu0O4SLBkj_nURgPsZklXU_6Jzac08AbVDniVv2UtD7LlrMvhnG3mL_r9fEbaewwgRM3cdq4Fwq3NPql7KZFr-6Ntlf3U-RmYF9kgdQShV7PylPqnZGRkgT9c3xlYuLvEL11Tb_Km10kVp9AuC3ibjy7_qO8EsHHdO-HFpLzhKR-6Zeq127dqXl5vhKXjzQIT-Ad1Nv3SwmiMDZ7Du9jVM4g2yaJaXm-2XAoSPJ9drbx9InDy-qZquSEl7Gj8zE7Jhrq3Cppnmwyz2uZwOEJJqq75kMHXW46LBOfGWeR5FSfGGeQjEuInEWk4tJBis0aZQb0AeqZ8Cpp-T9uOKNzgHCmGhl3rHL-FB3uBhK-EPJgT3scLzTDIbyITUiyded_m80">https://cdn-0.plantuml.com/plantuml/png/TPDDRzim38Rl_1L4SdONV-J3GsPqw0uTi2q5MlIoxi34JAn5aGr5Nf8L---RRDLTvUJsGdmUaOIjwxqXRUgTX0TX9EDNEk8jKuK15aoLM9zG6DPaHAammFcILjlt9vQoF6HQR0fpKmYPOuQIrrrUrLgpClDtbiu0O4SLBkj_nURgPsZklXU_6Jzac08AbVDniVv2UtD7LlrMvhnG3mL_r9fEbaewwgRM3cdq4Fwq3NPql7KZFr-6Ntlf3U-RmYF9kgdQShV7PylPqnZGRkgT9c3xlYuLvEL11Tb_Km10kVp9AuC3ibjy7_qO8EsHHdO-HFpLzhKR-6Zeq127dqXl5vhKXjzQIT-Ad1Nv3SwmiMDZ7Du9jVM4g2yaJaXm-2XAoSPJ9drbx9InDy-qZquSEl7Gj8zE7Jhrq3Cppnmwyz2uZwOEJJqq75kMHXW46LBOfGWeR5FSfGGeQjEuInEWk4tJBis0aZQb0AeqZ8Cpp-T9uOKNzgHCmGhl3rHL-FB3uBhK-EPJgT3scLzTDIbyITUiyded_m80</a></div></figure><p id="4c3b0e6e-ec6e-4bd4-8bed-6eb4d561dbee" class="">
+</p><p id="413900f2-a1fb-42bb-8934-14e102672834" class="">
+</p><figure id="e923accc-619e-45ca-bff1-724f3ea0526b"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/TPDFRzD04CNlyob6wTabQpj_Z89LL0v50e94rGlYC8adoTBrkbglIKB5TyThBmwigIz-clczUJE7lQaj6TkK2kwbLOmVwOHtJ4yOuQ7zoTqPfML3LbQwhQqsj7ryVMQbgcDkvFvWRmzI5LWVMyksCOQrNRroK0u0PLlSD6s_c_WCtSWlyYVZcnmpGAaBFgrt7wYsdybPFrK5h_NzWTyQGsT7fGDrsnYFT7O1l_g0aavtVjFdb-5BbjbptJKUI3LTrxKLx_fJtZlELHD0Ts1GJS7bNewAYkgee_olBG2WsdpdhSK9kIk-JhzDa6gagTkl_NxqkUw241KU5NZr82l5Dd3CnvROM-9mUZfc4yyc8HkFsTIpALwz8_EuDgJt_A_jFmapxve52OinElVeF42pCRhmw290up6wzEWoG9Cncdaq2r0nSonDCOfo936e64ZqAXbK2XJtQZQeEL3IgyMWba1fhp80NLd6YNioJrnqEsZX-glhwqw9F-g6TT6KwZS0">https://cdn-0.plantuml.com/plantuml/png/TPDFRzD04CNlyob6wTabQpj_Z89LL0v50e94rGlYC8adoTBrkbglIKB5TyThBmwigIz-clczUJE7lQaj6TkK2kwbLOmVwOHtJ4yOuQ7zoTqPfML3LbQwhQqsj7ryVMQbgcDkvFvWRmzI5LWVMyksCOQrNRroK0u0PLlSD6s_c_WCtSWlyYVZcnmpGAaBFgrt7wYsdybPFrK5h_NzWTyQGsT7fGDrsnYFT7O1l_g0aavtVjFdb-5BbjbptJKUI3LTrxKLx_fJtZlELHD0Ts1GJS7bNewAYkgee_olBG2WsdpdhSK9kIk-JhzDa6gagTkl_NxqkUw241KU5NZr82l5Dd3CnvROM-9mUZfc4yyc8HkFsTIpALwz8_EuDgJt_A_jFmapxve52OinElVeF42pCRhmw290up6wzEWoG9Cncdaq2r0nSonDCOfo936e64ZqAXbK2XJtQZQeEL3IgyMWba1fhp80NLd6YNioJrnqEsZX-glhwqw9F-g6TT6KwZS0</a></div></figure><p id="5e3c2660-ea06-47f7-9459-bb8fec62c827" class="">
+</p><figure id="dd2e92af-c499-4d51-8751-ea7041eda4b0"><div class="source"><a href="https://cdn-0.plantuml.com/plantuml/png/TTDDRzD040RW-_oAKNfsYJ_oOHIied8e4X0agbvG3nDx4YzThwFrcYHK_7UwziQ4DJtbbVSPlsChlcaCQTDM4kw5aOoVwOXtJ7iCi7pv4TiJ2iEQZAWL1hZQKFxqziHIreSihwizQKPJCkQjrgmCajPq-fuyua6O4lDIo6BrnWvb053H7ZVjowMkuHcwYc_Y5-Ex35D0eGe-hhUVg35VoTxkIrtmMjsN_DxUrgfaKBUjFXDx4CBllg2YuvtR_Fard5nqwHqttS43oROxjSUIj-RMRl_HEhUV5hlIkwfQAS5M_tskeAWFAiWk5W60UlE3SuEJ_lrC7oT83TBKheY8F_jg-n0-3HqDVJeVsyZPoBV9sCREnhwDnZPnDi6h3wIVrfhKZlyT-q_3p4tDl8R5cCuTdNiq7TE5emkFHcEwT7JfqNXCKqTJl7eGjMJZlPIP7Q4f1a6650uf0Whx50yf0OhwD1lI72Zkqs98Iw2aJoc0gWtZPFZJONR-eBgrL6ZjwlgwI-avtR0gsah-0G00">https://cdn-0.plantuml.com/plantuml/png/TTDDRzD040RW-_oAKNfsYJ_oOHIied8e4X0agbvG3nDx4YzThwFrcYHK_7UwziQ4DJtbbVSPlsChlcaCQTDM4kw5aOoVwOXtJ7iCi7pv4TiJ2iEQZAWL1hZQKFxqziHIreSihwizQKPJCkQjrgmCajPq-fuyua6O4lDIo6BrnWvb053H7ZVjowMkuHcwYc_Y5-Ex35D0eGe-hhUVg35VoTxkIrtmMjsN_DxUrgfaKBUjFXDx4CBllg2YuvtR_Fard5nqwHqttS43oROxjSUIj-RMRl_HEhUV5hlIkwfQAS5M_tskeAWFAiWk5W60UlE3SuEJ_lrC7oT83TBKheY8F_jg-n0-3HqDVJeVsyZPoBV9sCREnhwDnZPnDi6h3wIVrfhKZlyT-q_3p4tDl8R5cCuTdNiq7TE5emkFHcEwT7JfqNXCKqTJl7eGjMJZlPIP7Q4f1a6650uf0Whx50yf0OhwD1lI72Zkqs98Iw2aJoc0gWtZPFZJONR-eBgrL6ZjwlgwI-avtR0gsah-0G00</a></div></figure><p id="9dfc6d39-278f-4680-a02f-590e0a8058f4" class="">
+</p><figure id="d8fefe66-e93e-47a6-8e74-90be54c8f92d" class="image"><a href="Max%20Heap/Untitled%204.png"><img style="width:650px" src="Max%20Heap/Untitled%204.png"/></a><figcaption><a href="https://cdn-0.plantuml.com/plantuml/png/TT3DRfj040Vm-pp5o3cJ6bX_KBaeLNf8fRQkb2YNoeTn6DlRh1ThMOhTgEzU5bOqNHHV_1Vpcm-ugImPMnyLF4Yh6B_I6U-OJXZXeVsJkmjAouQiB7NxRBMbf-Vt5rQgRFBxfdLa35r-P1kqfSzYithdM0u0nrPiQwcARkOBT4FlvM_63pbcW58NV5xllb1blvDXRR-L1Q_rmu4_kbbEYK7TriQJhZs6F_s28vtl_AqlRs7nQfVPSzKL7adLNTML5U_ixQ4zzRDp_ZuZzuVWgQwL0hVwttj5HTdeA7zr202Ksv_yP77IVvJfPe9K8KtTYUtlLx_QlKH8Oq_ZaCx7Dl4s2QqOszJRDBJ9s0fl1LuzobAn3LfcuvQPRva5unTZElTq7j1iJ1UUBWAQZEdIqsL0qp7DFCtmwXEPvxKXlUV_kuJheYb6KOuK3oa1YlkK3aa09NsQ3MaEbFPfCQGbaEXJ1g1BopYf6ZgTkEYkqR6hhwwlkvIXJpUiY_ge_W80">edit uml</a></figcaption></figure><p id="d0015980-9f5d-4f88-9d27-874aaf61a402" class="">
+</p><figure id="6cca9db1-5a98-4ed3-8387-1aac25faf063" class="image"><a href="Max%20Heap/Untitled%205.png"><img style="width:708px" src="Max%20Heap/Untitled%205.png"/></a><figcaption><a href="https://cdn-0.plantuml.com/plantuml/png/TTBDRjf040Vm-pp5Y9oTuWy-ZAYLAZsaKbigDU9IzJ340zvcMKVhTO56UVTwxSNGjNfYDFkR_O_HtbM6jAdt4Xw5aOnVw8WFJ2yOOD7yYEq9XM5DHfIgwIqtzFIyEB6KvI5RYqeOD0KZQKsd7-EVI2h7wa0l_tOQ9NbhxWiXy-KxUqK60Fk6RUgcrUQzGXluNVnXV9zX2YXKpiVLzZDLvXjfLkPhcVDAFHRymLvkLTAh-rexqewFuQqBsDFnmNt7w__n9Kllk6eFrYJhzjGUzzj_iivsGq0jTeNNZS3cNZugoCk32hAhBG2WtFpY9uEZyryqGggGndZpaVJpIfFQSRCg8lxkLcYotlofq4s5UBCMfMJZJKo78v4RYT2poT36piQ-ZOOsSJRnxMHe9yvEF3iRqgcZKu-cGpfpTERHQ4ZdZiuz6WzfwcZgqSHI6cCGP4ZXul8s-cQqk7eRG67NZVig0OgwQj9NKw2ugsPzDGTAkYe5KALX73LXs_PQpAuosaLLQ1TOtjwsLNYkxbZbzLx-1G00">edit uml</a></figcaption></figure><p id="1b62c0fa-9881-4835-8b5d-43e3ab248d61" class="">
+</p><figure id="3870a453-5214-425c-9bf8-9ddcfaeca397" class="image"><a href="Max%20Heap/Untitled%206.png"><img style="width:708px" src="Max%20Heap/Untitled%206.png"/></a><figcaption><a href="https://cdn-0.plantuml.com/plantuml/png/TPFFRjim3CRlV0eYFVMGBdASFmuoeqDtw81j6T2YbtK7fcOIhOfSoFAIhEYxJxRLD9Cs7-GFrEyJIPkwh2mPMsyLt4gh6B_G7g-Pdh2F6_UIgmDAouQiBBMBpPVqy3Wxi5BbBh_PEOvqWLHLSgrHyyu1kTG5xnUhgzeOrlPhMV3ytJ97jpXl3W1RPrlMKXLjecTeCzt8tuplSym0_G6VgRBVwFMCXRxTy0TZwD1GAM2KfhKFuALBiANzjM_W-N-mECbbrbor6tUawdRNdOMAL_Pguqhzr73UO-Hw4qGJQFA-DTKloftkvoTL042v_CaF5dlKTF5zyAE7L24DyEnEbegjAzCzlxhqACRm4bg4jmWy-qZcSM58hpcmnQx4kn8Cq3HcXvuTXcmIiwbdqv0TnUp8iwE0dSJesAFZ0CrYTEBHIO0cCJhrw3H0Xp6QUJGBqFPpqG3xxh-IcBtDnZ6Op4vc0qXqqU5HfK19fqP7DGOQTcfoL5EWj5CPW2ujOq-SO-MksnCNNJqLtclIXLkJSt__PlVwdtF-ruoRao5lszIYANz-ST4gyQekMHVrLlq1">edit uml</a></figcaption></figure><p id="8a766bf7-ee65-4083-88b7-810b3807971a" class="">
+</p><figure id="c08a57ad-b0f1-471a-9353-06f44055cbd1" class="image"><a href="Max%20Heap/Untitled%207.png"><img style="width:708px" src="Max%20Heap/Untitled%207.png"/></a><figcaption><a href="https://cdn-0.plantuml.com/plantuml/png/TPDFRnen4CNlyob6vD1o86N_y0T4Lwde8PNQKZLHBcqF0sjODyQBR6-1HldkjNSDGTxq0a_Zt_ERMNbkj25bggs0Usu4mozqm5j6E-nXOV_u-eZSC4M6bzBMPajQFKwFJ8XodztjBKSoHzAQRoHAjhT0ncNE3elrl5AAIVErpDditJ93-sEz6G1ihMrPSP7NGKzG9ztnlmpVPpW1z1Ty9cs-qUcEXRmls0UbwEYe5B0LKzlxyDm4REbmwmTu-XySNMIf3TFrmGE9gZvrnuAjpRomhNvodAicW8flYg2QWijz6QgNbtlPooww081o-Pkj37R8JV6Z_wk3f97whZz4_DFaOZI4vv2DF1lXrKTIZmj5SiC2MziLUrSS9gHjDl5i4h9ncqqzc-BL0oy5Cu5bqBOCl6KGN3zgeqEF3WDqqaP77Xq5QDn6nnuT1sZIHYSUdGHewb3gOw-N8KLd5GD5ZKgcB-_bN4od5-y5A6wgWxCQ0YMD6ftL62Xjr0H0bePX9-hYlDpkI76vmTEZm3qt1NBpHkFANQ_nfuoxTHFVNIRgegn4Zak6skxgZkKMIBf-NrzTYbSMuctQhJ-8ZDnGi-lhMgKd1JTCvjLM_0C0">edit uml</a></figcaption></figure><p id="8947bcca-870a-4540-987d-da140c0c4761" class="">
+</p><figure id="a00aa46b-4481-41dc-9d46-7c203167f2c9" class="image"><a href="Max%20Heap/Untitled%208.png"><img style="width:615px" src="Max%20Heap/Untitled%208.png"/></a></figure><p id="015325e1-f5fd-46c8-b2d1-72e2385e79e0" class="">
+</p><figure id="a89965a5-8038-4e86-8aa3-6b56ac77a99e" class="image"><a href="Max%20Heap/Untitled%209.png"><img style="width:544px" src="Max%20Heap/Untitled%209.png"/></a><figcaption><a href="https://cdn-0.plantuml.com/plantuml/png/PSnDIyGm4CRn-toAOU_5vgKlbRNiqOidlOc7sJLYDDrADrMB-DrDIIWuUIxv4txCuU9fylFWuC5wP_2Ell7Mq0SM-1eU-xAWzMOYRyTp-DiVwVH-lHZdngy-M3lCG_Jtdhp1_TKAUWWRZs_cv757qqJBO_cqGxeWbVW36FP9RZPuWwA6Nsv5ieBRAhSoMScjpgrALd4hSwkJrV-fpcMLPCMkDZcj4wqPxNBQ9DemAdFQ9jeogdBQ9TenAbPA9HP5ZoIsaa0YbjfA0ybOrLOra8hLRDK2wLWT01pC-NaUt1y0">edit uml</a></figcaption></figure><p id="4420d46f-1ac9-4d72-a435-917e606e2ee0" class="">
+</p><p id="d0acf194-630a-46e5-ad4a-a2f94d3ed54d" class=""><a href="https://algo.monster/problems/heap_intro">https://algo.monster/problems/heap_intro</a></p><p id="5101863e-ce73-4939-a3d3-91214436aa9e" class="">
+</p><p id="8a891f1a-b68d-4def-a5f9-6da6fed74bc3" class="">Educative Max Heap Algorithm </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="540772db-3005-447b-9cf6-3deefd02603e" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">public class Heap {
+
+    private void maxHeapify(int[] heapArray, int indexOfCurrentNode, int heapSize) {
+
+        int indexOfLargestNodeValue = indexOfCurrentNode;
+
+        // check parent nodes only
+        // (all parents nodes are placed on left side of the array)
+        while (indexOfLargestNodeValue &lt; heapSize / 2) {
+            //left child
+            int leftChildIndex = (2 * indexOfCurrentNode) + 1;
+            //right child
+            int rightChildIndex = (2 * indexOfCurrentNode) + 2;
+
+            // leftChildIndex &lt; heapSize : check if leftChildIndex within the bounds of the heap.
+            //      If the left child index is greater than or equal to heapSize,
+            //      it means the node does not have a left child, and we should not access heapArray[leftChildIndex]
+            // check if the value of leftChild node is Greater than current node value
+            if (leftChildIndex &lt; heapSize
+                    &amp;&amp; heapArray[leftChildIndex] &gt; heapArray[indexOfCurrentNode]) {
+                // update the largest index to current left child index
+                indexOfLargestNodeValue = leftChildIndex;
+            }
+
+            /*
+                rightChildIndex &lt; heapSize:
+                            this checks if the right child index is within the bounds of the heap.
+                            If the right child index is greater than or equal to heapSize,
+                            it means the node does not have a right child, and we should not
+                             access heapArray[rightChildIndex]
+             */
+            if (rightChildIndex &lt; heapSize &amp;&amp; heapArray[rightChildIndex] &gt; heapArray[indexOfLargestNodeValue]) {
+                // update the largest index to current RIGHT child index
+                indexOfLargestNodeValue = rightChildIndex;
+            }
+            if (indexOfLargestNodeValue != indexOfCurrentNode) { // swap parent with largest child
+                int temp = heapArray[indexOfCurrentNode];
+                heapArray[indexOfCurrentNode] = heapArray[indexOfLargestNodeValue];
+                heapArray[indexOfLargestNodeValue] = temp;
+                indexOfCurrentNode = indexOfLargestNodeValue;
+            } else
+                break; // if heap property is satisfied
+        } //end of while
+    }
+
+    public void buildMaxHeap(int[] heapArray, int heapSize) {
+        // swap largest child to parent node
+        // starts from the mid of the array
+        int mid = (heapSize - 1) / 2;
+        
+        // visit each node at index starting from mid to 0
+        for (int i = mid; i &gt;= 0; i--) {
+            maxHeapify(heapArray, i, heapSize);
+        }
+    }
+
+}</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,720 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Graphs</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7cf58eda-1421-4b1f-bee5-904e9025368f" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://algo.monster/sidebar/graph.svg"/></div><h1 class="page-title"><strong>Graphs</strong></h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>What</th><td>A <strong>graph</strong> is a nonlinear data structure that represents connections between entities. In graph theory, entities are represented as vertices (or nodes), and the connections between them are expressed through edges.</td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Coding Problems</th><td><a href="../Coding%20Problems/Network%20Delay%20time%20550c8d915e814994b4c36af44888cbab.html">Network Delay time</a>, <a href="../Coding%20Problems/Paths%20in%20Maze%20That%20Lead%20to%20Same%20Room%201a8be1bb818f40508c0235308e8e3545.html">Paths in Maze That Lead to Same Room</a>, <a href="../Coding%20Problems/Clone%20Graph%207575dbf5f86a436197f8581496567b96.html">Clone Graph</a>, <a href="../Coding%20Problems/Bus%20Routes%20100eb30beb3b41d0ab3d7f8e353dd98d.html">Bus Routes</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Data Structures</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Date</th><td><time>@May 14, 2024 11:40 AM</time></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Educative</th><td><a href="https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6110405555519488" class="url-value">https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6110405555519488</a></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@October 18, 2024 11:20 PM</time></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review - 1d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review 2d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-circle-down_gray.svg" style="width:14px;height:14px;display:block"/></span>Traversal approach</th><td><span class="selected-value select-value-color-pink">No Linear</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><h2 id="347eda5e-0122-4014-a99c-2b8dff1d085b" class="">Types of Graphs</h2><figure id="f546c93f-6317-47dc-bc93-f797d44cb3a8" class="image"><a href="Graphs/Untitled.png"><img style="width:708px" src="Graphs/Untitled.png"/></a></figure><p id="fdec2b32-17cf-4241-a207-23e0991c84f2" class=""><br/>• <strong>Undirected graph:</strong> A graph in which the edges have no direction, representing a two-way relationship between nodes. <mark class="highlight-purple">For example, if we consider each person on Instagram as a node and their connection with other users as edges, a two-way relationship occurs when person A follows person B and person B also follows person A.</mark></p><figure id="838039e7-6ace-4bb9-b134-d30a05980ea7" class="image"><a href="Graphs/Untitled%201.png"><img style="width:704.984375px" src="Graphs/Untitled%201.png"/></a></figure><p id="eee03ff0-ed03-4220-928e-cf5fb69ef4e0" class=""><br/>• <strong>Directed graph:</strong> A graph in which the edges have a direction, indicating a one-way relationship between nodes. <mark class="highlight-purple"><em>For example, if person A follows person B but person B doesn’t follow person A, it’s a one-way relationship.</em></mark></p><figure id="0f034d47-febc-4cb6-b6e8-a65b1a5be06f" class="image"><a href="Graphs/Untitled%202.png"><img style="width:708px" src="Graphs/Untitled%202.png"/></a></figure><p id="145ea65f-90a5-4c3e-9878-31f16c38b97d" class=""><strong>Weighted graph:</strong></p><p id="4ec03322-2336-4cb6-9f6f-2c97f52dc6f8" class="">A graph in which each edge has a numerical value assigned to it, indicating the cost, distance, or some other relevant measure associated with that connection. <mark class="highlight-purple">For example, if each person’s connection with the other person has some weight assigned to it, then the weight of 8 represents a strong</mark></p><figure id="ba61ac2c-53b0-4828-a809-3591668e232d" class="image"><a href="Graphs/Untitled%203.png"><img style="width:707.9921875px" src="Graphs/Untitled%203.png"/></a></figure><p id="436764f6-9712-40ee-8964-1998e7eb5679" class="">• <strong>Cyclic graph:</strong> A graph that contains at least one cycle, which is a path that starts and ends at the same node. <mark class="highlight-purple">For example, person A is friends with person B, who is friends with person C, and finally, person C is friends with person A, completing the cycle.</mark></p><figure id="d01c81f6-cf29-45fd-a9d4-0d697b19160d" class="image"><a href="Graphs/Untitled%204.png"><img style="width:707.9921875px" src="Graphs/Untitled%204.png"/></a></figure><p id="dfd73e97-8477-4da3-89cd-0124a1c8a49b" class=""><br/>• <strong>Acyclic graph:</strong> A graph that contains no cycles, that is, there is no path that starts and ends at the same node. <mark class="highlight-purple">For example, person A is friends with person B, who is friends with person C, and finally, person C is friends with person D, not creating any cycle.</mark></p><p id="82f1a1ea-c9f7-4e45-a8f6-5a34333fb4c0" class="">
+</p><table id="fd14cb13-3cc5-46b1-9e7f-427f5565362a" class="simple-table"><tbody><tr id="8de547dd-6e73-48f3-92d0-74df4ff6afd9"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px"><strong>Name</strong></th><td id="K[eL" class="" style="width:695px"><strong>Description</strong></td><td id="AzgE" class=""></td></tr><tr id="9fa0174e-698c-49e8-82ae-f2229625386f"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Vertex (node)</th><td id="K[eL" class="" style="width:695px">It is the fundamental unit of a graph, usually represented as a point that holds some information or data.</td><td id="AzgE" class=""></td></tr><tr id="9b0f9dc0-f56d-4e16-9424-549b8fbc5bc5"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Edge</th><td id="K[eL" class="" style="width:695px">It is a connection between two nodes. An edge may have a direction (directed edge) or not (undirected edge).</td><td id="AzgE" class=""></td></tr><tr id="c930b4cc-a10a-4d00-a2c7-39bf1cc57394"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Weight</th><td id="K[eL" class="" style="width:695px">Each edge has a weight assigned to it, which indicates a cost or value associated with the connection.</td><td id="AzgE" class=""></td></tr><tr id="a83cb8ba-7250-40ff-a99b-f7478b59766d"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Degree</th><td id="K[eL" class="" style="width:695px">It is the number of edges incident to a node.</td><td id="AzgE" class=""></td></tr><tr id="dae2c56e-dac4-4552-872f-e35d6c0283d0"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">In-degree</th><td id="K[eL" class="" style="width:695px">It is the number of edges coming towards the node (In directed graphs only).</td><td id="AzgE" class=""></td></tr><tr id="0ec14abb-54b7-43d6-ac44-117d29cc2a60"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Out-degree</th><td id="K[eL" class="" style="width:695px">It is the number of edges going away from the node (In directed graphs only).</td><td id="AzgE" class=""></td></tr><tr id="a4d9f4e1-59fa-4c6a-a6da-8dbd824d7d3d"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Adjacent nodes</th><td id="K[eL" class="" style="width:695px">Those nodes that are directly connected to each other by an edge.</td><td id="AzgE" class=""></td></tr><tr id="4bfdf8ff-bdc6-4808-9df2-bf8b68f8438a"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Path</th><td id="K[eL" class="" style="width:695px">It is a sequence of nodes where each adjacent pair is connected by an edge.</td><td id="AzgE" class=""></td></tr><tr id="f8d8c21b-e2f8-489e-915c-2b978852e286"><th id="spRt" class="simple-table-header-color simple-table-header" style="width:112px">Cycle</th><td id="K[eL" class="" style="width:695px">It is a path that starts and ends at the same node.</td><td id="AzgE" class=""></td></tr></tbody></table><p id="0130f7a5-9600-419e-bad2-d1e68d6d4134" class="">
+</p><p id="e91fee6d-5072-44f2-8cad-a821546085bc" class="">
+</p><h2 id="ca391c19-3a74-4775-884b-b5b5fd614244" class="">Graph Representation</h2><ul id="790eeca5-fd37-4c15-b1a3-1b3a6cf86f8e" class="bulleted-list"><li style="list-style-type:disc"><strong>Adjacency list:</strong> A <code>collection of lists</code>, where <code>each list corresponds to a node and contains its neighbors</code>. In the case of <strong>weighted graphs</strong>, the weight is stored along with the corresponding nodes. Otherwise, a <code>default weight of 1</code> is assumed and is often omitted from the lists.</li></ul><ul id="60a9d36e-d03b-4416-b56f-470cc6a7012a" class="bulleted-list"><li style="list-style-type:disc"><strong>Adjacency matrix:</strong> A 2D array where each cell, <code>𝑚𝑎𝑡𝑟𝑖𝑥[𝑖][𝑗] </code>represents the edge between nodes <em><code>i</code></em><code> and j</code>. The value of 𝑚𝑎𝑡𝑟𝑖𝑥[𝑖][𝑗] equals 1 (or the weight in the case of a weighted graph) if there’s an edge between nodes 𝑖 and 𝑗, and 0 otherwise.</li></ul><p id="214c15d1-8d58-4bb2-9bf8-069b086dca34" class="">
+</p><figure id="b309ac61-9cbb-4727-8764-1f3ff7142720" class="image"><a href="Graphs/Untitled%205.png"><img style="width:707.9921875px" src="Graphs/Untitled%205.png"/></a></figure><figure id="581ae681-81df-4c76-8844-1b0f84e0d1c6" class="image"><a href="Graphs/Untitled%206.png"><img style="width:707.984375px" src="Graphs/Untitled%206.png"/></a></figure><figure id="a4182294-15a7-4575-aeb4-6b64e2263c14" class="image"><a href="Graphs/Untitled%207.png"><img style="width:708px" src="Graphs/Untitled%207.png"/></a></figure><figure id="e01f4375-52a8-4cf1-9c57-f0a6e2a1f5d8" class="image"><a href="Graphs/Untitled%208.png"><img style="width:707.9921875px" src="Graphs/Untitled%208.png"/></a></figure><p id="a857b658-5d9d-43df-8db5-5589c2ab2596" class=""><strong>Graph traversal</strong></p><p id="55f7c5b5-274f-40b7-a470-cc8ef03d5c2c" class="">There are two fundamental graph traversal techniques: <code>breadth-first search (BFS) </code>and <code>depth-first search (DFS)</code>. Let’s dive deep into these traversals.</p><p id="48d1bb38-3ecb-49b0-bdd0-10b417f4bcfa" class="">
+</p><p id="589fe09f-1b6a-48ba-a699-fd4ba9b39539" class=""><strong>Depth-first search (DFS)</strong></p><ul id="5af1e948-7d90-4a39-9c3d-fe2fbcd1d22e" class="bulleted-list"><li style="list-style-type:disc"><code><strong>strategy</strong></code><code>:  is to explore as far as possible along one path before turning back. </code></li></ul><ul id="5bf25304-a840-4ee3-ab54-945511b40990" class="bulleted-list"><li style="list-style-type:disc">The algorithm starts with a chosen source node and proceeds to one of its neighbor nodes while marking the source node as visited. </li></ul><ul id="7bd9e41e-9ccc-44e4-8ad0-5fc9f68def1b" class="bulleted-list"><li style="list-style-type:disc">From there, it goes to one of its neighbors and marks this newly traversed node as visited. </li></ul><ul id="1c838044-bac3-452c-8882-9b53d1e33956" class="bulleted-list"><li style="list-style-type:disc">This continues until it reaches a node with no neighbors. </li></ul><ul id="918ac443-ccab-47fc-b3dc-a516fa33d66b" class="bulleted-list"><li style="list-style-type:disc">Now, the algorithm starts backtracking. </li></ul><ul id="82bcbea3-208a-432b-a445-08c4b7d11af7" class="bulleted-list"><li style="list-style-type:disc">In backtracking, the algorithm goes one step back and checks for the remaining neighbor nodes that are yet to be explored. </li></ul><ul id="ea0cd54d-a3e6-4f03-aebd-1935d338f2ba" class="bulleted-list"><li style="list-style-type:disc">This process continues until all the nodes in the graph, that are reachable from the source node, have been visited.</li></ul><p id="e37fd7aa-01d6-4900-8f97-3e0a75307c22" class="">
+</p><p id="fc0f861e-15c2-48a6-a6da-1831d57ccc33" class="">We can implement this algorithm using a <strong>stack</strong>. </p><p id="5ba01261-b15c-4aaf-82e2-4961e7ff8d62" class="">
+</p><ul id="4f025cf3-aa4e-4e98-b77b-df70bfe16494" class="bulleted-list"><li style="list-style-type:disc">Initialize an empty stack and </li></ul><ul id="c3b03088-b33b-4441-be0a-89d52d64ad7d" class="bulleted-list"><li style="list-style-type:disc">choose a source node, push it onto the stack, and mark it as visited. </li></ul><ul id="53837477-ccb3-450e-a356-6913bc9e3022" class="bulleted-list"><li style="list-style-type:disc">While the stack is not empty, pop a node, </li></ul><ul id="0a168fcd-b400-4cfd-9e3a-a4a85cad5aca" class="bulleted-list"><li style="list-style-type:disc">explore its unvisited neighbors, and </li></ul><ul id="4ed24067-a82b-4e21-881f-753e865ee60d" class="bulleted-list"><li style="list-style-type:disc">push them onto the stack, marking them as visited. </li></ul><ul id="929ca263-2391-413c-b556-f3d990ce326e" class="bulleted-list"><li style="list-style-type:disc">Continue this process until reaching a node with no unvisited neighbors, </li></ul><ul id="703b7b03-71f8-422e-8eb7-39131602f302" class="bulleted-list"><li style="list-style-type:disc">then backtrack by popping from the stack. </li></ul><ul id="ee30caec-e5ba-4189-be50-fdde800af9ad" class="bulleted-list"><li style="list-style-type:disc">Repeat until the stack is empty, ensuring all connected nodes are visited.</li></ul><p id="a153aab6-b045-41d2-8a6d-3b7707e9f8fa" class="">
+</p><p id="0126d01b-2daf-4323-84d9-05d51dbbed50" class="">The following illustration shows how a DFS works on a graph as discussed above:</p><figure id="1cde1032-6e49-408c-84fd-e13547265a58" class="image"><a href="Graphs/Untitled%209.png"><img style="width:432px" src="Graphs/Untitled%209.png"/></a></figure><figure id="c6f33171-4682-441c-a10c-6c3fd7ec483a" class="image"><a href="Graphs/Untitled%2010.png"><img style="width:432px" src="Graphs/Untitled%2010.png"/></a></figure><figure id="9fa01000-26f3-40c2-9584-8387f2951405" class="image"><a href="Graphs/Untitled%2011.png"><img style="width:432px" src="Graphs/Untitled%2011.png"/></a></figure><figure id="f4eecbbf-d6db-4c81-92bb-c6f67233dbf4" class="image"><a href="Graphs/Untitled%2012.png"><img style="width:432px" src="Graphs/Untitled%2012.png"/></a></figure><figure id="5a1fd903-7a9d-45ac-837e-78e85879a423" class="image"><a href="Graphs/Untitled%2013.png"><img style="width:432px" src="Graphs/Untitled%2013.png"/></a></figure><figure id="d7979424-023c-4a21-a82c-60e39a1478bd" class="image"><a href="Graphs/Untitled%2014.png"><img style="width:432px" src="Graphs/Untitled%2014.png"/></a></figure><figure id="82e8f0be-216e-4a0c-9acb-a05aeaf70848" class="image"><a href="Graphs/Untitled%2015.png"><img style="width:432px" src="Graphs/Untitled%2015.png"/></a></figure><figure id="f2516882-a624-4192-8691-7715d45eea62" class="image"><a href="Graphs/Untitled%2016.png"><img style="width:432px" src="Graphs/Untitled%2016.png"/></a></figure><figure id="8242928c-8aa9-4272-a7b3-edf703bb2e34" class="image"><a href="Graphs/Untitled%2017.png"><img style="width:432px" src="Graphs/Untitled%2017.png"/></a></figure><figure id="7964eff0-62d8-4812-9dfb-2051442b040c" class="image"><a href="Graphs/Untitled%2018.png"><img style="width:432px" src="Graphs/Untitled%2018.png"/></a></figure><figure id="bd6271f7-9cd1-415a-a0a4-a6ffe5726269" class="image"><a href="Graphs/Untitled%2019.png"><img style="width:432px" src="Graphs/Untitled%2019.png"/></a></figure><figure id="578c93b6-796b-42e3-91a5-f964e6e964f6" class="image"><a href="Graphs/Untitled%2020.png"><img style="width:432px" src="Graphs/Untitled%2020.png"/></a></figure><figure id="622b722a-e369-4dc2-abf0-fc38fab58f75" class="image"><a href="Graphs/Untitled%2021.png"><img style="width:432px" src="Graphs/Untitled%2021.png"/></a></figure><p id="eb55af0a-3fbc-473c-9153-17141e3112d5" class="">
+</p><p id="4c225208-1365-4845-8cd8-cbf0caeddd1a" class=""><strong>Breadth-first search (DFS)</strong></p><ul id="4812184d-5179-4c98-aa2a-30bc452c9793" class="bulleted-list"><li style="list-style-type:disc"><code><strong> the strategy </strong></code><code>is to explore the graph in layers, one level at a time. </code></li></ul><ul id="f28f5560-55ec-45a4-a784-a3c2c612d787" class="bulleted-list"><li style="list-style-type:disc">The algorithm begins at a chosen source node and </li></ul><ul id="3f610448-5e7d-4379-8e6a-579abd31ff61" class="bulleted-list"><li style="list-style-type:disc">visits all its immediate neighbour nodes while marking them as visited.</li></ul><ul id="64a21516-e8cc-4c6c-afa6-935d80036cc7" class="bulleted-list"><li style="list-style-type:disc">It then moves on to visit the neighbours of those nodes before proceeding to the next level of neighbours. </li></ul><ul id="3dc2bba6-4efa-4e8a-b94e-038c9123a756" class="bulleted-list"><li style="list-style-type:disc">This process continues until all the nodes in the graph, that are reachable from the source node, have been visited.</li></ul><p id="b47ed1c5-815f-4869-b1e2-de969dfa0e64" class="">
+</p><p id="8af60021-4589-4481-8a6b-4708e2f670f5" class="">We can implement this algorithm using a <strong>queue</strong>.</p><p id="05d8ba03-16af-4d85-9a49-8fb532e9832c" class="">
+</p><ul id="850101e8-c52b-4ffb-98ba-d46831ebe14b" class="bulleted-list"><li style="list-style-type:disc">Initialise an empty queue and choose a source node</li></ul><ul id="bb300072-f261-44ee-b3a6-f77e31cc9e4b" class="bulleted-list"><li style="list-style-type:disc">enqueue it, and </li></ul><ul id="fb5ffe03-f2de-4720-9d36-8450079e4cb2" class="bulleted-list"><li style="list-style-type:disc">then enter a loop. <ul id="e432cc6c-9bd5-4f98-961d-034981de48c3" class="bulleted-list"><li style="list-style-type:circle">Within this loop, <ul id="db8dc407-c3d4-4b77-a5ec-e3d9b370cb54" class="bulleted-list"><li style="list-style-type:square">the algorithm dequeues a node from the front of the queue, </li></ul><ul id="7171a5fa-81d2-4765-a062-184b2836b4b4" class="bulleted-list"><li style="list-style-type:square">visits its immediate neighbours, and marks them as visited. </li></ul><ul id="cbd42cda-066f-4e65-9f9a-5376d2748882" class="bulleted-list"><li style="list-style-type:square">These neighborus are subsequently enqueued into the queue. </li></ul><p id="2b5af28d-f7a4-4c03-8aae-032f7e15b971" class="">
+</p></li></ul></li></ul><figure id="91ad487d-a5d1-4ffa-bc57-1d0166a2056b" class="image" style="text-align:center"><a href="Graphs/Untitled%2022.png"><img style="width:528px" src="Graphs/Untitled%2022.png"/></a></figure><figure id="28363811-8a1b-48f4-bf82-700ceda8033c" class="image"><a href="Graphs/Untitled%2023.png"><img style="width:528px" src="Graphs/Untitled%2023.png"/></a></figure><figure id="4719f4fb-2f7f-4f6c-b8eb-ac3b18d545ae" class="image"><a href="Graphs/Untitled%2024.png"><img style="width:528px" src="Graphs/Untitled%2024.png"/></a></figure><figure id="59bba75d-820d-4c6d-9a2b-895679e34800" class="image"><a href="Graphs/Untitled%2025.png"><img style="width:528px" src="Graphs/Untitled%2025.png"/></a></figure><figure id="2db4a433-42f6-4ee0-983f-2e6ab0586af1" class="image"><a href="Graphs/Untitled%2026.png"><img style="width:528px" src="Graphs/Untitled%2026.png"/></a></figure><figure id="125f82df-725f-4a3f-8f9b-ee9456e087e4" class="image"><a href="Graphs/Untitled%2027.png"><img style="width:528px" src="Graphs/Untitled%2027.png"/></a></figure><figure id="7e406950-4f1e-4873-9fda-bc545ac09669" class="image"><a href="Graphs/Untitled%2028.png"><img style="width:528px" src="Graphs/Untitled%2028.png"/></a></figure><figure id="78652e7e-6e72-4659-a4fb-b8c4f83eb325" class="image"><a href="Graphs/Untitled%2029.png"><img style="width:528px" src="Graphs/Untitled%2029.png"/></a></figure><figure id="b19ae3d4-7b6f-4c30-b0f3-cb6cad29649a" class="image"><a href="Graphs/Untitled%2030.png"><img style="width:528px" src="Graphs/Untitled%2030.png"/></a></figure><figure id="069653a9-d7b9-440e-8bbb-1e5cda8b81fc" class="image"><a href="Graphs/Untitled%2031.png"><img style="width:528px" src="Graphs/Untitled%2031.png"/></a></figure><figure id="27dfebc3-a960-4bc0-980a-585fa6fc7bc6" class="image"><a href="Graphs/Untitled%2032.png"><img style="width:528px" src="Graphs/Untitled%2032.png"/></a></figure><figure id="06d77d65-b2cf-45d3-a1cc-a80e87d2bd4f" class="image"><a href="Graphs/Untitled%2033.png"><img style="width:528px" src="Graphs/Untitled%2033.png"/></a></figure><figure id="24f15c6a-5110-4a12-8770-cc5e78b8e5fd" class="image"><a href="Graphs/Untitled%2034.png"><img style="width:528px" src="Graphs/Untitled%2034.png"/></a></figure><p id="6760333d-58a4-42a2-a912-847652dbb443" class="">
+</p><p id="cbb68b09-4e16-4bc2-9386-488d1d43206f" class="">The queue plays a crucial role in determining the order of exploration, ensuring that nodes at the current level are processed before progressing to the next. This iterative process continues until the queue is empty, signifying that all reachable nodes from the source have been visited.</p><p id="57bbac0a-60f5-4e64-b2bc-24491064bdb9" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,841 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tree Depth-First Search (DFS)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1ae03e2d-9c4c-456c-beef-114bb9f245e6" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://algo.monster/sidebar/dfs.svg"/></div><h1 class="page-title"><strong>Tree Depth-First Search (DFS)</strong></h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Coding Problems</th><td><a href="../Coding%20Problems/Diameter%20of%20Binary%20Tree%208e8c72ac8526476985ef3a7a7d0b42d1.html">Diameter of Binary Tree</a>, <a href="../Coding%20Problems/Tree%20Path%20sum%20e6c281019e734ac3a592c82f2611ce7c.html">Tree Path sum</a>, <a href="../Coding%20Problems/Valid%20binary%20search%20tree%20c013b86289504fec97156a918ce133f8.html">
+Valid binary search tree</a>, <a href="../Coding%20Problems/Invert%20Binary%20Tree%2059ed848b6cd240cda04f8647e555720e.html">Invert Binary Tree</a>, <a href="../Coding%20Problems/Convert%20Sorted%20Array%20to%20BST%2090d760f39d454351a56559ed4818c1af.html">Convert Sorted Array to BST</a>, <a href="../Coding%20Problems/Serialize%20and%20Deserialize%20Binary%20Tree%208175fbbd192c41f9a15965ccd712bf1b.html">Serialize and Deserialize Binary Tree</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Data Structures</th><td></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Date</th><td><time>@May 15, 2024 1:33 PM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@September 25, 2024 11:27 AM</time></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review - 1d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Review 2d</th><td><span class="status-value"><div class="status-dot"></div>Not started</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><figure id="b667836b-1f40-4932-95c5-db17e8034cb5" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled.png"><img style="width:704.984375px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled.png"/></a></figure><p id="bf86001f-b6ba-4756-b1c7-b67b34e216f4" class="">A tree is a graph that contains the following properties:</p><ol type="1" id="dc53c5b0-d46b-4c39-a71d-b4fcd52715b4" class="numbered-list" start="1"><li>It is undirected.</li></ol><ol type="1" id="11d86201-6530-41ac-b929-e980c4bcb465" class="numbered-list" start="2"><li>It is acyclic.</li></ol><ol type="1" id="1d94201d-9fea-4319-8dd9-5e568127ea40" class="numbered-list" start="3"><li>It is a connected graph where any <strong>two vertices</strong> are connected by <mark class="highlight-red">exactly one path</mark>.</li></ol><ol type="1" id="1a3856ac-06a3-4f21-a91e-a4796400a285" class="numbered-list" start="4"><li>Its nodes can contain values of any data type.</li></ol><p id="676176b1-09fe-4bd4-8180-0687f4321823" class="">
+</p><p id="93933d8b-423d-4a03-9744-ac4457ad4981" class="">The following key features set trees apart from other data structures, such as arrays or linked lists:</p><ul id="8720a904-3288-44f8-afaf-1a8218da08ae" class="bulleted-list"><li style="list-style-type:disc">They <strong>organize data in a hierarchical manner </strong>with a root node at the top and child nodes branching out from it.</li></ul><ul id="f4b8be63-6ee7-4888-94bc-c93af4b89123" class="bulleted-list"><li style="list-style-type:disc">They are <strong>nonlinear</strong>, which means that the elements in a tree are not arranged sequentially but rather in a <strong>branching structure</strong>.</li></ul><ul id="ec6f9abf-acd6-4c7a-992d-530133293e25" class="bulleted-list"><li style="list-style-type:disc">The <strong>time complexity </strong>for search and insert operations in trees is typically <code>𝑂(log⁡𝑛)</code> where 𝑛<em>n</em> is the number of elements in the tree. In contrast, the time complexity for search and insert operations in arrays and linked lists can be 𝑂(𝑛), where 𝑛<em>n</em> is the number of elements in the array or list.</li></ul><ul id="e9f53052-5f33-4974-8149-c5b49c82e152" class="bulleted-list"><li style="list-style-type:disc">There are multiple ways to traverse them.</li></ul><p id="fcc5dd6a-c605-4164-80d9-5bcf6a07c972" class="">
+</p><h2 id="36b7b4cb-295f-46fb-a76c-4535e492a312" class="">Which are the ways to traverse a tree ? </h2><p id="744f0503-c6e4-4c64-a650-e574a9bda220" class="">There multiple ways to traverse a tree.</p><p id="08b828dd-9329-4f93-9d57-07652d74ccb1" class="">
+</p><p id="6c40cd27-f2e2-4b67-9811-b2f3b9e8a4e5" class=""><strong>Tree depth-first search</strong> is another traversal method that explores the tree by traveling as far as possible along a branch before exploring the other branches. Because it visits each node of the tree exactly once, it guarantees a traversal in 𝑂(𝑛) time.</p><p id="c05b7b13-b1d1-4e3e-936e-820b621de24e" class="">
+</p><p id="2bf142cc-331c-45cd-9b40-e3a9d8ac8bdc" class="">There are three main methods to traverse a tree with the tree <strong>depth-first search pattern:</strong></p><p id="a21f5ba9-9d60-4a99-95d1-a675efa0be4f" class="">— preorder, inorder, and postorder.</p><p id="f47f8dc8-9f50-47ff-8f83-dc4e0e0dc34d" class="">
+</p><h3 id="72e000ab-4b7c-4318-9784-e97bca6c844c" class=""><a href="https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6173240901894144#Preorder-traversal"><strong>Preorder traversal</strong></a><strong>  </strong></h3><p id="7a887a0a-22c7-4580-a39d-867233f13637" class=""><mark class="highlight-purple">It’s like </mark><mark class="highlight-yellow_background"><strong>starting at the top</strong></mark><strong><mark class="highlight-purple"> </mark></strong><mark class="highlight-purple">of a tree and </mark><mark class="highlight-yellow_background"><strong>moving down</strong></mark><mark class="highlight-purple">, </mark><strong><mark class="highlight-yellow_background">exploring branches as we go</mark></strong><mark class="highlight-purple"><br/></mark></p><ol type="1" id="fcd8bb2d-b6e1-4cb4-950a-2e8782ca3332" class="numbered-list" start="1"><li><strong>Traverse the left subtree:</strong> We recursively traverse the left subtree, starting from the root node. We visit each node in the traversal. If the left child node doesn’t exist, we move to step 2.</li></ol><ol type="1" id="b1869182-6514-4f85-84fa-64bcb8e9604b" class="numbered-list" start="2"><li><strong>Traverse the right subtree:</strong> We repeat step 1 starting from the right child node of the current node. If the right child node doesn’t exist, we visit the current node.</li></ol><ol type="1" id="b64b67dc-dd26-4aec-bda8-cdacfc3e7239" class="numbered-list" start="3"><li>We repeat steps 1–2 until all nodes in the tree have been visited.</li></ol><figure id="fb60af35-0a9d-4813-9ef4-6d9fc4e151c7" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%201.png"><img style="width:432px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%201.png"/></a></figure><figure id="a789c0c6-f2de-4bd5-b936-fd007921cc30" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%202.png"><img style="width:432px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%202.png"/></a></figure><figure id="279976ea-3bb0-465e-848a-527ecbffc3aa" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%203.png"><img style="width:432px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%203.png"/></a></figure><figure id="38f90f0e-340f-425f-a859-4b47e9876184" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%204.png"><img style="width:432px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%204.png"/></a></figure><figure id="222dbcd4-e72c-4c4d-a6bc-2f65ec63a255" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%205.png"><img style="width:432px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%205.png"/></a></figure><p id="36ec278a-cf91-4867-91c5-ef5b7ec837f8" class="">Recursive Approach</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="588eb43a-8eaa-4e44-878e-be7f1bd73cec" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">public class DFSTree {
+    // Recursive DFS function
+    public void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        visit(node.val);
+        dfs(node.left);
+        dfs(node.right);
+    }
+
+    public static void main(String[] args) {
+        // Creating a sample tree: 
+        //     1
+        //    / \
+        //   2   3
+        //  / \   \
+        // 4   5   6
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        DFSTree dfsTree = new DFSTree();
+        dfsTree.dfs(root);
+    }
+}</code></pre><p id="0a994ce2-fd80-4d31-b629-702b44a3d0c0" class="">Interative approach</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1f9fb445-34c3-4886-a066-fa045681b29d" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">   void traversePreOrder(TreeNode&lt;Integer&gt; root) {
+        if (root == null) {
+            return;
+        }
+        var stack = new Stack&lt;TreeNode&lt;Integer&gt;&gt;();
+        stack.push(root);
+
+        while (!stack.empty()) {
+            var currentNode = stack.pop();
+            
+            visit(currentNode);
+
+            // Push the right child first so that the left child is processed first
+            if (currentNode.right != null) stack.push(currentNode.right);
+            if (currentNode.left != null) stack.push(currentNode.left);
+        }
+    }</code></pre><h3 id="1139501f-84a7-4833-a595-f477a2d40126" class=""><a href="https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6173240901894144#Inorder-traversal">Inorder traversal </a></h3><p id="d0f4ff19-e0a0-4364-9cbf-1d48102f2868" class=""><strong><mark class="highlight-purple"><code>from the bottom-left corner to the right, moving up gradually</code></mark></strong></p><p id="cab945a1-f121-42c8-aa2d-fae0d7682dd1" class="">
+</p><figure id="68d9a5e2-37ce-4438-a78a-cca29ba5d456" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%206.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%206.png"/></a></figure><figure id="c52bbbcf-c57d-48ee-9c8f-903392d78c1e" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%207.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%207.png"/></a></figure><figure id="2d940bf7-b0f1-405f-8a25-4163093bac1d" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%208.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%208.png"/></a></figure><figure id="1be9f327-fa88-4eee-a7a2-94327688cb47" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%209.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%209.png"/></a></figure><figure id="be0f4b9c-8076-4400-aa2a-4812728b97d0" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2010.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2010.png"/></a></figure><figure id="60bab569-4856-4230-9fe0-bbf9de772039" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2011.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2011.png"/></a></figure><figure id="1654a510-cd5f-4db4-b28a-a3482bc0a810" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2012.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2012.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f52ecfc4-ae88-4b91-b748-51f4717a5f46" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">public class DFSTree {
+    // Recursive DFS function
+    public void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
+        visit(node.val);
+        dfs(node.right);
+    }
+
+    public static void main(String[] args) {
+        // Creating a sample tree: 
+        //     1
+        //    / \
+        //   2   3
+        //  / \   \
+        // 4   5   6
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.right = new TreeNode(6);
+
+        DFSTree dfsTree = new DFSTree();
+        dfsTree.dfs(root);
+    }
+}</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0e4e06a1-d482-4405-b9ee-8ab3169bcdc2" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">   void traverseInOrder(TreeNode&lt;Integer&gt; root) {
+        if (root == null) {
+            return;
+        }
+        var stack = new Stack&lt;TreeNode&lt;Integer&gt;&gt;();
+        var currentNode = root;
+        while (currentNode != null || !stack.empty()) {
+            // Reach the left most TreeNode
+            while (currentNode != null) {
+                stack.push(currentNode);
+                currentNode = currentNode.left;
+            }
+            // Current must be null at this point
+            currentNode = stack.pop();
+
+            visit(currentNode);
+
+            // Move to the right subtree
+            currentNode = currentNode.right;
+        }
+    }</code></pre><h3 id="12b13477-813c-48d6-9a70-a98950e110fe" class=""><strong><strong>Postorder traversal</strong></strong><a href="https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6173240901894144#Postorder-traversal"><strong><strong>#</strong></strong></a></h3><p id="1cfe20cc-02b9-4010-ab19-d5ef9ae6a2d9" class="">It’s like examining a tree <mark class="highlight-purple"><strong>from its outermost branches inward</strong></mark>, <mark class="highlight-purple">reaching the trunk last</mark>. </p><p id="93f1d592-e78e-43eb-9f69-7c138555c420" class="">
+</p><figure id="4d7d4a32-50fc-4036-bc87-3d1afc3caa7e" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2013.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2013.png"/></a></figure><figure id="e8825288-ab3f-4236-a51c-a8472618cc37" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2014.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2014.png"/></a></figure><figure id="99745083-7716-48e2-957f-d083e221b613" class="image" style="text-align:center"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2015.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2015.png"/></a><figcaption>The first visited node is the leftmost node.</figcaption></figure><figure id="c732e5b7-6a5a-43f4-811b-94b9ea33d1de" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2016.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2016.png"/></a></figure><figure id="8d0f50c6-7b81-46c2-8db0-5212cef4e416" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2017.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2017.png"/></a><figcaption>The second visited node.</figcaption></figure><figure id="1e8ac66d-5d71-4988-9a52-11138772368c" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2018.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2018.png"/></a><figcaption>Then the parent node is visited</figcaption></figure><figure id="ef71d8e7-f376-4410-8137-91fca4944125" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2019.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2019.png"/></a></figure><p id="5dd36351-386f-4c7b-920b-3985a42bf505" class="">just after all child nodes were visited the root node will be visited</p><figure id="49ca6a63-ce71-40db-aacf-350188ff1b1d" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2020.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2020.png"/></a></figure><figure id="6ea4d65f-95ed-404e-b008-7f1e298ed564" class="image"><a href="Tree%20Depth-First%20Search%20(DFS)/Untitled%2021.png"><img style="width:384px" src="Tree%20Depth-First%20Search%20(DFS)/Untitled%2021.png"/></a></figure><p id="f00b1237-e4a9-4656-81ca-87bcfe3de7fe" class="">
+</p><p id="b159e66c-e159-487c-82c2-a883af157d2d" class="">
+</p><p id="7121420e-8c8d-4d83-a3ae-aeb6b9af0713" class="">It’s like examining a tree from its outermost branches inward, reaching the trunk last. </p><p id="bf31dd3d-0c00-4729-8f09-20ed7515f25a" class="">
+</p><p id="41b38286-aac0-4347-aa66-ec6f9fb046f9" class="">Recursive</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16f27358-31ba-4522-a2b3-99084360b9fa" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all"> public void dfs(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        dfs(node.left);
+        dfs(node.right);
+        visit(node.val);
+    }</code></pre><p id="99bb4300-a521-492e-82ee-c43ef5ed42a9" class="">
+</p><p id="9fb379d5-69d7-4d2b-80e4-d1b99cb26103" class="">Interactive approach</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e08dbb63-123b-4c06-9e88-2326ff12a705" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">   public void traversePostOrder(TreeNode&lt;Integer&gt; root) {
+        if (root == null) {
+            return;
+        }
+        var traverseStack = new Stack&lt;TreeNode&lt;Integer&gt;&gt;();
+        var visitingStack = new Stack&lt;TreeNode&lt;Integer&gt;&gt;();
+
+        traverseStack.push(root);
+
+        while (!traverseStack.isEmpty()) {
+            // Pop an item from traverseStack and push it to stackForVisitingTheElements
+            var node = traverseStack.pop();
+            visitingStack.push(node);
+
+            // Push left and right children of removed item to traverseStack
+            if (node.left != null) traverseStack.push(node.left);
+            if (node.right != null) traverseStack.push(node.right);
+        }
+
+        while (!visitingStack.isEmpty()) {
+            visit(visitingStack.pop());
+        }
+    }</code></pre><p id="df16371b-b56d-43ea-9ca4-37a0b9906439" class="">
+</p><h3 id="6d968b56-692c-4714-91d6-84de17210d5d" class=""><strong>Uniqueness</strong></h3><p id="38edebd3-8967-4240-86f5-25fd3ec2be3b" class="">
+</p><ol type="1" id="48bb6fc2-8544-4c5c-9acb-b048ff2e997a" class="numbered-list" start="1"><li><strong>Non-uniqueness of Single Traversals</strong>:<ul id="6871d526-fd78-4738-a0cc-0ebbc1b45272" class="bulleted-list"><li style="list-style-type:disc">A single traversal (in-order, pre-order, or post-order) of a BST is not unique. This means that different trees can produce the same traversal result.</li></ul><ul id="3101d4fb-2d9f-46e6-98bb-93db72ded975" class="bulleted-list"><li style="list-style-type:disc"><strong>Example</strong>: Consider two degenerate trees (which are essentially linked lists):<ul id="a80e0a64-59c6-4a25-be3a-58fa57b3f3e9" class="bulleted-list"><li style="list-style-type:circle">A right-slanting tree (each node only has a right child).</li></ul><ul id="7861f781-1ed4-4d8e-9a50-16e6709354a8" class="bulleted-list"><li style="list-style-type:circle">A left-slanting tree (each node only has a left child).</li></ul><ul id="857b3402-b008-4c88-9c81-3ca94c86e173" class="bulleted-list"><li style="list-style-type:circle">Both these trees, despite being structurally different, will yield the same in-order, pre-order, and post-order traversals if they contain the same set of elements.</li></ul></li></ul></li></ol><ol type="1" id="c14a59a3-ee50-4092-9634-b3ea59979743" class="numbered-list" start="2"><li><strong>Uniqueness with Two Traversals</strong>:<ul id="a05e7fa7-ebbe-449d-b851-81b9aaab5451" class="bulleted-list"><li style="list-style-type:disc">While a single traversal is not enough to uniquely identify a BST, two different types of traversals together can uniquely represent and reconstruct the tree.</li></ul><ul id="1b64bb42-b5a0-48e3-9b20-fccf5c141c71" class="bulleted-list"><li style="list-style-type:disc">Common pairs of traversals that can be used to uniquely determine a BST are:<ul id="96d3f713-4e0f-453e-afb6-ac76be3437de" class="bulleted-list"><li style="list-style-type:circle"><strong>In-order and Pre-order</strong>: The in-order traversal provides the sorted order of elements, and the pre-order traversal provides the root and the structure of the tree.</li></ul><ul id="e97d32e3-13ff-4855-a244-60bbb02c299d" class="bulleted-list"><li style="list-style-type:circle"><strong>In-order and Post-order</strong>: The in-order traversal gives the sorted order, while the post-order traversal gives the root and the structure in a different manner.</li></ul><ul id="ec77eed1-ad56-4536-9708-e15fa67fd0bc" class="bulleted-list"><li style="list-style-type:circle"><strong>Pre-order and Post-order</strong>: This combination is less common but can still be used under specific conditions.</li></ul></li></ul></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

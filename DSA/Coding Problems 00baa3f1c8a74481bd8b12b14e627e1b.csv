@@ -1,0 +1,394 @@
+﻿Name,BigO Space,BigO Time,Companies,Created time,Date,How the Patterns solves the problem?,Last edited time,Parent item,Pattern,Problem Statement,Scope,Source,Source URL,Status,Sub-item
+Sum of Three numbers,O(log (n)),O(nˆ2 ),,"April 15, 2024 11:43 AM",,,"April 22, 2024 10:04 PM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),,Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6235843469639680,Studied,
+Valid Palindrome,O(1),O(n),,"April 15, 2024 11:43 AM",,,"May 8, 2024 10:30 AM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),,Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6511079019642880,Reviewed,
+Reversing an array,O(1),O(n),,"April 15, 2024 2:09 PM",,,"May 8, 2024 10:31 AM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),"Given an array of integers, reverse it in place.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5049694603575296,Reviewed,
+"
+Pair with given sum in a sorted array",O(1),O(n),,"April 15, 2024 2:14 PM",,,"May 8, 2024 10:30 AM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),"Given a sorted array of integers, find a pair in the array that sums to a number T.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5049694603575296,Reviewed,
+Move all zeros to the end of the array/,O(1),O(n),,"April 15, 2024 2:25 PM",,,"May 8, 2024 10:30 AM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),"Given an array of integers, move all zeros to the end of the array.",Computer Science,,,Reviewed,
+Generate a string of n balanced parentheses.,,,,"April 15, 2024 2:28 PM",,,"April 18, 2024 5:34 PM",,Backtracking (Coding%20Patterns/Backtracking%20059ef5434ec5403bb01b3a7f99927b4f.html),,Computer Science,,,Not started,
+"Find all permutations ",,,,"April 15, 2024 2:30 PM",,,"April 18, 2024 5:34 PM",,,"Find all permutations of the following set of elements: {1,2,3}{1,2,3}.",Computer Science,,,Not started,
+Remove nth Node from End of List,O(1),O(n),,"April 15, 2024 3:07 PM",,"
+1. Two pointers, right and left, are set at the head node.
+2. Move the right pointer n steps forward.
+3. If right reaches NULL, return head's next node.
+4. Move both right and left pointers forward till right reaches the last node.
+5. Relink the left node to the node at left's next to the next node.
+6. Return head.","May 13, 2024 2:12 PM",,Two Pointers  (Coding%20Patterns/Two%20Pointers%208e59fa89be414ab989866b83a5600e8a.html),"Given a singly linked list, remove the n^th node from the end of the list and return its head.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6482049990000640,Reviewing,
+"
+Middle of the linked list",O(1),O(n),,"April 18, 2024 10:17 AM",,"This approach works effectively because the fast pointer moves through the list at twice the speed of the slow pointer. 
+
+
+• As the fast pointer moves twice as fast as the slow pointer, when the fast pointer reaches the end of the list (i.e., fast pointer becomes null or fast.next becomes null), the slow pointer will be approximately in the middle of the list.","April 20, 2024 3:01 PM",,Fast and Slow Pointers (Coding%20Patterns/Fast%20and%20Slow%20Pointers%20538d403053ee44279dda0281ddef6f02.html),"Given the head of a singly linked list, return the middle node of the linked list.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5579559786381312,Studied,
+Detect cycle in an array,,,,"April 18, 2024 10:29 AM",,,"April 18, 2024 5:34 PM",,Fast and Slow Pointers (Coding%20Patterns/Fast%20and%20Slow%20Pointers%20538d403053ee44279dda0281ddef6f02.html),"Given an array of non-negative integers where elements are indexes pointing to the next element, determine if there is a cycle in the array.",Computer Science,,,Not started,
+Detect irregularities or abnormalities in heart rhythm.,O(n),O(nˆ2 ),,"April 18, 2024 5:47 PM",,"• Wearable devices, such as fitness trackers and smartwatches, often monitor users' heart rates to provide insights into their health and fitness levels.
+• By continuously measuring heart rate data over time, these devices can detect irregularities or abnormalities in heart rhythm.
+
+• Using the Fast and Slow pointers pattern, the device can compare the current heart rate with historical data. The fast pointer represents the current heart rate, while the slow pointer represents the average or baseline heart rate. Any significant deviation or fluctuation between the two pointers may indicate a potential health concern that requires further investigation.","April 19, 2024 10:27 AM",,Fast and Slow Pointers (Coding%20Patterns/Fast%20and%20Slow%20Pointers%20538d403053ee44279dda0281ddef6f02.html),"One important aspect of heart rate monitoring is to detect irregularities or abnormalities in heart rhythm, which may indicate potential health issues such as arrhythmias.",User Centred Problem,,,Studied,
+Happy Number,O(1),O(log (n)),,"April 19, 2024 10:06 AM",,"We maintain track of two values using a slow pointer and a fast pointer. 
+
+The slow runner advances one number at each step, while the fast runner advances two numbers. 
+
+We detect if there is any cycle by comparing the two values and checking if the fast runner has indeed reached the number one.
+
+ We return True or False depending on if those conditions are met.","April 19, 2024 2:58 PM",,Fast and Slow Pointers (Coding%20Patterns/Fast%20and%20Slow%20Pointers%20538d403053ee44279dda0281ddef6f02.html),Write an algorithm to determine if a number n is a happy number.,Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6733106867470336,Studied,
+https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5471423109922816inked List Cycle,O(1),O(n),,"April 19, 2024 2:56 PM",,,"October 20, 2024 1:20 AM",,Fast and Slow Pointers (Coding%20Patterns/Fast%20and%20Slow%20Pointers%20538d403053ee44279dda0281ddef6f02.html),Check whether or not a linked list contains a cycle,Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6645508691066880,Studied,
+Reverse a string using stack,,,,"April 24, 2024 10:13 AM",,,"April 24, 2024 11:19 AM",,Stack (Coding%20Patterns/Stack%2054dc316daa0d4831a23807f5c6477b40.html),"Given an input string as an array of characters, reverse all the characters in this string.",Computer Science,,,Studied,
+Remove All Adjacent Duplicates In String,O(n),O(n),,"April 24, 2024 10:47 AM",,,"April 24, 2024 12:48 PM",,Stack (Coding%20Patterns/Stack%2054dc316daa0d4831a23807f5c6477b40.html),"You are given a string consisting of lowercase English letters. Repeatedly remove adjacent duplicate letters, one pair at a time. Both members of a pair of adjacent duplicate letters need to be removed.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5357502511316992,Studied,
+Implement Queue Using Stacks,,,,"April 24, 2024 12:48 PM",,,"April 26, 2024 10:32 AM",,Stack (Coding%20Patterns/Stack%2054dc316daa0d4831a23807f5c6477b40.html),"Design a custom queue, MyQueue, using only two stacks. Implement the Push(), Pop(), Peek(), and Empty() methods:
+• Void Push(int x): Pushes element to the back of the queue.
+• Int Pop(): Removes and returns the element from the front of the queue.
+• Int Peek(): Returns the element at the front of the queue.
+• Boolean Empty(): Returns TRUE if the queue is empty. Otherwise FALSE.
+You are required to only use the standard stack operations, which means that only the Push() to top, Peek() and Pop() from the top, Size(), and Is Empty() operations are valid.",Computer Science,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4607986993594368,Studied,
+Basic Calculator,O(n),O(n),,"April 26, 2024 10:32 AM",,"To recap, the solution to this problem can be divided into the following 4 parts:
+• Store the consecutive digits.
+• On detecting “+” or “-”, evaluate the left expression and store the new sign value.
+• On detecting “(”, push the result calculated until now and store the sign value
+• On detecting “)”, convert the current number to be positive or negative if we need to perform an addition or a subtraction respectively, and add it to the previously calculated result.","April 26, 2024 10:37 AM",,Stack (Coding%20Patterns/Stack%2054dc316daa0d4831a23807f5c6477b40.html),"Given a string containing an arithmetic expression, implement a basic calculator that evaluates the expression string. The expression string can contain integer numeric values and should be able to handle the “+” and “-” operators, as well as “()” parentheses.",,,,Studied,
+Two sum,O(n),O(n),,"April 26, 2024 11:21 AM",,,"April 29, 2024 12:16 PM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),Check for a pair in an array with a target sum,Computer Science,,,Studied,
+Word count,O(n),O(n),,"April 26, 2024 11:22 AM",,,"April 29, 2024 11:43 AM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),Word count: Find the occurrence of every word in a string.,,,,Studied,
+Divide an array into pairs whose sum is divisible by 2.,,,,"April 26, 2024 11:31 AM",,"By creating a hash map and storing the remainder of each element divided by 2 as the key, we can easily group elements that have the same remainder together. 
+
+Then, by checking if the complement of each element exists in the hash map, we can form pairs whose sum is divisible by 2. This approach allows for efficient lookup and pairing.","May 7, 2024 11:17 AM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),Divide an array into pairs whose sum is divisible by 2,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4671012182556672,Studied,
+"Find four elements 𝑎, 𝑏, c, and d in an array such that 𝑎+𝑏=𝑐+𝑑.",O(n),O(nˆ2 ),,"April 26, 2024 11:34 AM",,"By storing the sums of all possible pairs in a hash map, we can easily check if a matching pair exists for any given sum. 
+
+This approach allows us to reduce the number of nested loops.","May 7, 2024 11:05 AM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),"Find four elements 𝑎, 𝑏, c, and d in an array such that 𝑎+𝑏=𝑐+𝑑a+b=c+d.",,,,Reviewed,
+Design Hash Map,O(k+n),O(k/n),,"April 26, 2024 2:10 PM",,,"April 29, 2024 11:27 AM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),,,,,Studying,
+Logger Rate Limiter,O(n),O(1),,"May 2, 2024 12:11 PM",,"The HaspMap is used to keep tracking of the messages as the key and their timestamp as the value. 
+For each new message we check if it already exist and then compare the current timestamp with the one store on under the key. 
+If the diff from store less the current in less the given threshold then we display the message and update the timestamp to current.","January 17, 2025 12:14 PM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6451162092011520,Reviewed,
+Next Greater Element,O(n),O(n),,"May 2, 2024 1:38 PM",,,"May 7, 2024 11:10 AM",,Hash Map (Coding%20Patterns/Hash%20Map%20f994f9cb425f49e0bff9d59c1e9a860e.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6636281658474496,Reviewed,
+Count prefixes of a given string,,,,"May 7, 2024 11:25 AM",,,"May 7, 2024 11:27 AM",,Knowing What to Track (Coding%20Patterns/Knowing%20What%20to%20Track%208820d55a31804197adfb988de27cd0bb.html),"Given an input string, count the number of prefixes present in it. A prefix of a string is a substring that occurs at the beginning of the string.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5817033054879744,Studied,
+Palindrome Permutation,,,,"May 7, 2024 10:12 PM",,,"May 7, 2024 10:16 PM",,Knowing What to Track (Coding%20Patterns/Knowing%20What%20to%20Track%208820d55a31804197adfb988de27cd0bb.html),"For a given string, st, find whether or not a permutation of this string is a palindrome. You should return TRUE if such a permutation is possible and FALSE if it isn’t possible.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6428669150101504,Studied,
+Valid Anagram,O(1),O(n),,"May 7, 2024 10:47 PM",,"Solution summary
+1. Check whether the lengths of the strings are equal. If not, return FALSE.
+2. Initialize a hash map to store the characters as keys and the count of the respective character as its corresponding value.
+3. Iterate over the characters in string str1, and increment the count of each character.
+4. Iterate over the characters in string str2, and decrement the count of each character.
+5. If the count of any characters is not zero, return FALSE. Otherwise, return TRUE.","May 7, 2024 11:25 PM",,Knowing What to Track (Coding%20Patterns/Knowing%20What%20to%20Track%208820d55a31804197adfb988de27cd0bb.html),"Given two strings, str1 and str2, check whether str2 is an anagram of str1.
+An anagram is a word or phrase created by rearranging the letters of another word or phrase while utilizing each of the original letters exactly once.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6310368252133376,Studied,
+First Unique Character in a String,O(1),O(n),,"May 7, 2024 10:52 PM",,,"May 7, 2024 11:25 PM",,Knowing What to Track (Coding%20Patterns/Knowing%20What%20to%20Track%208820d55a31804197adfb988de27cd0bb.html),"For a given string of characters, s, your task is to find the first non-repeating character and return its index. Return −1−1 if there’s no unique character in the given string.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5504159635865600,Studied,
+Maximum Frequency Stack,O(n),O(1),,"May 8, 2024 1:00 AM",,,"May 8, 2024 10:30 AM",,Knowing What to Track (Coding%20Patterns/Knowing%20What%20to%20Track%208820d55a31804197adfb988de27cd0bb.html),"Design a stack-like data structure. You should be able to push elements to this data structure and pop elements with maximum frequency.
+You’ll need to implement the FreqStack class that should consist of the following:
+• FreqStack: This is a class used to declare a frequency stack.
+• Push(value): This is used to push an integer data onto the top of the stack.
+• Pop(): This is used to remove and return the most frequent element in the stack.Note: If there is a tie for the most frequent element, then the most recently pushed element is removed and returned.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5044292571758592,Reviewed,
+First and last position of an element in a sorted array,,,,"May 8, 2024 10:49 AM",,,"May 8, 2024 11:41 AM",,Modified Binary Search (Coding%20Patterns/Modified%20Binary%20Search%20504d9582eab543d0af5daffc2f82efc8.html),"For a given integer array sorted in increasing order, find the starting and ending position of a given target value.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4594726083887104,Not started,
+Binary Search,O(1),O(log (n)),,"May 8, 2024 11:41 AM",,"he array provided is sorted, so whenever target is greater than any number in the array, target must be present in the subarray to the right of the number. Similarly, whenever target is less than any number in the array, target must be present in the subarray to the left of the number. We can solve the above problem using the iterative approach by following the steps below:
+1. Let’s initialize the low and high variables to 00 and nums.length-1, respectively.
+2. Calculate the mid index using the formula 𝑚𝑖𝑑=𝑙𝑜𝑤+((ℎ𝑖𝑔ℎ−𝑙𝑜𝑤)/2)mid=low+((high−low)/2).
+    1. If nums[mid] is equal to the target value, we return mid.
+    2. If nums[mid] is greater than target, point high to mid-1, and the value of low remains the same. Now we will search the left part of the array.
+    3. If nums[mid] is less than target, point low to mid + 1, and the value of high remains the same. Now we will search the right part of the array.
+3. When the value of low is greater than the value of high, this indicates that the target is not present in the array. This is because we’ve checked all possible positions where target might exist. So, -1 is returned.","October 18, 2024 3:37 PM",,Modified Binary Search (Coding%20Patterns/Modified%20Binary%20Search%20504d9582eab543d0af5daffc2f82efc8.html),"We are given an array of integers, nums, sorted in ascending order, and an integer value, target. If the target exists in the array, return its index. If the target does not exist, return -1.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5043104932560896,Studied,
+First Bad Version,O(1),O(log (n)),,"May 8, 2024 11:55 AM",,"Optimized approach using modified binary search
+Since the versions range is sorted, binary search is the most efficient approach for finding the first bad version. It executes in 𝑂(log⁡𝑛) time, which is faster than the alternate linear scanning method.
+
+Our goal is to find the first bad version by making the minimum number of calls to the API function. We use the binary search algorithm. The idea is to check the middle version to see if it’s bad. 
+
+If it’s good, this means that the first bad version occurs later in the range, allowing us to entirely skip checking the first half of the range. 
+
+If it’s bad, we need to check the first half of the range to find the first bad version. Therefore, we can skip checking the second half of the range.
+When we go to check the identified half of the range, we use the same approach again. We check the middle version to figure out which half of the current range to check.","May 13, 2024 1:56 PM",,Modified Binary Search (Coding%20Patterns/Modified%20Binary%20Search%20504d9582eab543d0af5daffc2f82efc8.html),"The latest version of a software product fails the quality check. Since each version is developed upon the previous one, all the versions created after a bad version are also considered bad.
+
+Suppose you have n versions with the IDs [1,2,...,𝑛], and you have access to an API function that returns TRUE if the argument is the ID of a bad version.
+
+Find the first bad version that is causing all the later ones to be bad. 
+
+Additionally, the solution should also return the number of API calls made during the process and should minimize the number of API calls too.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5060016282402816,Studied,
+Search in Rotated Sorted Array,O(1),O(log (n)),,"May 13, 2024 11:44 AM",,,"May 13, 2024 1:56 PM",,Modified Binary Search (Coding%20Patterns/Modified%20Binary%20Search%20504d9582eab543d0af5daffc2f82efc8.html),,,,,Studied,
+Diameter of Binary Tree,O(n),O(n),,"May 16, 2024 11:00 AM",,,"May 22, 2024 3:19 PM",,Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html),"Given a binary tree, you need to compute the length of the tree’s diameter. The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+
+Note: The length of the path between two nodes is represented by the number of edges between them.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4666811791572992,Studied,
+Tree Path sum,,,,"May 17, 2024 12:09 PM",,,"May 17, 2024 12:13 PM",,Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html),"Determine if a tree contains a root-to-leaf path, such that adding up all the values along the path equals the specified target sum.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6173240901894144#Examples,Not started,
+"
+Valid binary search tree",,,,"May 17, 2024 12:14 PM",,,"May 17, 2024 12:15 PM",,Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html),Valid binary search tree: Determine if a tree is a valid binary search tree.,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6173240901894144#Examples,Not started,
+Invert Binary Tree,O(n),O(n),,"May 22, 2024 3:16 PM",,"- Using post traversal order using recursive calls
+- use temp variable to assign left to right node","May 22, 2024 3:19 PM",,Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5827147185913856,Studied,
+Convert Sorted Array to BST,O(log (n)),O(n),,"May 22, 2024 4:31 PM",,"Using Two Pointer low and high and Binary Search idea, we could build the BST from mid element of the array as root node and recursive call left and right subarrays.  ","May 22, 2024 4:36 PM",,"Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html), Modified Binary Search (Coding%20Patterns/Modified%20Binary%20Search%20504d9582eab543d0af5daffc2f82efc8.html)",,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6588687582363648,Studied,
+Serialize and Deserialize Binary Tree,"O(log (n)), O(n)",O(n),,"May 23, 2024 10:00 AM",,,"May 28, 2024 10:10 AM",,Tree Depth-First Search (DFS) (Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html),"Serialize a given binary tree to a file and deserialize it back to a tree. Make sure that the original and the deserialized trees are identical.
+
+• Serialize: Write the tree to a file.
+• Deserialize: Read from a file and reconstruct the tree in memory.
+
+Serialize the tree into a list of integers, and then, deserialize it back from the list to a tree. For simplicity’s sake, there’s no need to write the list to the files.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6009029169119232,Studied,
+"Find the shortest path between two given nodes, u and v, in a binary tree.",,,,"May 28, 2024 11:09 AM",,,"May 28, 2024 11:10 AM",,Tree Breadth-First Search (BFS) (Coding%20Patterns/Tree%20Breadth-First%20Search%20(BFS)%208ad7072dbd2a48b298730ec8cc39668c.html),"Find the shortest path between two given nodes, u and v, in a binary tree.",,,,Not started,
+Symmetric Tree,O(n),O(n),,"May 28, 2024 11:10 AM",,Use the BSF to evaluate the symetric properties for each node visiting them by levels.,"May 31, 2024 11:40 AM",,Tree Breadth-First Search (BFS) (Coding%20Patterns/Tree%20Breadth-First%20Search%20(BFS)%208ad7072dbd2a48b298730ec8cc39668c.html),"Given the root of a binary tree, check whether it is a symmetric tree. A symmetric tree refers to a tree that is a mirror of itself, i.e., symmetric around its root.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6137333113028608,Studied,
+Vertical Order Traversal of a Binary Tree,O(n),O(n),,"May 31, 2024 11:41 AM",,,"June 7, 2024 3:11 PM",,Tree Breadth-First Search (BFS) (Coding%20Patterns/Tree%20Breadth-First%20Search%20(BFS)%208ad7072dbd2a48b298730ec8cc39668c.html),"Find the vertical order traversal of a binary tree when the root of the binary tree is given. In other words, return the values of the nodes from top to bottom in each column, column by column from left to right. If there is more than one node in the same column and row, return the values from left to right.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5731486500257792,Studied,
+Reverse LinkedList,O(1),O(n),,"June 4, 2024 11:33 AM",,,"June 4, 2024 11:16 PM",,In-Place Manipulation of a Linked List (Coding%20Patterns/In-Place%20Manipulation%20of%20a%20Linked%20List%20ddec6ae4bc9a4bd595549c47083a961c.html),"Given the head of a singly linked list, reverse the linked list and return its updated head.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5622966235824128,Studied,
+Reverse LinkedList II,O(1),O(n),,"June 6, 2024 1:50 PM",,,"June 7, 2024 3:10 PM",,In-Place Manipulation of a Linked List (Coding%20Patterns/In-Place%20Manipulation%20of%20a%20Linked%20List%20ddec6ae4bc9a4bd595549c47083a961c.html),"Given a singly linked list with 𝑛n nodes and two positions, left and right, the objective is to reverse the nodes of the list from left to right. Return the modified list.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6641844647755776,Studied,
+Reverse Nodes in k-Group,,,,"June 11, 2024 11:39 AM",,,"June 25, 2024 9:39 AM",,In-Place Manipulation of a Linked List (Coding%20Patterns/In-Place%20Manipulation%20of%20a%20Linked%20List%20ddec6ae4bc9a4bd595549c47083a961c.html),"The task is to reverse the nodes in groups of 𝑘k in a given linked list, where 𝑘k is a positive integer, and at most the length of the linked list.
+
+If any remaining nodes are not part of a group of 𝑘k, they should remain in their original order.
+
+It is not allowed to change the values of the nodes in the linked list. Only the order of the nodes can be modified.
+
+Note: Use only 𝑂(1) extra memory space.",,,,Studied,
+Find the Difference (two strings),O(1),O(n),,"June 14, 2024 11:29 PM",,,"June 14, 2024 11:51 PM",,Bitwise Manipulation (Coding%20Patterns/Bitwise%20Manipulation%2056d61294a866438c8d118cdd9d70e812.html),"Given two strings, str1 and str2, find the index of the extra character that is present in only one of the strings.
+
+Note: If multiple instances of the extra character exist, return the index of the first occurrence of the character in the longer string",,,,Studied,
+Complement of Base 10 Number,O(1),O(1),,"June 14, 2024 11:51 PM",,,"June 15, 2024 10:04 PM",,Bitwise Manipulation (Coding%20Patterns/Bitwise%20Manipulation%2056d61294a866438c8d118cdd9d70e812.html),"For any n positive number in base 10, return the complement of its binary representation as an integer in base 1",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6276568554012672,Studied,
+Two Single Numbers,,,,"June 16, 2024 12:09 AM",,,"June 25, 2024 9:39 AM",,Bitwise Manipulation (Coding%20Patterns/Bitwise%20Manipulation%2056d61294a866438c8d118cdd9d70e812.html),"Given a non-empty array arr, in which exactly two elements appear once, and all the other elements appear twice, return the two elements that appeared only once.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5542650397720576,Studied,
+Set Matrix Zeros,O(1),O(m x n),,"June 16, 2024 12:11 AM",,,"June 17, 2024 10:06 AM",,Matrices (Coding%20Patterns/Matrices%20bf8651bd201d4d8589e15260bfaa581b.html),"Given a matrix, mat, if any element within the matrix is zero, set that row and column to zero.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5135197218668544,Studying,
+Rotate Image,O(1),O(nˆ2 ),,"June 19, 2024 9:44 AM",,,"June 25, 2024 9:39 AM",,Matrices (Coding%20Patterns/Matrices%20bf8651bd201d4d8589e15260bfaa581b.html),"Given an 𝑛×𝑛n×n matrix, rotate the matrix 90 degrees clockwise. The performed rotation should be in place, i.e., the given matrix is modified directly without allocating another matrix.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4826616502026240,Studied,
+Spiral Matrix,O(1),O(m x n),,"June 19, 2024 2:22 PM",,,"June 25, 2024 9:39 AM",,Matrices (Coding%20Patterns/Matrices%20bf8651bd201d4d8589e15260bfaa581b.html),"Given an 𝑚×𝑛m×n matrix, return an array containing the matrix elements in spiral order, starting from the top-left cell.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5318016813367296,Studied,
+Merge Intervals,O(n),O(n),,"June 19, 2024 3:48 PM",,,"June 26, 2024 10:55 AM",,Merge Intervals (Coding%20Patterns/Merge%20Intervals%207b9ba21ff9b246a08db1fe72346d01ae.html),"We are given an array of closed intervals, intervals, where each interval has a start time and an end time. The input array is sorted with respect to the start times of each interval. For example, intervals = [ [1,4], [3,6], [7,9] ][ [1,4], [3,6], [7,9] ] is sorted in terms of start times 1, 31, 3, and 77.
+
+Your task is to merge the overlapping intervals and return a new output array consisting of only the non-overlapping intervals.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6494608001466368,Studied,
+Insert Interval,O(n),O(n),,"June 19, 2024 3:54 PM",,,"June 26, 2024 10:50 AM",,Merge Intervals (Coding%20Patterns/Merge%20Intervals%207b9ba21ff9b246a08db1fe72346d01ae.html),"Given a sorted list of nonoverlapping intervals and a new interval, 
+
+your task is to insert the new interval into the correct position while ensuring that the resulting list of intervals remains sorted and nonoverlapping. 
+
+Each interval is a pair of nonnegative numbers, the first being the start time and the second being the end time of the interval.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6012935659978752,Studied,
+Max Heap,,,,"June 24, 2024 11:39 AM",,,"June 24, 2024 12:57 PM",,Heaps (Coding%20Patterns/Heaps%20692a997b63884aaebcf780aac9b82487.html),,,Educative,https://www.educative.io/courses/data-structures-coding-interviews-java/max-heap-implementation,Studying,
+Min Heap,,,,"June 24, 2024 12:50 PM",,,"June 24, 2024 12:57 PM",,Heaps (Coding%20Patterns/Heaps%20692a997b63884aaebcf780aac9b82487.html),,,Educative,https://www.educative.io/courses/data-structures-coding-interviews-java/min-heap-implementation,Studying,
+Convert Max Heap to Min Heap,,,,"June 24, 2024 2:21 PM",,,"June 24, 2024 2:42 PM",,Heaps (Coding%20Patterns/Heaps%20692a997b63884aaebcf780aac9b82487.html),,,,,Studied,
+Employee Free Time,O(n),O(m log n),,"June 25, 2024 11:49 AM",,,"June 26, 2024 3:23 PM",,"Merge Intervals (Coding%20Patterns/Merge%20Intervals%207b9ba21ff9b246a08db1fe72346d01ae.html), Heaps (Coding%20Patterns/Heaps%20692a997b63884aaebcf780aac9b82487.html)","You’re given a list containing the schedules of multiple employees. Each person’s schedule is a list of non-overlapping intervals in a sorted order. 
+
+An interval is specified with the start and end time, both being positive integers. 
+
+Your task is to find the list of finite intervals representing the free time for all the employees.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5529742021361664,Studied,
+Merge Sorted Array in place,O(1),O(m+n),,"June 28, 2024 3:15 PM",,,"June 28, 2024 11:33 PM",,K-way Merge (Coding%20Patterns/K-way%20Merge%2065a125d5a6c140399e8e4b4a577bb0da.html),"Given two sorted integer arrays, 𝑛𝑢𝑚𝑠1nums1 and 𝑛𝑢𝑚𝑠2nums2, and the number of data elements in each array, 𝑚m and 𝑛n, implement a function that merges the second array into the first one. You have to modify 𝑛𝑢𝑚𝑠1nums1 in place.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4850044894314496,Studied,
+Kth Smallest Number in M Sorted Lists,O(n),O((m+k)log m),,"June 29, 2024 4:07 PM",,,"September 12, 2024 9:33 AM",,K-way Merge (Coding%20Patterns/K-way%20Merge%2065a125d5a6c140399e8e4b4a577bb0da.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5747126593257472,Studied,
+Find K Pairs with Smallest Sums,O(1),O(klogm),,"June 29, 2024 4:31 PM",,,"June 30, 2024 11:20 PM",,K-way Merge (Coding%20Patterns/K-way%20Merge%2065a125d5a6c140399e8e4b4a577bb0da.html),"Given two lists, and an integer k, find k pairs of numbers with the smallest sum so that in each pair, each list contributes one number to the pair.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6192567919181824,Studied,
+Merge K Sorted Lists,O(n),O( n log k),,"July 1, 2024 12:45 PM",,,"July 2, 2024 12:26 AM",,K-way Merge (Coding%20Patterns/K-way%20Merge%2065a125d5a6c140399e8e4b4a577bb0da.html),,,,,Studied,
+Missing Number,O(1),O(n),,"July 1, 2024 3:07 PM",,,"July 2, 2024 12:26 AM",,Cyclic Sort (Coding%20Patterns/Cyclic%20Sort%20ace291661a534867ba8a115cdfe6b302.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5253751570038784,Studied,
+Find the Corrupt Pair,O(1),O(n),,"July 1, 2024 11:58 PM",,,"July 2, 2024 12:01 AM",,Cyclic Sort (Coding%20Patterns/Cyclic%20Sort%20ace291661a534867ba8a115cdfe6b302.html),"We are given an unsorted array, nums, with 𝑛n elements and each element is in the range [1,𝑛][1,n] inclusive. The array originally contained all the elements from 11 to 𝑛n but due to a data error, one of the numbers is duplicated, which causes another number missing. Find and return the corrupt pair (missing, duplicated).",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4863715506782208,Not started,
+First Missing Positive,O(1),O(n),,"July 2, 2024 12:23 AM",,,"July 2, 2024 12:25 AM",,Cyclic Sort (Coding%20Patterns/Cyclic%20Sort%20ace291661a534867ba8a115cdfe6b302.html),"Given an unsorted integer array, nums, return the smallest missing positive integer. Create an algorithm that runs with an 𝑂(𝑛)O(n) time complexity and utilizes a constant amount of space.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6000245172469760,Studied,
+Kth Largest Element in a Stream,O(k),O( n log k),,"July 2, 2024 10:12 AM",,,"July 2, 2024 10:18 AM",,Top K Elements (Coding%20Patterns/Top%20K%20Elements%2002263630a7664f06816637f87d96f751.html),"Given an infinite stream of integers (sorted or unsorted), nums, design a class to find the 𝑘𝑡ℎkth largest element in a stream.Note: It is the 𝑘𝑡ℎkth largest element in the sorted order, not the 𝑘𝑡ℎkth distinct element.
+
+The class should have the following functions, inputs, and return values:
+
+• Init(nums, k): It takes an array of integers nums and an integer k and initializes the class object.
+
+• Add(value): It takes one integer value, appends it to the stream, and returns the element representing the 𝑘𝑡ℎkth largest element in the stream.",,,,Not started,
+Reorganize String,,O(n),,"July 2, 2024 11:27 AM",,,"July 2, 2024 11:32 AM",,Top K Elements (Coding%20Patterns/Top%20K%20Elements%2002263630a7664f06816637f87d96f751.html),"Given a string, str, rearrange it so that any two adjacent characters are not the same. If such a reorganization of the characters is possible, output any possible valid arrangement. Otherwise, return an empty string.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4610773356773376,Studied,
+K Closest Points to Origin,O(k),O( n log k),,"July 2, 2024 11:34 AM",,,"July 5, 2024 2:59 PM",,K-way Merge (Coding%20Patterns/K-way%20Merge%2065a125d5a6c140399e8e4b4a577bb0da.html),"Given a list of points on a plane, where the plane is a 2-D array with (x, y) coordinates, find the 𝑘 closest points to the origin (0,0).
+
+Note: Here, the distance between two points on a plane is the Euclidean distance: 
+
+$ d = √[(x2 – x1)2 + (y2 – y1)2]$
+
+since we need to compare the distance we can use just x * x + y*y",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4591721250947072,Studied,
+Top K Frequent Elements,O(k+n),O(n log (n)),,"July 2, 2024 10:51 PM",,,"July 2, 2024 10:56 PM",,Top K Elements (Coding%20Patterns/Top%20K%20Elements%2002263630a7664f06816637f87d96f751.html),"Given an array of integers, arr, and an integer, k, return the 𝑘k most frequent elements.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6594399217778688,Studied,
+Schedule Tasks on Minimum Machines,,,,"July 3, 2024 12:11 AM",,,"July 3, 2024 12:27 PM",,Two Heaps (Coding%20Patterns/Two%20Heaps%207c19a4ed8ce44d28992323220d60fb1c.html),,,,,Studied,
+Maximize Capital,,O(n log (n)),,"July 3, 2024 9:52 AM",,,"July 3, 2024 12:27 PM",,Two Heaps (Coding%20Patterns/Two%20Heaps%207c19a4ed8ce44d28992323220d60fb1c.html),"A busy investor with an initial capital, c, needs an automated investment program. They can select k distinct projects from a list of n projects with corresponding capitals requirements and expected profits. For a given project 𝑖i, its capital requirement is 𝑐𝑎𝑝𝑖𝑡𝑎𝑙𝑠[𝑖]capitals[i] , and the profit it yields is 𝑝𝑟𝑜𝑓𝑖𝑡𝑠[𝑖]profits[i].
+
+The goal is to maximize their cumulative capital by selecting a maximum of k distinct projects to invest in, subject to the constraint that the investor’s current capital must be greater than or equal to the capital requirement of all selected projects.
+
+When a selected project from the identified ones is finished, the pure profit from the project, along with the starting capital of that project is returned to the investor. This amount will be added to the total capital held by the investor. Now, the investor can invest in more projects with the new total capital. It is important to note that each project can only be invested once.
+
+As a basic risk-mitigation measure, the investor wants to limit the number of projects they invest in. For example, if k is 22, the program should identify the two projects that maximize the investor’s profits while ensuring that the investor’s capital is sufficient to invest in the projects.
+
+Overall, the program should help the investor to make informed investment decisions by picking a list of a maximum of k distinct projects to maximize the final profit while mitigating the risk.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5463027508969472,Studied,
+Find Median from a Data Stream,O(n),O(log (n)),,"July 3, 2024 12:27 PM",,,"September 2, 2024 2:09 PM",,Two Heaps (Coding%20Patterns/Two%20Heaps%207c19a4ed8ce44d28992323220d60fb1c.html),,,,,Studied,
+Jump Game I,O(n),O(1),,"July 3, 2024 6:27 PM",,,"September 2, 2024 2:09 PM",,Greedy Techniques (Coding%20Patterns/Greedy%20Techniques%20ab0c674a36b34d1690898d4875450f97.html),"In a single-player jump game, the player starts at one end of a series of squares, with the goal of reaching the last square.
+
+At each turn, the player can take up to 𝑠s steps towards the last square, where 𝑠s is the value of the current square.
+
+For example, if the value of the current square is 33, the player can take either 33 steps, or 22 steps, or 11 step in the direction of the last square. The player cannot move in the opposite direction, that is, away from the last square.
+You have been tasked with writing a function to validate whether a player can win a given game or not.
+
+You’ve been provided with the nums integer array, representing the series of squares. The player starts at the first index and, following the rules of the game, tries to reach the last index.
+
+If the player can reach the last index, your function returns TRUE; otherwise, it returns FALSE.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4763830200696832,Studied,
+Boats to Save People,O(1),O(n log (n)),,"July 3, 2024 6:53 PM",,,"July 3, 2024 6:57 PM",,Greedy Techniques (Coding%20Patterns/Greedy%20Techniques%20ab0c674a36b34d1690898d4875450f97.html),"A big ship with numerous passengers is sinking, and there is a need to evacuate these people with the minimum number of life-saving boats. Each boat can carry, at most, two persons however, the weight of the people cannot exceed the carrying weight limit of the boat.
+We are given an array, people, where people[i] is the weight of the 𝑖𝑡ℎith person, and an infinite number of boats, where each boat can carry a maximum weight, limit. Each boat carries, at most, two people at the same time. This is provided that the sum of the weight of these people is under or equal to the weight limit.
+You need to return the minimum number of boats to carry all persons in the array.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6104582138757120,Studied,
+Gas Stations,O(1),O(n),,"July 3, 2024 7:31 PM",,,"July 3, 2024 7:34 PM",,Greedy Techniques (Coding%20Patterns/Greedy%20Techniques%20ab0c674a36b34d1690898d4875450f97.html),"There are 𝑛n gas stations along a circular route, where the amount of gas at the 𝑖𝑡ℎith station is gas[i].
+We have a car with an unlimited gas tank, and it costs cost[i] of gas to travel from the 𝑖𝑡ℎith station to the next (𝑖+1)𝑡ℎ(i+1)th station. We begin the journey with an empty tank at one of the gas stations.
+Find the index of the gas station in the integer array gas such that if we start from that index we may return to the same index by traversing through all the elements, collecting gas[i] and consuming cost[i].
+• If it is not possible, return -1.
+• If there exists such index, it is guaranteed to be unique.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4844453878693888,Studied,
+Minimum Number of Refueling Stops,O(n),O(n log (n)),,"July 3, 2024 7:53 PM",,,"July 3, 2024 8:42 PM",,Greedy Techniques (Coding%20Patterns/Greedy%20Techniques%20ab0c674a36b34d1690898d4875450f97.html),"You need to find the minimum number of refueling stops that a car needs to make to cover a distance, target. For simplicity, assume that the car has to travel from west to east in a straight line. There are various fuel stations on the way that are represented as a 2-D array of stations, i.e., stations[i] =[𝑑𝑖,𝑓𝑖]=[di,fi], where 𝑑𝑖di is the distance (in miles) of the 𝑖𝑡ℎith gas station from the starting position, and 𝑓𝑖fi is the amount of fuel (in liters) that it stores. Initially, the car starts with k liters of fuel. The car consumes one liter of fuel for every mile traveled. Upon reaching a gas station, the car can stop and refuel using all the petrol stored at the station. If it cannot reach the target, the program returns −1−1.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6666626981298176,Studying,
+Repeated DNA Sequences,,"O((n−k)×k), O(n)",,"July 8, 2024 10:38 AM",,,"September 2, 2024 2:09 PM",,Sliding Window (Coding%20Patterns/Sliding%20Window%204c3a484019d047219f1b6acc22c6eb66.html),"Given a string, s, that represents a DNA subsequence, and a number k, return all the contiguous subsequences (substrings) of length 𝑘 that occur more than once in the string. 
+
+The order of the returned subsequences does not matter. If no repeated substring is found, the function should return an empty set.
+
+The DNA sequence is composed of a series of nucleotides abbreviated as 𝐴, C, G, and T. For example, ACGAATTCCG is a DNA sequence. When studying DNA, it is useful to identify repeated sequences in it.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4727037651714048,Studied,
+Longest Repeating Character Replacement,O(1),O(n),,"July 12, 2024 12:15 PM",,,"October 29, 2024 3:27 PM",,Sliding Window (Coding%20Patterns/Sliding%20Window%204c3a484019d047219f1b6acc22c6eb66.html),"Given a string s and an integer k, find the length of the longest substring in s, where all characters are identical, after replacing, at most, k characters with any other lowercase English character.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6729577578758144,Studied,
+Find Maximum in Sliding Window,O(n),"O(n -w), O(n)",,"July 12, 2024 1:55 PM",,,"September 2, 2024 2:09 PM",,Sliding Window (Coding%20Patterns/Sliding%20Window%204c3a484019d047219f1b6acc22c6eb66.html),"Given an integer list, nums, find the maximum values in all the contiguous subarrays (windows) of size w.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6727052020547584,Studied,
+Maximum sum subarray of size K,O(1),O(n),,"July 15, 2024 10:46 AM",,,"July 15, 2024 10:49 AM",,Sliding Window (Coding%20Patterns/Sliding%20Window%204c3a484019d047219f1b6acc22c6eb66.html),"Given an array of integers and a positive integer k, find the maximum sum of any contiguous subarray of size k.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5165944114642944,Studied,
+Minimum Window Subsequence,O(1),O(m x n),,"July 15, 2024 2:17 PM",,,"October 29, 2024 3:26 PM",,Sliding Window (Coding%20Patterns/Sliding%20Window%204c3a484019d047219f1b6acc22c6eb66.html),"Given two strings, str1 and str2, find the shortest substring in str1 such that str2 is a subsequence of that substring.
+A substring is defined as a contiguous sequence of characters within a string. A subsequence is a sequence that can be derived from another sequence by deleting zero or more elements without changing the order of the remaining elements.
+Let’s say you have the following two strings:
+str1 = “𝑎𝑏𝑏𝑐𝑏abbcb”
+str2 = “𝑎𝑐ac”
+In this example, “𝑎𝑏𝑏𝑐abbc” is a substring of str1, from which we can derive str2 simply by deleting both the instances of the character 𝑏b. Therefore, str2 is a subsequence of this substring. Since this substring is the shortest among all the substrings in which str2 is present as a subsequence, the function should return this substring, that is, “𝑎𝑏𝑏𝑐abbc”.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5181641498689536,Studied,
+Network Delay time,O(Edges + Nodes),O(Edges log nodes),,"July 19, 2024 10:21 AM",,,"July 19, 2024 10:49 AM",,Graphs (Coding%20Patterns/Graphs%207cf58eda14214b1fbee5904e9025368f.html),"A network of n nodes labeled 1 to n is provided along with a list of travel times for directed edges represented as times[i]=(xi, yi, ti), where xi is the source node, yi is the target node, and ti is the delay time from the source node to the target node.
+Considering we have a starting node, k, we have to determine the minimum time required for all the remaining n−1 nodes to receive the signal. Return −1−1 if it’s not possible for all n−1 nodes to receive the signal.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6196184910790656,Studied,
+Paths in Maze That Lead to Same Room,O(nˆ2 ),O(m x n),,"July 19, 2024 10:52 AM",,,"July 19, 2024 12:15 PM",,Graphs (Coding%20Patterns/Graphs%207cf58eda14214b1fbee5904e9025368f.html),"A maze consists of 𝑛n rooms numbered from 1−𝑛1−n, and some rooms are connected by corridors. You are given a 2D integer array, corridors, where 𝑐𝑜𝑟𝑟𝑖𝑑𝑜𝑟𝑠[𝑖]=[𝑟𝑜𝑜𝑚1,𝑟𝑜𝑜𝑚2]corridors[i]=[room1,room2] indicates that there is a corridor connecting 𝑟𝑜𝑜𝑚1room1 and 𝑟𝑜𝑜𝑚2room2, allowing a person in the maze to go from 𝑟𝑜𝑜𝑚1room1 to 𝑟𝑜𝑜𝑚2room2 and vice versa.
+The designer of the maze wants to know how confusing the maze is. The confusion score of the maze is the number of different cycles of length 3.
+For example, 1→2→3→11→2→3→1 is a cycle of length 33, but 1→2→3→41→2→3→4 and 1→2→3→2→11→2→3→2→1 are not.
+Two cycles are considered to be different if one or more of the rooms visited in the first cycle is not in the second cycle.
+Return the confusion score of the maze.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6566902954590208,Studied,
+Clone Graph,O(n),O(m+n),,"July 19, 2024 12:25 PM",,,"September 2, 2024 2:09 PM",,Graphs (Coding%20Patterns/Graphs%207cf58eda14214b1fbee5904e9025368f.html),"Given a reference of a node in a graph with data and a list of neighbors, create a deep copy of the graph. The graph has the following properties:
+
+• Undirected: The edges of the graph are bidirectional.
+• Connected: A path will always exist between any two nodes.
+
+In a deep copy, a new instance of every node is created with the same data as in the original graph. Any modifications made to the new graph are not reflected in the original graph.
+
+For simplicity, we are creating a graph using an adjacency list, where the data of each node is represented by its index in the adjacency list. Each list in the adjacency list describes the set of neighbors of a node in the graph. The index in the adjacency list starts from 1. For example, for [[2, 3], [1, 3], [1, 2]], there are three nodes in the graph:
+
+1st node (data = 1): Neighbors are 2𝑛𝑑2nd node (data = 2) and 3𝑟𝑑3rd node (data = 3).
+
+2nd node (data = 2): Neighbors are 1𝑠𝑡1st node (data = 1) and 3𝑟𝑑3rd node (data = 3).
+
+3rd node (data = 3): Neighbors are 1𝑠𝑡1st node (data = 1) and 2𝑛𝑑2nd node (data = 2).",,,,Studied,
+Bus Routes,O(m x n),O(m x n),,"July 21, 2024 1:28 AM",,,"July 21, 2024 2:05 AM",,Graphs (Coding%20Patterns/Graphs%207cf58eda14214b1fbee5904e9025368f.html),"You are given an array, routes, representing bus routes where routes[i] is a bus route that the 𝑖𝑡ℎith bus repeats forever. Every route contains one or more stations. You have also been given the source station, src, and a destination station, des. Return the minimum number of buses someone must take to travel from src to dest, or return -1 if there is no route.",,,,Studied,
+Snapshot Array,O(m x n),,,"July 22, 2024 11:38 AM",,,"July 22, 2024 11:42 AM",,Custom Data structures (Coding%20Patterns/Custom%20Data%20structures%202572ee522b0f49ff8e6aa194300e402a.html),"In this challenge, you have to implement a Snapshot Array with the following properties:
+• Constructor (length): This is the constructor and it initializes the data structure to hold the specified number of indexes.
+• Set Value (idx, val): This property sets the value at a given index idx to value val.
+• Snapshot(): This method takes no parameters and returns the Snap ID. Snap ID is the number of times that the snapshot function was called, less 11, as we start the count at 00. The first time this function is called, it saves a snapshot and returns 00. The 𝑛𝑡ℎnth time it is called, after saving the snapshot, it returns 𝑛−1n−1.
+• Get Value (idx, Snap ID) method returns the value at the index in the snapshot with the given Snap ID.
+Suppose that we have three nodes whose values we wish to track in the snapshot array. Initially, the value of all the nodes will be 00. After calling the Set Value (1, 4) function, the value of node 1 will change to 44. If we take a snapshot at this point, the current values of all the nodes will be saved with Snap ID 00. Now, if we call Set Value (1, 7), the current value for node 1 will change to 77. Now, if we call the Get Value (1, 0) function, we will get the value of node 1 from snapshot 00, that is, 44.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6605157221662720,Studied,
+Time-Based Key-Value Store,O(n),O(log (n)),,"July 24, 2024 9:50 AM",,,"July 24, 2024 10:06 AM",,Custom Data structures (Coding%20Patterns/Custom%20Data%20structures%202572ee522b0f49ff8e6aa194300e402a.html),"Implement a data structure that can store multiple values of the same key at different timestamps and retrieve the key’s value at a certain timestamp.
+You’ll need to implement the TimeStamp class. This class has the following functions:
+• Init(): This function initializes the values dictionary and timestamp dictionary.
+• Set Value(key, value, timestamp): This function stores the key and value at any given timestamp.
+• Get Value(key, timestamp): This function returns the value set for this key at the specified timestamp.
+
+Note: When a query requests the value of a key at a timestamp that isn’t recorded, return the value corresponding to the most recent timestamp before the query’s timestamp. If there are no timestamps before the query’s timestamp, return an empty string.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5711984935960576,Studied,
+Implement LRU Cache,O(1),O(1),,"July 24, 2024 1:09 PM",,,"July 24, 2024 1:14 PM",,Custom Data structures (Coding%20Patterns/Custom%20Data%20structures%202572ee522b0f49ff8e6aa194300e402a.html),"Implement an LRU cache class with the following functions:
+• Init(capacity): Initializes an LRU cache with the capacity size.
+• Set(key, value): Adds a new key-value pair or updates an existing key with a new value.
+• Get(key): Returns the value of the key, or −1−1 if the key does not exist.
+If the number of keys has reached the cache capacity, evict the least recently used key and then add the new key.
+
+As caches use relatively expensive, faster memory, they are not designed to store very large data sets. Whenever the cache becomes full, we need to evict some data from it. There are several caching algorithms to implement a cache eviction policy. LRU is a very simple and commonly used algorithm. The core concept of the LRU algorithm is to evict the oldest data from the cache to accommodate more data.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4911705013485568,Studied,
+Insert Delete GetRandom O(1),O(n),O(1),,"July 24, 2024 3:14 PM",,,"July 24, 2024 3:15 PM",,Custom Data structures (Coding%20Patterns/Custom%20Data%20structures%202572ee522b0f49ff8e6aa194300e402a.html),"Implement a Random Set data structure that can perform the following operations:
+• Constructor(): This initializes the Random Set object.
+• Insert(): This function takes an integer, data, as its parameter and, if it does not already exist in the set, add it to the set, returning TRUE. If the integer already exists in the set, the function returns FALSE.
+• Delete(): This function takes an integer, data, as its parameter and, if it exists in the set, removes it, returning TRUE. If the integer does not exist in the set, the function returns FALSE.
+• GetRandom(): This function takes no parameters. It returns an integer chosen at random from the set.
+
+Note: Your implementation should aim to have a running time of 𝑂(1)O(1) (on average) for each operation.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5494240341786624,Studied,
+Permutations,O(n),O(n x n!),,"July 24, 2024 9:24 PM",,,"July 24, 2024 10:22 PM",,Subsets (Coding%20Patterns/Subsets%20a345077a45eb4c7299b41554adb124be.html),"Given an input string, word, return all possible permutations of the string.
+
+Note: The order of permutations does not matter.
+
+Constraints:
+• All characters in word are unique.
+• 1≤1≤ word.length ≤6≤6
+• All characters in word are lowercase English letters.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5447384382439424,Studied,
+Letter Combinations of a Phone Number,O(n),O(k^n * n),,"July 31, 2024 11:36 AM",,,"July 31, 2024 11:41 AM",,Subsets (Coding%20Patterns/Subsets%20a345077a45eb4c7299b41554adb124be.html),"Given a string containing digits from 2 to 9 inclusive, with the possibility of each digit appearing multiple times, return all possible letter combinations that the number could represent. Return the answer in any order.
+The illustration below shows the mapping of digits to letters in a telephone dial pad.
+
+Note: The number 11 on the telephone dial pad does not correspond to any letter, so the input string only contains digits from 22 to 99.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4854798782431232,Studied,
+Generate Parentheses,O(n),O(4ˆn),,"July 31, 2024 11:44 AM",,,"October 20, 2024 10:46 PM",,Subsets (Coding%20Patterns/Subsets%20a345077a45eb4c7299b41554adb124be.html),"For a given number, n, generate all combinations of balanced parentheses.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5186847396462592,Studied,
+Flood Fill,O(m x n),O(m x n),,"September 2, 2024 10:45 AM",,,"September 2, 2024 11:02 AM",,Backtracking (Coding%20Patterns/Backtracking%20059ef5434ec5403bb01b3a7f99927b4f.html),"We are given the following values as input to begin with:
+• The coordinates of a source cell, i.e., sr and sc.
+• A target value, target.
+• An (m×n)(m×n) grid.
+Our task is to perform flood fill by updating the values of the four directionally connected cells, which have the same value as the source cell with the target value.
+How to perform flood fill:
+Suppose that a (4×4)(4×4) grid has a source value of 11 at coordinates [1,1][1,1]. We perform flood fill on its neighboring cells only if they have the same source value as this cell. Once all adjacent cells are updated, return the new grid after performing flood fill.
+If no neighboring cell has a value equal to the source cell, only update the source cell with the target value and return the updated grid.
+Constraints:
+• 1≤1≤ grid.length, grid[i].length ≤30≤30
+• 0≤0≤ grid[i][j], target ≤216≤216
+• 0≤0≤ sr << grid.length
+• 0≤0≤ sc << grid[i].length",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5709733064474624,Studied,
+Word Search,O(wordLength),O(char numbers x 3^wordLength),,"September 2, 2024 11:02 AM",,,"September 2, 2024 11:52 AM",,Backtracking (Coding%20Patterns/Backtracking%20059ef5434ec5403bb01b3a7f99927b4f.html),"Given an m×nm×n 2D grid of characters and word as a string, we need to determine if the word can be constructed from letters of sequentially adjacent cells. The cells are considered sequentially adjacent when they are neighbors to each other either horizontally or vertically. The function should return TRUE if the word can be constructed and FALSE otherwise.
+Constraints:
+• m == board.length
+• n == board[i].length, where 0≤0≤ i << m
+• 1≤1≤ m, n ≤6≤6
+• 1≤1≤ word.length ≤15≤15
+• board and word consist of only lowercase or uppercase English letters.
+• The search is not case-sensitive.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4804555600691200,Studied,
+House Robber III,O(n),O(n),,"September 2, 2024 12:17 PM",,,"September 2, 2024 12:43 PM",,Backtracking (Coding%20Patterns/Backtracking%20059ef5434ec5403bb01b3a7f99927b4f.html),"A thief has discovered a new neighborhood to target, where the houses can be represented as nodes in a binary tree. The money in the house is the data of the respective node. The thief can enter the neighborhood from a house represented as root of the binary tree. Each house has only one parent house. The thief knows that if he robs two houses that are directly connected, the police will be notified. The thief wants to know the maximum amount of money he can steal from the houses without getting caught by the police. The thief needs your help determining the maximum amount of money he can rob without alerting the police.
+Constraints:
+• The number of nodes in the tree is in the range [1,500][1,500].
+• 0≤0≤ node.data ≤104≤104",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6261787021410304,Studied,
+N-Queens,,,,"September 2, 2024 1:00 PM",,,"September 24, 2024 10:33 PM",,Backtracking (Coding%20Patterns/Backtracking%20059ef5434ec5403bb01b3a7f99927b4f.html),"Given a chessboard of size n×nn×n, determine how many ways nn queens can be placed on the board, such that no two queens attack each other.
+A queen can move horizontally, vertically, and diagonally on a chessboard. One queen can be attacked by another queen if both share the same row, column, or diagonal.
+Constraints:
+• 1≤n≤9",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6538219933007872,Studied,
+Search Suggestions System,,,,"September 4, 2024 2:31 PM",,,"September 17, 2024 9:58 AM",,Trie (Coding%20Patterns/Trie%203c73ef26a100444bb77931b48f790099.html),"Given an array of strings called products and a word to search, design a system that, when each character of the searched word is typed, suggests at most three product names from products. Suggested products should share a common prefix with the searched word. If more than three products exist with a common prefix, return the three product names that appear first in lexicographical order.
+Return the suggested products, which will be a list of lists after each character of searched word is typed.
+Constraints:
+• 1≤1≤ products.length ≤1000≤1000
+• 1≤1≤ products[i].length ≤3000≤3000
+• 1≤1≤ sum(products[i].length) ≤2×103≤2×103
+• All the strings of products are unique.
+• products[i] consists of lowercase English letters.
+• 1≤1≤ searched word.length ≤1000≤1000
+• The searched word consists of lowercase English letters.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4800462273511424,Studied,
+Replace Words,O(m),O(m+n),,"September 6, 2024 2:58 PM",,,"September 17, 2024 11:06 AM",,Trie (Coding%20Patterns/Trie%203c73ef26a100444bb77931b48f790099.html),"In this problem, we are considering the words that are composed of a prefix and a postfix. For example, if we append a postfix “happy” to a prefix “un”, it forms the word “unhappy”. Similarly, “disagree” is formed from a prefix, “dis” followed by a postfix, “agree”.
+
+You’re given a dictionary, dictionary, consisting of prefixes, and a sentence, sentence, which has words separated by spaces only. Your task is to replace the postfix in sentence with their prefixes given in dictionary (if found) and return the modified sentence.
+
+A couple of points to keep in mind:
+• If a postfix in the sentence matches more than one prefix in the dictionary, replace it with the prefix that has the shortest length. For example, if we have the sentence “iphone is amazing”, and the dictionary {“i”, “ip”, “hone”}, then the word “iphone” has two prefixes in the dictionary “i” and “ip”, but we will replace it with the one that is shorter among the two, that is, “i”.
+• If there is no root word against any word in the sentence, leave it unchanged.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5632941398032384,Studied,
+Coin Change,,,,"September 12, 2024 10:13 AM",,,"September 17, 2024 9:45 AM",,Dynamic Programming (Coding%20Patterns/Dynamic%20Programming%20840a7c17ef144b36a7dbe7cdef0ff43e.html),,,leetcode,https://leetcode.com/problems/coin-change/description/?envType=company&envId=datadog&favoriteSlug=datadog-three-months,Not started,
+Word Search 2,O(m),O(n∗3^l  ),,"September 17, 2024 11:06 PM",,,"September 17, 2024 11:12 PM",,Trie (Coding%20Patterns/Trie%203c73ef26a100444bb77931b48f790099.html),"You are given a list of strings that you need to find in a 2D grid of letters such that the string can be constructed from letters in sequentially adjacent cells. 
+
+The cells are considered sequentially adjacent when they are neighbors to each other either horizontally or vertically. 
+
+The solution should return a list containing the strings from the input list that were found in the grid.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5099576253087744,Studied,
+Verifying an Alien Dictionary,O(1),O(w∗m),,"September 19, 2024 9:38 AM",,,"September 19, 2024 11:03 AM",,Topological Sort (Coding%20Patterns/Topological%20Sort%201056ac92bcc18037b558cda653433151.html),"You’re given a list of words with lowercase English letters in a different order, written in an alien language. The order of the alphabet is some permutation of lowercase letters of the English language.
+We have to return TRUE if the given list of words is sorted lexicographically in this alien language.
+
+Constraints:
+• 1≤1≤ words.length ≤103≤103
+• 1≤1≤ words[i].length ≤20≤20
+• order.length ==26==26
+• All the characters in words[i] and order are lowercase English letters.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5480435456016384,Studied,
+Compilation Order,O(V),O(V + E),,"September 19, 2024 11:05 AM",,,"September 20, 2024 11:08 AM",,Topological Sort (Coding%20Patterns/Topological%20Sort%201056ac92bcc18037b558cda653433151.html),"There are a total of nn classes labeled with the English alphabet (A, B, C, and so on). 
+
+Some classes are dependent on other classes for compilation. For example, if class B extends class A, then B has a dependency on A. Therefore, A must be compiled before B.
+
+Given a list of the dependency pairs, find the order in which the classes should be compiled.
+
+Constraints:
+• Class name should be an uppercase character.
+• 0≤0≤ dependencies.length ≤676≤676
+• dependencies[i].length =2=2
+• All dependency pairs should be unique.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6002313551544320,Studied,
+Course Schedule II,O(Edges + Nodes),O(V + E),,"September 24, 2024 11:52 AM",,,"September 24, 2024 10:36 PM",,Topological Sort (Coding%20Patterns/Topological%20Sort%201056ac92bcc18037b558cda653433151.html),"Let’s assume that there are a total of nn courses labeled from 00 to n−1. Some courses may have prerequisites. A list of prerequisites is specified such that if Prerequisitesi=a,b you must take course bb before course a.
+
+Given the total number of courses nn and a list of the prerequisite pairs, return the course order a student should take to finish all of the courses. If there are multiple valid orderings of courses, then the return any one of them.
+
+Note: There can be a course in the 0 to n−1 range with no prerequisites.
+
+Constraints:
+Let nn be the number of courses.
+• 1≤n≤1500
+• 0≤0≤ prerequisites.length ≤1000
+• prerequisites[i].length ==2
+• 0≤a, b<n0≤a, b<n
+• a≠b
+• All the pairs [a, b]are distinct.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5834416233512960,Studied,
+Alien Dictionary,,,,"September 24, 2024 12:05 PM",,,"September 24, 2024 10:29 PM",,Topological Sort (Coding%20Patterns/Topological%20Sort%201056ac92bcc18037b558cda653433151.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4789566948114432,Studied,
+N-th Tribonacci Number,O(n),O(n),,"September 25, 2024 10:52 AM",,,"September 25, 2024 11:39 AM",,Dynamic Programming (Coding%20Patterns/Dynamic%20Programming%20840a7c17ef144b36a7dbe7cdef0ff43e.html),"Given a number n, calculate the corresponding Tribonacci number. The Tribonacci sequence TnTn is defined as:
+
+$T0=0, T1=1, T2=1$
+
+each number is the sum of the three preceding ones.
+Tn=Tn−1 +Tn−2 + Tn−3
+
+$for n>=3n>=3$",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5728741717311488,Studied,
+Counting Bits,O(1),O(n),,"September 25, 2024 12:16 PM",,,"September 25, 2024 12:21 PM",,Dynamic Programming (Coding%20Patterns/Dynamic%20Programming%20840a7c17ef144b36a7dbe7cdef0ff43e.html),"or a given positive integer, n, your task is to return an array of length n+1n+1 such that for each xx where 0≤x≤n0≤x≤n, result[x] is the count of 11s in the binary representation of xx.",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5149954071986176,Studied,
+0/1 Knapsack,,,,"September 25, 2024 12:21 PM",,,"September 25, 2024 3:12 PM",,Dynamic Programming (Coding%20Patterns/Dynamic%20Programming%20840a7c17ef144b36a7dbe7cdef0ff43e.html),"You are given nn items whose weights and values are known, as well as a knapsack to carry these items. 
+
+The knapsack cannot carry more than a certain maximum weight, known as its capacity.
+
+You need to maximize the total value of the items in your knapsack, while ensuring that the sum of the weights of the selected items does not exceed the capacity of the knapsack.
+
+If there is no combination of weights whose sum is within the capacity constraint, return 0.
+
+Notes:
+1. An item may not be broken up to fit into the knapsack, i.e., an item either goes into the knapsack in its entirety or not at all.
+2. We may not add an item more than once to the knapsack.
+
+Constraints:
+• 1≤1≤ capacity ≤1000≤1000
+• 1≤1≤ values.length ≤500≤500
+• weights.length ==== values.length
+• 1≤1≤ values[i] ≤1000≤1000
+• 1≤1≤ weights[i] ≤≤ capacity",,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6242401309032448,Studied,
+Word Break II,O(n x v),O( nˆ2 x v),,"October 7, 2024 4:36 PM",,,"October 7, 2024 4:40 PM",,Dynamic Programming (Coding%20Patterns/Dynamic%20Programming%20840a7c17ef144b36a7dbe7cdef0ff43e.html),,,Educative,https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5991383690248192,Studying,
+LogProcessor,,,Datadog,"January 17, 2025 12:41 PM",,,"January 17, 2025 12:43 PM",,,,,,,Not started,

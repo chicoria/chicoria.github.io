@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A comprehensive guide to coding patterns for Data Structures and Algorithms"
+    />
+    <title>Coding Patterns - Blog</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .patterns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .pattern-card {
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .pattern-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .pattern-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .pattern-card .pattern-date {
+        font-size: 0.85rem;
+        color: var(--accent-color);
+        margin-bottom: 0.75rem;
+      }
+
+      .pattern-card .pattern-excerpt {
+        font-size: 0.95rem;
+        color: var(--accent-color);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .pattern-card .pattern-stats {
+        font-size: 0.85rem;
+        color: var(--accent-color);
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .pattern-card a {
+        text-decoration: none;
+        color: var(--link-color);
+      }
+
+      .pattern-card a:hover {
+        color: var(--link-hover);
+      }
+
+      @media (max-width: 600px) {
+        .patterns-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="logo">Blog</a>
+        <div style="display: flex; gap: 1.5rem">
+          <a href="/resume.html">Resume</a>
+          <a href="/dsa-studies.html">DSA Studies</a>
+          <a href="/coding-patterns.html">Coding Patterns</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <a href="/" class="back-link">← Back to blog</a>
+
+        <article>
+          <header class="post-header">
+            <h1>Coding Patterns</h1>
+            <p style="color: var(--accent-color); margin-top: 0.5rem">
+              A comprehensive collection of coding patterns for solving Data
+              Structures and Algorithms problems
+            </p>
+          </header>
+
+          <div class="post-content">
+            <p>
+              This page contains all the coding patterns I've studied and
+              practiced. Each pattern includes explanations, when to use them,
+              how they work, and related coding problems.
+            </p>
+
+            <div class="patterns-grid" id="patterns-grid">
+              <!-- Patterns will be inserted here by JavaScript -->
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024</p>
+    </footer>
+
+    <script>
+      // Load patterns and render them
+      fetch("/coding-patterns-data.json")
+        .then((response) => response.json())
+        .then((patterns) => {
+          const grid = document.getElementById("patterns-grid");
+          patterns.forEach((pattern) => {
+            const card = document.createElement("div");
+            card.className = "pattern-card";
+
+            const excerpt =
+              pattern.what || pattern.analogies || pattern.how || "";
+            const shortExcerpt =
+              excerpt.length > 150
+                ? excerpt.substring(0, 150) + "..."
+                : excerpt;
+
+            card.innerHTML = `
+                        <h3><a href="/posts/coding-pattern-${
+                          pattern.slug
+                        }.html">${pattern.name}</a></h3>
+                        <div class="pattern-date">${pattern.date_display}</div>
+                        ${
+                          shortExcerpt
+                            ? `<div class="pattern-excerpt">${shortExcerpt}</div>`
+                            : ""
+                        }
+                        <div class="pattern-stats">
+                            ${
+                              pattern.coding_problems.length > 0
+                                ? `${
+                                    pattern.coding_problems.length
+                                  } coding problem${
+                                    pattern.coding_problems.length !== 1
+                                      ? "s"
+                                      : ""
+                                  }`
+                                : "No problems linked"
+                            }
+                            ${
+                              pattern.data_structures
+                                ? ` • ${pattern.data_structures}`
+                                : ""
+                            }
+                        </div>
+                    `;
+            grid.appendChild(card);
+          });
+        })
+        .catch((err) => {
+          console.error("Error loading patterns:", err);
+          document.getElementById("patterns-grid").innerHTML =
+            "<p>Error loading patterns. Please ensure coding-patterns-data.json exists.</p>";
+        });
+    </script>
+  </body>
+</html>

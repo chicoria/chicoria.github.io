@@ -1,0 +1,600 @@
+[
+  {
+    "name": "Inverted Index Patterns",
+    "slug": "inverted-index-patterns",
+    "date": "2025-01-18",
+    "date_display": "January 18, 2025",
+    "what": "Definition: An inverted index maps content (e.g., keywords or phrases) to locations where that content appears (e.g., log entries or documents).Purpose: Quickly find all occurrences of a given term or combination of terms.In this algorithm:The keywordIndex acts as an inverted index, mapping keywords (or compound phrases) to the indices of log entries containing them.This enables efficient querying of logs based on keywords or phrases.",
+    "how": "Key Features of the Pattern• Preprocessing Phase: ◦ The algorithm preprocesses the input (A commands) by building the keywordIndex that links keywords (or phrases) to log entries. ◦ Each log entry is tokenized into individual keywords and optionally stored as a compound phrase.• Query Phase: ◦ The algorithm uses the inverted index to quickly retrieve relevant logs for a Q command by looking up keywords or phrases. ◦ For compound queries, it filters the results to ensure all query terms are present.",
+    "when": "",
+    "analogies": "",
+    "application": "The algorithm's structure is analogous to how search engines like Google or Elasticsearch handle indexing and querying:1. Index phase: Crawl and tokenize documents, creating an inverted index of terms to document IDs.2. Query phase: Match user queries to the index and return results efficiently.",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": []
+  },
+  {
+    "name": "Topological Sort",
+    "slug": "topological-sort",
+    "date": "2024-09-19",
+    "date_display": "September 19, 2024",
+    "what": "The topological sort pattern is used to find valid orderings of elements that have dependencies on or priority over each other. Note: Topological sort is only applicable to directed acyclic graphs (DAGs), meaning there should be no cycles present in the graph.",
+    "how": "These elements can be represented as the nodes of a graph, so in technical terms, topological sort is a way of ordering the nodes of a directed graph such that for every directed edge [a,b][a,b] from node aa to node bb, aa comes before bb in the ordering.",
+    "when": "",
+    "analogies": "Topological sorting is a technique used to organize a collection of items or tasks based on their dependencies. Imagine there is a list of tasks to complete, but some tasks can only be done after others are finished. There are many such tasks that depend on each other, or there’s a specific sequence of actions that must be followed. For example, when baking a cake, there are several steps one needs to follow, and some steps depend on others. We can’t frost the cake until it’s baked, and we can’t bake it until we’ve mixed the batter. To ensure that we don’t frost the cake before baking it or mix the batter after preheating the oven, we need to sort the steps based on their dependencies. This is where topological sorting helps us. It figures out the correct sequence of steps to bake the cake efficiently",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5417362091278336",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Verifying an Alien Dictionary",
+        "slug": "verifying-an-alien-dictionary",
+        "link": "Verifying%20an%20Alien%20Dictionary%201066ac92bcc180adba99ffd99cbf10b9.html"
+      }
+    ]
+  },
+  {
+    "name": "Dynamic Programming",
+    "slug": "dynamic-programming",
+    "date": "2024-09-13",
+    "date_display": "September 13, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Coin Change",
+        "slug": "coin-change",
+        "link": "Coin%20Change%20f4f6440266e84986b4c59d60232594c6.html"
+      }
+    ]
+  },
+  {
+    "name": "Trie",
+    "slug": "trie",
+    "date": "2024-09-02",
+    "date_display": "September 02, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "Many problems in the real world use the trie pattern. Let’s look at some examples.• Autocomplete system: One of the most common applications of trie is the autocomplete system in search engines, such as Google. This is the feature that prompts the search engine to give us some suggestions to complete our query when we start typing something in the search bar. These suggestions are given based on common queries that users have searched already that match the prefix we have typed.• Orthographic corrector: Ever seen pop-up suggestions or red lines under a word while typing a message? That’s an orthographic corrector making suggestions and pointing out spelling mistakes by searching through a dictionary. It uses a trie data structure for efficient searches and retrievals from the available database.• Prefix matching in IP addresses or URLs: By storing IP prefixes or URL paths in a trie, firewalls and security devices can quickly match incoming traffic against a set of allowed or blocked prefixes for filtering purposes.",
+    "does_it_solve": "Yes, if either of these conditions is fulfilled:• Partial matches: We need to compare two strings to detect partial matches based on the initial characters of one or both strings.• Space optimization: We wish to optimize the space used to store a dictionary of words. Storing shared prefixes once allows for significant savings.• Can break down the string: The problem statement allows us to break down the strings into individual characters.",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5974239514591232",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Search Suggestions System",
+        "slug": "search-suggestions-system",
+        "link": "Search%20Suggestions%20System%20a5dfa5b86e334f8eb9dfc984631c9d95.html"
+      }
+    ]
+  },
+  {
+    "name": "Subsets",
+    "slug": "subsets",
+    "date": "2024-07-24",
+    "date_display": "July 24, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "• Requirement for combinations or subsets: The problem asks us to generate combinations (or subsets) of the elements from the input data structure. This could be the final solution itself or a step toward reaching the solution.",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Permutations",
+        "slug": "permutations",
+        "link": "Permutations%202ce8f342e4e74afb9bb03ec4a3d9d349.html"
+      }
+    ]
+  },
+  {
+    "name": "Custom Data structures",
+    "slug": "custom-data-structures",
+    "date": "2024-07-22",
+    "date_display": "July 22, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Snapshot Array",
+        "slug": "snapshot-array",
+        "link": "Snapshot%20Array%20058848050c2b46b2987e2733befa57eb.html"
+      },
+      {
+        "name": "1)",
+        "slug": "1",
+        "link": "Insert%20Delete%20GetRandom%20O(1"
+      }
+    ]
+  },
+  {
+    "name": "Sliding Window",
+    "slug": "sliding-window",
+    "date": "2024-07-04",
+    "date_display": "July 04, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "Imagine you’re in a long hallway lined with paintings, and you’re looking through a narrow frame that only reveals a portion of this hallway at any time. As you move the frame along the hallway, new paintings come into view while others leave the frame. This process of moving and adjusting what’s visible through the frame is akin to how the sliding window technique operates over data.",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5165944114642944",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Repeated DNA Sequences",
+        "slug": "repeated-dna-sequences",
+        "link": "Repeated%20DNA%20Sequences%20c8c9bd626fc842d7b6ab48d64e290a63.html"
+      }
+    ]
+  },
+  {
+    "name": "Two Heaps",
+    "slug": "two-heaps",
+    "date": "2024-07-03",
+    "date_display": "July 03, 2024",
+    "what": "The two heaps pattern is a versatile and efficient approach used to solve problems involving dynamic data processing, optimization, and real-time analysis. As the name suggests, this pattern maintains two heaps, which could be either two min heaps, two max heaps, or a min heap and a max heap.",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6103677027876864",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Schedule Tasks on Minimum Machines",
+        "slug": "schedule-tasks-on-minimum-machines",
+        "link": "Schedule%20Tasks%20on%20Minimum%20Machines%2007c48a8895c34c93a33487536531e0d7.html"
+      }
+    ]
+  },
+  {
+    "name": "Greedy Techniques",
+    "slug": "greedy-techniques",
+    "date": "2024-07-03",
+    "date_display": "July 03, 2024",
+    "what": "greedy algorithms are an approach for tackling optimization problems where we aim to find the best solution under given constraints.",
+    "how": "",
+    "when": "",
+    "analogies": "Imagine being at a buffet, and we want to fill the plate with the most satisfying combination of dishes available, but there’s a catch: we can only make our choice one dish at a time, and once we move past a dish, we can’t go back to pick it up. In this scenario, a greedy approach would be to always choose the dish that looks most appealing to us at each step, hoping that we end up with the best possible meal.",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5505617209982976",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Jump Game I",
+        "slug": "jump-game-i",
+        "link": "Jump%20Game%20I%208a1670b155474366beb8b7cfb1d3f194.html"
+      }
+    ]
+  },
+  {
+    "name": "Top K Elements",
+    "slug": "top-k-elements",
+    "date": "2024-07-02",
+    "date_display": "July 02, 2024",
+    "what": "The top k elements pattern is an important technique in coding that helps us efficiently find a specific number of elements, known as k, from a set of data. This is particularly useful when we’re tasked with identifying the largest, smallest, or most/least frequent elements within an unsorted collection.",
+    "how": "Which data structure can we use to solve such problems? A heap is the best data structure to keep track of the smallest or largest k elements. With this pattern, we either use a max heap or a min heap to find the smallest or largest k elements, respectively, because they allow us to efficiently maintain a collection of elements ordered in a way that gives us quick access to the smallest (min heap) or largest (max heap) element.",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Kth Largest Element in a Stream",
+        "slug": "kth-largest-element-in-a-stream",
+        "link": "Kth%20Largest%20Element%20in%20a%20Stream%20e918ffeeaf9f4641a37d3f2c4daae400.html"
+      }
+    ]
+  },
+  {
+    "name": "Cyclic Sort",
+    "slug": "cyclic-sort",
+    "date": "2024-07-01",
+    "date_display": "July 01, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Missing Number",
+        "slug": "missing-number",
+        "link": "Missing%20Number%201a898f24f36644d8809bdc8cb71653b3.html"
+      }
+    ]
+  },
+  {
+    "name": "K-way Merge",
+    "slug": "k-way-merge",
+    "date": "2024-06-28",
+    "date_display": "June 28, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5637591304110080",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Merge Sorted Array in place",
+        "slug": "merge-sorted-array-in-place",
+        "link": "Merge%20Sorted%20Array%20in%20place%208f83726abff54420a42cfae3504a6b6b.html"
+      }
+    ]
+  },
+  {
+    "name": "Merge Intervals",
+    "slug": "merge-intervals",
+    "date": "2024-06-19",
+    "date_display": "June 19, 2024",
+    "what": "The merge intervals pattern deals with problems involving overlapping intervals. Each interval is represented by a start and an end time. For example, an interval of [10,20][10,20] seconds means that the interval starts at 1010 seconds and ends at 2020 seconds.",
+    "how": "This pattern involves tasks such as merging intersecting intervals, inserting new intervals into existing sets, or determining the minimum number of intervals needed to cover a given range.",
+    "when": "",
+    "analogies": "",
+    "application": "The most common problems solved using this pattern are event scheduling, resource allocation, and time slot consolidation.",
+    "does_it_solve": "Yes, if both of these conditions are fulfilled:• Array of intervals: The input data is an array of intervals.• Overlapping intervals: The problem requires dealing with overlapping intervals, either to find their union, their intersection, or the gaps between them.",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5608196011065344",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Merge Intervals",
+        "slug": "merge-intervals",
+        "link": "Merge%20Intervals%20d997856f010740b2ad3372614b818f06.html"
+      }
+    ]
+  },
+  {
+    "name": "Heaps",
+    "slug": "heaps",
+    "date": "2024-06-19",
+    "date_display": "June 19, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/courses/data-structures-coding-interviews-java/what-is-a-heap",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Max Heap",
+        "slug": "max-heap",
+        "link": "Max%20Heap%20e085a7c30f0a4c36a4ed5e096c450deb.html"
+      }
+    ]
+  },
+  {
+    "name": "Matrices",
+    "slug": "matrices",
+    "date": "2024-06-17",
+    "date_display": "June 17, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4770420562722816",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Set Matrix Zeros",
+        "slug": "set-matrix-zeros",
+        "link": "Set%20Matrix%20Zeros%209bf15c059ca44fd6bef8b3e3b59086fc.html"
+      }
+    ]
+  },
+  {
+    "name": "Bitwise Manipulation",
+    "slug": "bitwise-manipulation",
+    "date": "2024-06-14",
+    "date_display": "June 14, 2024",
+    "what": "Bitwise manipulation is the process of modifying bits algorithmically using bitwise operations. Logical bitwise operations are the fastest computations because processors natively support them",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "two strings)",
+        "slug": "two-strings",
+        "link": "Find%20the%20Difference%20(two%20strings"
+      },
+      {
+        "name": "%2018f1c741db2648719fd41203f10b7899.html), Complement of Base 10 Number",
+        "slug": "2018f1c741db2648719fd41203f10b7899html-complement-of-base-10-number",
+        "link": "Complement%20of%20Base%2010%20Number%2009641280deba46ec8fbf71a24eeb98d3.html"
+      }
+    ]
+  },
+  {
+    "name": "In-Place Manipulation of a Linked List",
+    "slug": "in-place-manipulation-of-a-linked-list",
+    "date": "2024-06-04",
+    "date_display": "June 04, 2024",
+    "what": "The in-place manipulation of a linked list pattern allows us to modify a linked list without using any additional memory. In-place refers to an algorithm that processes or modifies a data structure using only the existing memory space, without requiring additional memory proportional to the input size.",
+    "how": "",
+    "when": "This pattern is best suited for problems where we need to modify the structure of the linked list, i.e., the order in which nodes are linked together. For example, some problems require a reversal of a set of nodes in a linked list which can extend to reversing the whole linked list. Instead of making a new linked list with reversed links, we can do it in place without using additional memory.",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "Does your problem match this pattern?Yes, if both of these conditions are fulfilled:• Linked list restructuring: The input data is given as a linked list, and the task is to modify its structure without modifying the data of the individual nodes.• In-place modification: The modifications to the linked list must be made in place, that is, we’re not allowed to use more than 𝑂(1) additional space.",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5487739358281728",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Reverse LinkedList",
+        "slug": "reverse-linkedlist",
+        "link": "Reverse%20LinkedList%202a1fcbd7452a4b19a1d0831a387db4ff.html"
+      }
+    ]
+  },
+  {
+    "name": "Tree Breadth-First Search (BFS)",
+    "slug": "tree-breadth-first-search-bfs",
+    "date": "2024-05-28",
+    "date_display": "May 28, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "• Tree data structure: The input data is in the form of a tree, or the cost of transforming it into a tree is low.• Not a wide tree: If the tree being searched is very wide. In such scenarios, the time complexity of breadth-first search may become prohibitive.• Level-by-level traversal: The solution dictates traversing the tree one level at a time, for example, to find the level order traversal of the nodes of a tree or a variant of this ordering.• Solution near the root: We have reason to believe that the solution is near the root of the tree. Instead, if the solution is near the leaves of the tree, BFS may not be efficient because it exhaustively explores nodes level by level. In such cases, depth-first search (DFS) would be more suitable for traversing deep into the tree.",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Find the shortest path between two given nodes, u and v, in a binary tree.",
+        "slug": "find-the-shortest-path-between-two-given-nodes-u-and-v-in-a-binary-tree",
+        "link": "Find%20the%20shortest%20path%20between%20two%20given%20nodes,%20u%20%202756066530ac42409adb84b150140cad.html"
+      }
+    ]
+  },
+  {
+    "name": "Tree Depth-First Search (DFS)",
+    "slug": "tree-depth-first-search-dfs",
+    "date": "2024-05-15",
+    "date_display": "May 15, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Diameter of Binary Tree",
+        "slug": "diameter-of-binary-tree",
+        "link": "Diameter%20of%20Binary%20Tree%208e8c72ac8526476985ef3a7a7d0b42d1.html"
+      }
+    ]
+  },
+  {
+    "name": "Graphs",
+    "slug": "graphs",
+    "date": "2024-05-14",
+    "date_display": "May 14, 2024",
+    "what": "A graph is a nonlinear data structure that represents connections between entities. In graph theory, entities are represented as vertices (or nodes), and the connections between them are expressed through edges.",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6110405555519488",
+    "data_structures": "",
+    "traversal": "No Linear",
+    "coding_problems": [
+      {
+        "name": "Network Delay time",
+        "slug": "network-delay-time",
+        "link": "Network%20Delay%20time%20550c8d915e814994b4c36af44888cbab.html"
+      }
+    ]
+  },
+  {
+    "name": "Modified Binary Search",
+    "slug": "modified-binary-search",
+    "date": "2024-05-08",
+    "date_display": "May 08, 2024",
+    "what": "The modified binary search pattern builds upon the basic binary search algorithm discussed above. It involves adapting the traditional binary search approach by applying certain conditions or transformations, allowing us to solve problems in which input data are modified in a certain way.",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "• Yes, if either of these conditions is fulfilled: ◦ Target value in sorted data: The problem involves locating a specific target value—or identifying its first or last occurrence—within a sorted array or list. This pattern applies to data structures that support direct addressing. ◦ Partially sorted segments: We may use this pattern when segments of an input array are sorted.• No, if either of these conditions is fulfilled: ◦ Lack of direct addressing: The input data structure does not support direct addressing. ◦ Unsorted or inappropriately sorted data: The data to search is not sorted according to criteria relevant to the search. For example, if we’re looking for a particular date in a list of dates, but the list is sorted in alphabetical order (and not chronologically), we cannot use binary search. ◦ Non-value-based solutions: The problem does not require identifying a specific value or range of values. For example, if we have a list of student names only and we want to search for a student, modified binary search won’t be a correct choice.",
+    "educative": "",
+    "data_structures": "Array",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "First and last position of an element in a sorted array",
+        "slug": "first-and-last-position-of-an-element-in-a-sorted-array",
+        "link": "First%20and%20last%20position%20of%20an%20element%20in%20a%20sorted%20%2009f0fbd7588a4af98538be301e69dae8.html"
+      }
+    ]
+  },
+  {
+    "name": "Knowing What to Track",
+    "slug": "knowing-what-to-track",
+    "date": "2024-05-03",
+    "date_display": "May 03, 2024",
+    "what": "It involves counting the occurrences of elements in a given data structure, mostly an array or a string, and using this frequency information to solve the problem efficiently. The pattern can be divided into two main phases:• Counting phase: This is to iterate through the elements of the data structure and count the frequency of each element. We can use different data structures to achieve this, such as hash maps, dictionaries, arrays, or even simple variables.• Utilization phase: Once the frequencies are calculated, we can use this information to solve the specific problem at hand. This could involve any task that benefits from knowing the frequency of elements, such as: ◦ Find the most frequent element. ◦ Identify elements that occur only once. ◦ Check if two arrays are permutations of each other. ◦ Check if the player wins the game.",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "Imagine you work for a big online shop like Amazon, and you need to suggest products to users based on their purchase history. There is a massive database with millions of users and the items they’ve bought. To find out which products are popular among each user, a count for each product purchased is required. Doing it manually with traditional methods would be highly inefficient and time-consuming. Therefore, you would need to set up a system that automatically keeps track of how often each product is purchased by each user.It’s like having a digital tally counter for every product and every user. This way, when it’s time to make recommendations, you can do it efficiently because you already have a clear picture of which products each user prefers.• DNA sequence analysis: In genomics, frequency counting is used to analyze the frequency of nucleotides or amino acids in DNA or protein sequences. This information is used for tasks such as identifying genetic variations, predicting protein structure, and studying evolutionary relationships.• Video streaming: To enhance the video streaming user experience, revamp the continue-watching bar that will return the most frequently watched show.• E-commerce: Show product recommendations with items that are frequently viewed together.• Clickstream analysis: In web analytics, frequency counting is used to analyze the frequency of user interactions, such as page views, clicks, and conversions. This helps in understanding user behavior, optimizing website design, and improving user experience.",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5817033054879744",
+    "data_structures": "Array, HashMap",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Count prefixes of a given string",
+        "slug": "count-prefixes-of-a-given-string",
+        "link": "Count%20prefixes%20of%20a%20given%20string%2081de2409322a422d82ae88b0e61781ec.html"
+      }
+    ]
+  },
+  {
+    "name": "Hash Map",
+    "slug": "hash-map",
+    "date": "2024-04-26",
+    "date_display": "April 26, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/4671012182556672",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Two sum",
+        "slug": "two-sum",
+        "link": "Two%20sum%207c8ba8f1aeed42759ce5b1310babb796.html"
+      }
+    ]
+  },
+  {
+    "name": "Stack",
+    "slug": "stack",
+    "date": "2024-04-24",
+    "date_display": "April 24, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "Yes, if either of these conditions is fulfilled:• Reverse order processing: The problem involves processing elements in reverse order or requires the last element added to be processed first.• Nested structures handling: The problem involves nested structures, like parentheses, brackets, or nested function calls.• State tracking: The problem requires keeping track of previous states or undoing operations.• Expression evaluation: The problem involves evaluating expressions.No, if either of these conditions is fulfilled:• Order dependence: The problem requires either a different order dependence than Last In, First Out (LIFO) or there is no order dependency at all.• Random access: The problem involved frequent access or modification of elements at arbitrary positions is needed and not just from the end.• Need for searching: The problem requires efficient searching for elements based on values or properties.",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Reverse a string using stack",
+        "slug": "reverse-a-string-using-stack",
+        "link": "Reverse%20a%20string%20using%20stack%20fc98aee72c3c4fa7a18b329bebe37513.html"
+      }
+    ]
+  },
+  {
+    "name": "Backtracking",
+    "slug": "backtracking",
+    "date": "2024-04-15",
+    "date_display": "April 15, 2024",
+    "what": "",
+    "how": "",
+    "when": "",
+    "analogies": "Imagine we’re planning an exciting road trip through a city, aiming to visit all the places we want to see while covering the shortest distance possible. However, there are some conditions we must follow: we can’t revisit the same place more than once, and we must end up back where we started. This problem, known as the city road trip problem, requires finding the optimal route that satisfies these conditions. It’s a classic example where the concept of backtracking comes into play, allowing us to explore different paths until we find the shortest one that fulfills all the conditions.let’s look at a backtracking approach to solve the same problem. With backtracking, we can start by picking a place and choose the next place to visit that’s close and follows our conditions. We move back (backtrack) to the previous place if the current place has been visited before or if we cannot move forward to any place from here. We check these conditions on each of our choices because we do not want to break any of our road trip rules. We keep doing this, choosing, checking conditions, and backtracking until we’ve visited all the places according to the requirements. At every step, we choose the closest place, ensuring we have chosen the shortest path to visit all the places we want to see.",
+    "application": "No content",
+    "does_it_solve": "",
+    "educative": "",
+    "data_structures": "",
+    "traversal": "",
+    "coding_problems": [
+      {
+        "name": "Generate a string of n balanced parentheses.",
+        "slug": "generate-a-string-of n balanced-parentheses",
+        "link": "Generate%20a%20string%20of%20n%20balanced%20parentheses%20a33ce084f490489ead95453e61c79f85.html"
+      }
+    ]
+  },
+  {
+    "name": "Fast and Slow Pointers",
+    "slug": "fast-and-slow-pointers",
+    "date": "2024-04-15",
+    "date_display": "April 15, 2024",
+    "what": "uses two pointers to traverse an iterable data structure, but at different speeds to detect patterns or properties within the data structure like cycles and intersections.",
+    "how": "The key idea is that the pointers start at the same location and then start moving at different speeds. Generally, the - 🐢 slow pointer moves forward by a factor of one, and - the 🐇 fast pointer moves by a factor of two. This approach enables the algorithm to detect patterns or properties within the data structure, such as cycles or intersections. If there is a cycle, the two pointers are bound to meet at some point during the traversal.",
+    "when": "often to identify patterns, detect cycles, or find specific elements.",
+    "analogies": "think of two runners on a track. While they start from the same point, they have different running speeds. If the track is circular, the faster runner will overtake the slower one after completing a lap.",
+    "application": "",
+    "does_it_solve": "Yes, if the following condition is fulfilled:• Linear data structure: The input data can be traversed in a linear fashion, such as an array, linked list, or string.In addition, if either of these conditions is fulfilled:• Cycle or intersection detection: The problem involves detecting a loop within a linked list or an array or involves finding an intersection between two linked lists or arrays.• Find the starting element at the second quantile(A quantile is a statistical concept used to divide a dataset into equal-sized parts.): The problem involves finding the starting element of the second quantile, i.e., second half, second tertile, second quartile, etc. For example, the problem asks to find the middle element of an array or a linked list.",
+    "educative": "",
+    "data_structures": "Array, LinkedList",
+    "traversal": "Linear",
+    "coding_problems": [
+      {
+        "name": "Middle of the linked list",
+        "slug": "middle-of-the-linked-list",
+        "link": "Middle%20of%20the%20linked%20list%20a1f321eb2d774bb3bd69311f44a70a29.html"
+      }
+    ]
+  },
+  {
+    "name": "Two Pointers",
+    "slug": "two-pointers",
+    "date": "2024-04-15",
+    "date_display": "April 15, 2024",
+    "what": "• involves maintaining two pointers that traverse the data structure in a coordinated manner, typically starting from different positions or moving in opposite directions.• The pointers can be used to iterate through the data structure in one or both directions, depending on the problem statement",
+    "how": "- concerned with data values,",
+    "when": "find two data elements in an array that satisfy a certain condition",
+    "analogies": "",
+    "application": "",
+    "does_it_solve": "Linear data structure:The input data can be traversed in a linear fashion, such as an array, linked list, or string.Process pairs:Process data elements at two different positions simultaneously.Dynamic pointer movement:Both pointers move independently of each other according to certain conditions or criteria. In addition, both pointers might move along the same or two different data structures.",
+    "educative": "https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/5049694603575296",
+    "data_structures": "Array, LinkedList, String",
+    "traversal": "Linear",
+    "coding_problems": [
+      {
+        "name": "Sum of Three numbers",
+        "slug": "sum-of-three-numbers",
+        "link": "Sum%20of%20Three%20numbers%206129b666aa004514ab8568128f1d08df.html"
+      }
+    ]
+  }
+]

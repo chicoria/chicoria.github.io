@@ -1,0 +1,788 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Serialize and Deserialize Binary Tree</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8175fbbd-192c-41f9-a159-65ccd712bf1b" class="page sans"><header><h1 class="page-title"><strong><strong>Serialize and Deserialize Binary Tree</strong></strong></h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>Problem Statement</th><td>Serialize a given binary tree to a file and deserialize it back to a tree. Make sure that the original and the deserialized trees are identical.<br/><br/>• <strong>Serialize:</strong> Write the tree to a file.<br/>• <strong>Deserialize:</strong> Read from a file and reconstruct the tree in memory.<br/><br/>Serialize the tree into a list of integers, and then, deserialize it back from the list to a tree. For simplicity’s sake, there’s no need to write the list to the files.</td></tr><tr class="property-row property-row-status"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/burst_gray.svg" style="width:14px;height:14px;display:block"/></span>Status</th><td><span class="status-value select-value-color-purple"><div class="status-dot status-dot-color-purple"></div>Studied</span></td></tr><tr class="property-row property-row-relation"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/arrow-northeast_gray.svg" style="width:14px;height:14px;display:block"/></span>Pattern</th><td><a href="../Coding%20Patterns/Tree%20Depth-First%20Search%20(DFS)%201ae03e2d9c4c456cbeef114bb9f245e6.html"><img class="icon" src="https://algo.monster/sidebar/dfs.svg"/>Tree Depth-First Search (DFS)</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Source URL</th><td><a href="https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6009029169119232" class="url-value">https://www.educative.io/module/page/jvPPvMJ2Z8LsZol1rNNRXK/5864882417434624/5917419999723520/6009029169119232</a></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/hourglass_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Time</th><td><span class="selected-value select-value-color-yellow">O(n)</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/database_gray.svg" style="width:14px;height:14px;display:block"/></span>BigO Space</th><td><span class="selected-value select-value-color-green">O(log (n))</span><span class="selected-value select-value-color-yellow">O(n)</span></td></tr><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Created time</th><td><time>@May 23, 2024 10:00 AM</time></td></tr><tr class="property-row property-row-last_edited_time"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/clock_gray.svg" style="width:14px;height:14px;display:block"/></span>Last edited time</th><td><time>@May 28, 2024 10:10 AM</time></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>Companies</th><td></td></tr><tr class="property-row property-row-formula"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/formula_gray.svg" style="width:14px;height:14px;display:block"/></span>Source</th><td>Educative</td></tr></tbody></table></header><div class="page-body"><figure id="76cc749f-9dbc-4a6f-bddd-8d80fcf94a8a" class="image"><a href="Serialize%20and%20Deserialize%20Binary%20Tree/Untitled.png"><img style="width:1122px" src="Serialize%20and%20Deserialize%20Binary%20Tree/Untitled.png"/></a></figure><figure id="cc815957-e5ff-43de-aef1-b6b723d963d2" class="image"><a href="Serialize%20and%20Deserialize%20Binary%20Tree/Untitled%201.png"><img style="width:1122px" src="Serialize%20and%20Deserialize%20Binary%20Tree/Untitled%201.png"/></a></figure><p id="776db839-90ab-459f-af54-f345da41040c" class="">
+</p><h3 id="ee99aa3e-68fe-4c56-9804-978e08ab18c8" class=""><strong>Naive approach</strong></h3><ul id="71cf8cc9-4fc7-4eb6-b9ec-b7c11312b2b5" class="bulleted-list"><li style="list-style-type:disc">to store one of the traversals of the tree into a file when serializing a tree and read that traversal back to create a tree when deserializing. </li></ul><p id="032ea25b-19b6-4415-bc95-f2f9f1982b6a" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="abb790b1-2bfc-4419-b68b-d3611db6c130"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">However, <strong><mark class="highlight-yellow_background">any one of the traversals is not unique. </mark></strong></div></figure><p id="b7b1e67f-8766-41ed-a7e5-b2dd717e9b25" class="">That is, <strong><mark class="highlight-yellow_background">two different trees can have the same in-order traversal. </mark></strong></p><p id="edd9aa13-0bb0-4194-81fc-3fe80d4f17ba" class="">
+</p><p id="1238a284-8ba7-4d7d-acff-d8457529a905" class="">The same goes for pre-order or post-order traversal as well. </p><p id="6f496c24-05a3-45c6-8ff7-84b9e62c3080" class="">
+</p><p id="46e5edf4-8d19-4004-a4f8-126f4157dfbe" class="">As a simple example, consider </p><p id="982b53e2-66fd-4af1-be8b-a79546346c26" class="">a right-slanting degenerate tree :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1130acc3-a6b9-4268-bd00-6c2bae844e79" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">     1
+      \
+       2
+        \
+         3
+          \
+           4
+            \
+             5</code></pre><p id="11ff06e9-7bd9-48e1-9457-af38b74a86cc" class="">and a left-slanting degenerate tree. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c481e49d-0099-4686-af94-8e2285911787" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">		     5
+		    /
+		   4
+		  /
+		 3
+		/
+	 2
+  /
+ 1</code></pre><p id="1140745b-6188-46b8-9459-6c485982efe1" class="">Both of these trees have the same in-order, pre-order as well as post-order traversals, but the are different trees. </p><p id="e1ddda48-520c-4f58-b60f-2f7785e7af7f" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8d2ed2c9-1296-4299-80f3-9a9bc245c1de"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">However, <mark class="highlight-yellow_background"><strong>two traversals are sufficient to uniquely represent and reconstruct a binary tree</strong></mark>.</div></figure><p id="01d74549-5bf8-4b14-a1b8-84da60ceb484" class="">
+</p><p id="739ea186-99fa-40e3-8a26-2f324a16a02d" class="">For <strong>serialization</strong>, this approach will store both the <mark class="highlight-yellow_background">inorder and preorder traversal and place a delimiter to separate them</mark>.</p><p id="21b2b706-0863-46f8-9892-5541962eff5d" class="">For <strong>deserialization</strong>, pick each node from the preorder traversal, make it root, and find its index in the inorder traversal. The nodes to the left of that index will be the part of the left subtree, and the nodes to the right of that index will be the part of the right subtree.</p><p id="c107223d-8e3f-4519-9963-1cd96befdc8c" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4374a391-8c46-48ed-8fbc-4c6f4b2e5667"><div style="font-size:1.5em"><span class="icon">❓</span></div><div style="width:100%">We got the required solution but at what cost? Can we avoid using twice the space? Can we avoid using tree traversal twice?</div></figure><p id="5d40003a-eebc-4299-9a31-be6390fc0175" class="">
+</p><h2 id="1ac1edff-7015-428a-a324-63d3294c2ba3" class=""><strong><strong>Optimized approach using tree depth-first search</strong></strong></h2><p id="86b09e07-97c4-413b-a9a3-7acd73705f93" class="">
+</p><p id="283bae48-6341-4e10-aa5e-ecd633e77154" class="">Instead of traversing the tree twice to ensure the uniqueness we could traverse once and add Marker (M1…M4,M5..) node to identify all the null leafs.</p><p id="98f8163a-8cc0-4748-8c65-62dfe818eef4" class="">So a tree like <div class="indented"><p id="8785a7e2-fe18-4ae3-96e3-c464c252c756" class=""> 1</p><p id="02aae7a9-8e14-42bd-a00a-31af1dbb2b95" class="">/.  \ </p></div></p><p id="dd0aa926-c692-465f-b1bf-8f5d40cf04e9" class="">   2.     3</p><p id="e9f45240-f829-4f7c-9cca-8f61beb58a30" class="">would be serialized as : [1, 2, M1, M2, 3, M3, M4]</p><p id="fc00d9a5-24c3-4bb1-b2f0-d1ba78d90328" class="">and when deserialising it will use the pre-order traversal creating nodes just for no null nodes</p><p id="459f7277-7ae5-4f0d-a14e-c790ea62a682" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f14bc59f-1c29-4ef3-89d1-923b537fad7f" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all"> public static List&lt;String&gt; serialize(TreeNode&lt;Integer&gt; root) {
+        var list = new ArrayList&lt;String&gt;();
+        serializeToStream(root, list);
+        System.out.println(&quot;list: &quot;+ list);
+        // Replace this placeholder return statement with your code
+        return list;
+    }
+
+    public static List&lt;String&gt; serializeToStream(TreeNode&lt;Integer&gt; root, List&lt;String&gt; stream) {
+        if (root == null) {
+            stream.add(Marker+serializerMarkCounter);
+            serializerMarkCounter++;
+            return null;
+        }
+        stream.add(String.valueOf(root.data));
+
+        serializeToStream(root.left, stream);
+        serializeToStream(root.right, stream);
+
+        return stream;
+    }
+
+    public static TreeNode&lt;Integer&gt; deserialize(List&lt;String&gt; stream){
+        Collections.reverse(stream);
+        System.out.println(&quot;Reversed:&quot; + stream);
+        return deserializeHelper(stream);
+    }
+
+    private static TreeNode&lt;Integer&gt; deserializeHelper(List&lt;String&gt; stream){
+        var nodeData = stream.removeLast();
+        if (nodeData.charAt(0) == Marker.charAt(0)) {
+            return null;
+        }
+        var node = new TreeNode&lt;Integer&gt;(Integer.valueOf(nodeData));
+        node.left = deserializeHelper(stream);
+        node.right = deserializeHelper(stream);
+        return node;
+    }</code></pre><p id="2cd1d6d1-e879-4080-a59c-b05920ac3f43" class="">
+</p><h3 id="ba62f24f-a8e2-4c21-bfce-249b5e55e634" class=""><strong>Time complexity</strong></h3><p id="7c67fc55-cbb2-4880-96ed-05864be0eb3b" class="">The time complexity of the serialization function is 𝑂(𝑛)<em>O</em>(<em>n</em>), and the time complexity of the deserialization function is also 𝑂(𝑛)<em>O</em>(<em>n</em>), where 𝑛<em>n</em> is the number of nodes in the binary tree. Therefore, the overall time complexity of this solution is 𝑂(𝑛)<em>O</em>(<em>n</em>).</p><h3 id="17235845-2910-453b-a4c3-3831ee03eb3c" class=""><strong>Space complexity</strong></h3><p id="f20a3408-63c6-4cd1-87cb-6e08ee3e086e" class="">The space complexity of this solution is 𝑂(ℎ)<em>O</em>(<em>h</em>), where ℎ<em>h</em> is the height of the tree. This is because our recursive algorithm uses space on the call stack, which can grow to the height (ℎ)(<em>h</em>) of the binary tree. The complexity will be 𝑂(log⁡𝑛)<em>O</em>(log<em>n</em>) for a balanced tree and 𝑂(𝑛)<em>O</em>(<em>n</em>) for a degenerate tree.</p><h3 id="e20cf19d-4ad1-4ab0-a34c-2a3b9ca15b6f" class=""><strong>Additional thoughts</strong></h3><p id="00fbb552-d3eb-418a-8c97-d12b117d23a7" class="">Furthermore, if we know that our tree is almost a <mark class="highlight-yellow_background"><strong>complete binary tree</strong></mark>, we can serialize it <mark class="highlight-yellow_background"><strong>similarly to how heap data structures are stored in an array. </strong></mark>We can use the two rules below to serialize and deserialize data:</p><p id="7581e930-0099-4726-b6bb-a17d58e92bc3" class="">
+</p><h3 id="e1fa7ec0-c4ef-4499-95db-499454442faa" class=""><strong>Array Representation</strong></h3><p id="1219b2f7-7721-4163-ab70-1eae5489e01f" class="">We represent this tree in an array following these rules:</p><ul id="7ba7cfe1-9c66-4f63-90da-4de5f162c960" class="bulleted-list"><li style="list-style-type:disc">The root node is at index 1.</li></ul><ul id="d528a996-880c-4b5c-876b-48652b372796" class="bulleted-list"><li style="list-style-type:disc">For a node at index <code><strong>i</strong></code>:<ul id="c51c9989-8348-4fd1-a097-611eefc36138" class="bulleted-list"><li style="list-style-type:circle">Its left child is at index <code><strong>2*i</strong></code>.</li></ul><ul id="406c1e6c-069c-4963-bfb5-120c1a7c93bf" class="bulleted-list"><li style="list-style-type:circle">Its right child is at index <code><strong>(2*i)+1</strong></code>.</li></ul><ul id="55bcb25e-2460-4a95-9e16-11527d75da74" class="bulleted-list"><li style="list-style-type:circle">Its parent is at index <code><strong>i/2</strong></code> (using integer division).</li></ul></li></ul><p id="34eb5a87-1cbc-41d0-b01b-1c7c00d070aa" class="">Here’s how the array representation looks for the above tree:</p><p id="dd929b2a-0948-43e3-9758-214b445f2563" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f8d88bf3-6925-4194-a3b8-0a1286ee4688" class="code code-wrap"><code class="language-Java" style="white-space:pre-wrap;word-break:break-all">Original Tree:
+       1
+     /   \
+    2     3
+   / \   / 
+  4   5 6   
+
+Array Representation:
+Index:  0  1  2  3  4  5  6  7
+Array: [ , 1, 2, 3, 4, 5, 6,  ]
+
+Deserialized Tree (from array):
+       1
+     /   \
+    2     3
+   / \   / 
+  4   5 6   </code></pre><ul id="01dd91e1-e4f0-4e7f-9d48-6a4bc59e4a2f" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>1</strong></code> is at index <code><strong>1</strong></code>.</li></ul><ul id="e0af3c89-73f9-4894-bb26-a314d4bf1a30" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>2</strong></code> is at index <code><strong>2</strong></code> (left child of <code><strong>1</strong></code>).</li></ul><ul id="55e3a95a-c5d9-4e5e-a400-67dc80d74af6" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>3</strong></code> is at index <code><strong>3</strong></code> (right child of <code><strong>1</strong></code>).</li></ul><ul id="c79b9357-67ae-4fb6-b828-90a0b36a9b58" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>4</strong></code> is at index <code><strong>4</strong></code> (left child of <code><strong>2</strong></code>).</li></ul><ul id="d55ad3cc-4e1b-439a-89d3-ce8bbee7a43f" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>5</strong></code> is at index <code><strong>5</strong></code> (right child of <code><strong>2</strong></code>).</li></ul><ul id="365ace6e-9d70-42c1-aab0-73f457e064eb" class="bulleted-list"><li style="list-style-type:disc">Node <code><strong>6</strong></code> is at index <code><strong>6</strong></code> (left child of <code><strong>3</strong></code>).</li></ul><p id="7e7c1c11-7e26-4ee3-a215-9de2e5ebbb6c" class="">The index <code><strong>0</strong></code> is usually left empty or used as a placeholder since the array is 1-based for simplicity.</p><h3 id="b1675b72-7b6c-40cc-a815-1b0ea13a1689" class=""><strong>Serialization</strong></h3><p id="a4937e4e-b6aa-426f-9319-28322c907dc7" class="">To serialize the binary tree into an array:</p><ol type="1" id="ea9e9268-7736-4099-88d6-54da02c7eb10" class="numbered-list" start="1"><li>Initialize an array large enough to hold all the nodes. The size can be determined based on the depth of the tree.</li></ol><ol type="1" id="e31136cb-1ed5-4166-8db0-096074b05fe6" class="numbered-list" start="2"><li>Perform a <mark class="highlight-yellow_background"><strong>level-order traversal (breadth-first)</strong></mark> of the tree.</li></ol><ol type="1" id="dad4759e-10bb-4b01-8e05-b9eb03a524ca" class="numbered-list" start="3"><li>Insert each node into the appropriate position in the array using the index relationships described.</li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Backtracking - A coding pattern for solving DSA problems">
+    <title>Backtracking - Coding Pattern</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Blog</a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/resume.html">Resume</a>
+                <a href="/dsa-studies.html">DSA Studies</a>
+                <a href="/coding-patterns.html">Coding Patterns</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <a href="/coding-patterns.html" class="back-link">← Back to Coding Patterns</a>
+            
+            <article>
+                <header class="post-header">
+                    <h1>Backtracking</h1>
+                    <time datetime="2024-04-15">April 15, 2024</time>
+                </header>
+                
+                <div class="post-content">
+                    <h2>Analogies</h2>
+<p>Imagine we’re planning an exciting road trip through a city, aiming to visit all the places we want to see while covering the shortest distance possible. However, there are some conditions we must follow: we can’t revisit the same place more than once, and we must end up back where we started. This problem, known as the city road trip problem, requires finding the optimal route that satisfies these conditions. It’s a classic example where the concept of backtracking comes into play, allowing us to explore different paths until we find the shortest one that fulfills all the conditions.let’s look at a backtracking approach to solve the same problem. With backtracking, we can start by picking a place and choose the next place to visit that’s close and follows our conditions. We move back (backtrack) to the previous place if the current place has been visited before or if we cannot move forward to any place from here. We check these conditions on each of our choices because we do not want to break any of our road trip rules. We keep doing this, choosing, checking conditions, and backtracking until we’ve visited all the places according to the requirements. At every step, we choose the closest place, ensuring we have chosen the shortest path to visit all the places we want to see.</p>
+
+                    <h2>Related Coding Problems</h2>
+<ul>
+
+                    <li><a href="/posts/coding-problem-generate-a-string-of n balanced-parentheses.html">Generate a string of n balanced parentheses.</a></li>
+
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+</body>
+</html>

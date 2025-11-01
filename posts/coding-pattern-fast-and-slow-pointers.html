@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fast and Slow Pointers - A coding pattern for solving DSA problems">
+    <title>Fast and Slow Pointers - Coding Pattern</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Blog</a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/resume.html">Resume</a>
+                <a href="/dsa-studies.html">DSA Studies</a>
+                <a href="/coding-patterns.html">Coding Patterns</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <a href="/coding-patterns.html" class="back-link">← Back to Coding Patterns</a>
+            
+            <article>
+                <header class="post-header">
+                    <h1>Fast and Slow Pointers</h1>
+                    <time datetime="2024-04-15">April 15, 2024</time>
+                </header>
+                
+                <div class="post-content">
+                    <h2>Analogies</h2>
+<p>think of two runners on a track. While they start from the same point, they have different running speeds. If the track is circular, the faster runner will overtake the slower one after completing a lap.</p>
+
+                    <h2>What</h2>
+<p>uses two pointers to traverse an iterable data structure, but at different speeds to detect patterns or properties within the data structure like cycles and intersections.</p>
+
+                    <h2>How</h2>
+<ul>
+
+                    <li>The key idea is that the pointers start at the same location and then start moving at different speeds. Generally, the</li>
+
+                    <li>🐢 slow pointer moves forward by a factor of one, and</li>
+
+                    <li>the 🐇 fast pointer moves by a factor of two. This approach enables the algorithm to detect patterns or properties within the data structure, such as cycles or intersections. If there is a cycle, the two pointers are bound to meet at some point during the traversal.</li>
+
+                    </ul>
+
+                    <h2>When to Use</h2>
+<p>often to identify patterns, detect cycles, or find specific elements.</p>
+
+                    <h2>Does This Pattern Solve Your Problem?</h2>
+
+                    <p><strong>Yes</strong>, if:</p>
+
+                    <ul>
+
+                    <li>Linear data structure: The input data can be traversed in a linear fashion, such as an array, linked list, or string.In addition, if either of these conditions is fulfilled:</li>
+
+                    <li>Cycle or intersection detection: The problem involves detecting a loop within a linked list or an array or involves finding an intersection between two linked lists or arrays.</li>
+
+                    <li>Find the starting element at the second quantile(A quantile is a statistical concept used to divide a dataset into equal-sized parts.): The problem involves finding the starting element of the second quantile, i.e., second half, second tertile, second quartile, etc. For example, the problem asks to find the middle element of an array or a linked list.</li>
+
+                    </ul>
+
+                    <h2>Data Structures</h2>
+<p>Array, LinkedList</p>
+
+                    <h2>Traversal Approach</h2>
+<p>Linear</p>
+
+                    <h2>Related Coding Problems</h2>
+<ul>
+
+                    <li><a href="/posts/coding-problem-middle-of-the-linked-list.html">Middle of the linked list</a></li>
+
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+</body>
+</html>

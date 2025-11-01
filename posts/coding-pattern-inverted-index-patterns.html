@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inverted Index Patterns - A coding pattern for solving DSA problems">
+    <title>Inverted Index Patterns - Coding Pattern</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Blog</a>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="/resume.html">Resume</a>
+                <a href="/dsa-studies.html">DSA Studies</a>
+                <a href="/coding-patterns.html">Coding Patterns</a>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="container">
+            <a href="/coding-patterns.html" class="back-link">← Back to Coding Patterns</a>
+            
+            <article>
+                <header class="post-header">
+                    <h1>Inverted Index Patterns</h1>
+                    <time datetime="2025-01-18">January 18, 2025</time>
+                </header>
+                
+                <div class="post-content">
+                    <h2>What</h2>
+<p>Definition: An inverted index maps content (e.g., keywords or phrases) to locations where that content appears (e.g., log entries or documents).Purpose: Quickly find all occurrences of a given term or combination of terms.In this algorithm:The keywordIndex acts as an inverted index, mapping keywords (or compound phrases) to the indices of log entries containing them.This enables efficient querying of logs based on keywords or phrases.</p>
+
+                    <h2>How</h2>
+<ul>
+
+                    <li>Key Features of the Pattern</li>
+
+                    <li>Preprocessing Phase: ◦ The algorithm preprocesses the input (A commands) by building the keywordIndex that links keywords (or phrases) to log entries. ◦ Each log entry is tokenized into individual keywords and optionally stored as a compound phrase.</li>
+
+                    <li>Query Phase: ◦ The algorithm uses the inverted index to quickly retrieve relevant logs for a Q command by looking up keywords or phrases. ◦ For compound queries, it filters the results to ensure all query terms are present.</li>
+
+                    </ul>
+
+                    <h2>Real World Applications</h2>
+<p>The algorithm's structure is analogous to how search engines like Google or Elasticsearch handle indexing and querying:1. Index phase: Crawl and tokenize documents, creating an inverted index of terms to document IDs.2. Query phase: Match user queries to the index and return results efficiently.</p>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+</body>
+</html>
