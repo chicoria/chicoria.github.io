@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How leading developers harness AI agents — patterns, practices, and tools" />
+    <title>Harnessing Agents</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .library-intro {
+        color: var(--accent-color);
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        max-width: 640px;
+      }
+
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .filter-chip {
+        background: none;
+        border: 1px solid var(--border-color);
+        color: var(--accent-color);
+        padding: 0.35rem 0.85rem;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.15s;
+      }
+
+      .filter-chip:hover {
+        border-color: var(--text-color);
+        color: var(--text-color);
+      }
+
+      .filter-chip.active {
+        background: var(--text-color);
+        border-color: var(--text-color);
+        color: var(--bg-color);
+      }
+
+      .developer-section {
+        margin-bottom: 4rem;
+      }
+
+      .developer-header {
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .developer-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        color: var(--text-color);
+      }
+
+      .developer-meta {
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .developer-meta a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .developer-meta a:hover {
+        color: var(--text-color);
+      }
+
+      .developer-bio {
+        color: var(--accent-color);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .techniques-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+      }
+
+      .technique-card {
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 1.25rem;
+        transition: border-color 0.15s;
+      }
+
+      .technique-card:hover {
+        border-color: var(--accent-color);
+      }
+
+      .technique-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .tag {
+        font-size: 0.72rem;
+        color: var(--accent-color);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 0.1rem 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .technique-card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+      }
+
+      .technique-card p {
+        font-size: 0.9rem;
+        color: var(--accent-color);
+        line-height: 1.6;
+        margin-bottom: 0.85rem;
+      }
+
+      .source-link {
+        font-size: 0.8rem;
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .source-link:hover {
+        color: var(--text-color);
+      }
+
+      .technique-card.hidden {
+        display: none;
+      }
+
+      @media (max-width: 600px) {
+        .techniques-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="logo">Blog</a>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="/resume.html">Resume</a>
+          <a href="/dsa-studies.html">DSA Studies</a>
+          <a href="/harnessing-agents.html">Harnessing Agents</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <h1>Harnessing Agents</h1>
+        <p class="library-intro">
+          A curated library of patterns, practices, and tools from developers leading the way in AI-assisted engineering. Distilled from their posts, talks, and open-source work — not the hype, just the craft.
+        </p>
+
+        <div class="filter-bar">
+          <button class="filter-chip active" data-category="all">All</button>
+          <button class="filter-chip" data-category="workflow">Workflow</button>
+          <button class="filter-chip" data-category="prompting">Prompting</button>
+          <button class="filter-chip" data-category="tooling">Tooling</button>
+          <button class="filter-chip" data-category="philosophy">Philosophy</button>
+          <button class="filter-chip" data-category="architecture">Architecture</button>
+          <button class="filter-chip" data-category="economics">Economics</button>
+        </div>
+
+        <!-- Developer: Peter Steinberger -->
+        <div class="developer-section" id="steipete">
+          <div class="developer-header">
+            <div class="developer-name">Peter Steinberger</div>
+            <div class="developer-meta">
+              <a href="https://steipete.me" target="_blank" rel="noopener">steipete.me ↗</a>
+              <span>iOS/macOS developer, founder of PSPDFKit (now Nutrient)</span>
+            </div>
+            <div class="developer-bio">
+              Early and committed adopter of AI-assisted development. Transitioned from shipping iOS/macOS frameworks to building developer tooling around AI agents. Writes with unusual candor about what actually works at high velocity.
+            </div>
+          </div>
+
+          <div class="techniques-grid">
+
+            <div class="technique-card" data-categories="workflow architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Closing the Loop</h3>
+              <p>The loop is only "closed" when the agent can verify its own output without asking a human. Four concrete mechanisms — each justified by the same principle: agents are far better at calling CLIs than MCPs. The only MCP exceptions he keeps are ones that close a loop no CLI can close.</p>
+              <p><strong>1. Backend / CLI:</strong> "Whatever you build, start with the model and a CLI first. Agents can call it directly and verify output — closing the loop." Once a CLI works, it runs hundreds of times without extra inference. "CLIs offer composability, reliability, and verifiability that complex tool interfaces can't match." Built <code>summarize</code> as a CLI example: converts anything to markdown, agent runs it, reads stdout, iterates alone.</p>
+              <p><strong>2. Web / Frontend:</strong> <code>chrome-devtools-mcp</code> — his one deliberate browser MCP exception. Agent inspects DOM, CSS, and network state after a change. No human needed to describe "the button is misaligned." Replaced Playwright for web debugging.</p>
+              <p><strong>3. Visual / Native UI:</strong> Peekaboo MCP — macOS screenshots for AI agents. "Without screenshots, agents debug blind." "If an agent can answer questions by itself, you don't have to intervene and it can simply continue and debug itself." Used when visual inspection is the only way to verify.</p>
+              <p><strong>4. CI Pipeline:</strong> Claude Code runs CI, reads the failure output, and patches automatically. "When builds break, it analyzes the errors and patches them automatically." The CI log is the verification — agent closes the loop without a human reading the error.</p>
+              <p><strong>Remove friction from the cycle:</strong> Avoids permission prompts mid-loop (e.g. <code>--dangerously-skip-permissions</code> in controlled environments) so the conversational flow between intent and execution isn't broken. "I don't design codebases to be easy for me, I engineer them so agents can work in them efficiently."</p>
+              <a href="https://steipete.me/posts/2025/shipping-at-inference-speed" target="_blank" rel="noopener" class="source-link">Shipping at Inference-Speed ↗</a>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Just Talk To It ↗</a>
+              <a href="https://steipete.me/posts/2025/peekaboo-mcp-lightning-fast-macos-screenshots-for-ai-agents" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Peekaboo ↗</a>
+              <a href="https://steipete.me/posts/2025/claude-code-is-my-computer" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Claude Code is My Computer ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Parallel Agent Management</h3>
+              <p>Run 3–8 agents simultaneously in a terminal grid. Use atomic commits so each agent's work is isolated and the git history stays readable. Revert frequently to a clean terminal + tmux setup.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Blast Radius Management</h3>
+              <p>Before starting, estimate time, files touched, and scope. Prefer small, focused tasks over large ones. Stop agents mid-execution if a task expands unexpectedly — don't let them spiral into something unrecoverable.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Inference-Speed Iteration</h3>
+              <p>Adopt an exploratory, iterative development style. Queue 3–8 projects simultaneously. Circle the problem rather than planning everything upfront — let the model's output evolve your direction.</p>
+              <a href="https://steipete.me/posts/2025/shipping-at-inference-speed" target="_blank" rel="noopener" class="source-link">Shipping at Inference-Speed ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Sequential Message Queuing</h3>
+              <p>Queue multiple related tasks in a single agent context. The model works through them reliably while you're away. Queue a "continue" message for long refactors to handle model interruptions.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Refactoring Budget</h3>
+              <p>Dedicate ~20% of time to agent-driven refactoring during lower-focus periods. Targets: code duplication (jscpd), dead code (knip), React patterns, slow tests, outdated documentation.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting philosophy">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+                <span class="tag">Philosophy</span>
+              </div>
+              <h3>"Just Talk To It"</h3>
+              <p>Skip prompt engineering theatrics. Direct conversational language works best. Treat the agent like a smart colleague, not a search engine. 1–2 sentences handles most complex tasks.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+              </div>
+              <h3>Screenshot-First Prompting</h3>
+              <p>Over 50% of prompts include screenshots instead of verbose text descriptions. Drag images directly into the terminal. Minimal annotation needed — models excel at spatial parsing and string matching.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+              </div>
+              <h3>Signal Words</h3>
+              <p>Effective modifiers: "take your time", "comprehensive", "read all related code", "preserve intent". Use "give me options before making changes" to assess impact before the agent commits to an approach.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="tooling philosophy">
+              <div class="technique-card-tags">
+                <span class="tag">Tooling</span>
+                <span class="tag">Philosophy</span>
+              </div>
+              <h3>CLI Over MCPs</h3>
+              <p>Prefer standard CLIs (gh, tmux, jscpd, knip, ast-grep) over MCP servers. MCP servers consume 23k+ context tokens each with marginal benefit. Agents learn CLI tools automatically from help output.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="tooling architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Tooling</span>
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>AI-Friendly Build Watcher</h3>
+              <p>Built Poltergeist — a universal build watcher that auto-detects and rebuilds any project. Eliminates the friction of agents forgetting to compile before testing and the slow iteration loops that follow.</p>
+              <a href="https://steipete.me/posts/2025/poltergeist-ghost-keeps-builds-fresh" target="_blank" rel="noopener" class="source-link">Poltergeist ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="philosophy">
+              <div class="technique-card-tags">
+                <span class="tag">Philosophy</span>
+              </div>
+              <h3>Human as Architect</h3>
+              <p>Agents write 100% of the code. The human's role shifts entirely to architecture decisions, dependency selection, design direction, and quality oversight. Code review becomes real-time observation of model output.</p>
+              <a href="https://steipete.me/posts/2025/shipping-at-inference-speed" target="_blank" rel="noopener" class="source-link">Shipping at Inference-Speed ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="philosophy tooling">
+              <div class="technique-card-tags">
+                <span class="tag">Philosophy</span>
+                <span class="tag">Tooling</span>
+              </div>
+              <h3>Less Is More</h3>
+              <p>Regularly audit and remove tools, MCPs, and abstractions that don't add measurable value. Overhead compounds across every agent interaction. Removed all MCPs; reads code directly instead.</p>
+              <a href="https://steipete.me/posts/2025/optimal-ai-development-workflow" target="_blank" rel="noopener" class="source-link">My Current AI Dev Workflow ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Comprehensive CLAUDE.md</h3>
+              <p>Maintain an ~800-line CLAUDE.md covering product explanation, naming conventions, React patterns, testing guidelines, and AST-grep rules. Symlink to agents.md for tool compatibility. Update as tooling evolves.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Project-Scoped Docs</h3>
+              <p>Maintain structured docs/ folders per project with subsystem documentation. Agents use these for context instead of needing to re-derive structure from code on every new session.</p>
+              <a href="https://steipete.me/posts/2025/shipping-at-inference-speed" target="_blank" rel="noopener" class="source-link">Shipping at Inference-Speed ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>Single Branch Workflow</h3>
+              <p>Work directly on main with careful task selection across multiple work areas. Avoids worktree and PR overhead. Maintains a single linear git history — readable, fast, no merge ceremony.</p>
+              <a href="https://steipete.me/posts/2025/optimal-ai-development-workflow" target="_blank" rel="noopener" class="source-link">My Current AI Dev Workflow ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="economics">
+              <div class="technique-card-tags">
+                <span class="tag">Economics</span>
+              </div>
+              <h3>Subscription Over API Billing</h3>
+              <p>Claude Max ($200/month) = 20x usage of Claude Pro (~900 messages per 5-hour window). Cursor Pro ($20/month) pays off in 45 minutes of saved time. "Don't be a Mario" — switching from pay-as-you-go ($1k/month API) to Claude Max saves massively. Reserve OpenAI o3 API ($10–40/M tokens) only for genuinely hard debugging problems.</p>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link">Just Talk To It ↗</a>
+              <a href="https://steipete.me/posts/2025/stop-overthinking-ai-subscriptions" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Stop Overthinking AI Subscriptions ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture prompting">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+                <span class="tag">Prompting</span>
+              </div>
+              <h3>SDD Workflow (Spec-Driven Development)</h3>
+              <p>Brain-dump ideas into an AI to generate a Software Design Document. Then in a fresh context: "Take this SDD apart. Give me 20 points that are underspecified, weird, or inconsistent." Return findings to the original context and iterate 3–5 rounds. The signal that the spec is ready: questions become increasingly niche. At ~500 lines, give Claude Code the spec and prompt: "Build spec.md." Let it run 2–4 hours unattended.</p>
+              <a href="https://steipete.me/posts/2025/understanding-codebases-with-ai-gemini-workflow" target="_blank" rel="noopener" class="source-link">AI Codebase Workflow ↗</a>
+              <a href="https://steipete.me/posts/2025/when-ai-meets-madness-peters-16-hour-days" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Slot Machines for Programmers ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting workflow">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+                <span class="tag">Workflow</span>
+              </div>
+              <h3>AI Peer Review for Specs</h3>
+              <p>After generating a spec with one AI, feed it to a different AI instance (or model) and ask it to critique. "The second AI always comes back with brilliant questions. It points out ambiguities, edge cases I hadn't considered, and missing information." The cross-AI critique surfaces gaps that the original context never would — because the second AI has no stake in the existing framing.</p>
+              <a href="https://steipete.me/posts/2025/the-future-of-vibe-coding" target="_blank" rel="noopener" class="source-link">Future of Vibe Coding ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+              </div>
+              <h3>Temperature-Based Retry</h3>
+              <p>When output is unsatisfactory, don't modify the prompt — re-run it unchanged. "They're non-predictable. It's like nature." AI models have randomness built in; a second run of the same prompt frequently produces a better result. Save prompt revision for when you genuinely understand what was wrong, not as a reflex when the first attempt disappoints.</p>
+              <a href="https://steipete.me/posts/2025/when-ai-meets-madness-peters-16-hour-days" target="_blank" rel="noopener" class="source-link">Slot Machines for Programmers ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture tooling">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+                <span class="tag">Tooling</span>
+              </div>
+              <h3>Agent-Readable Documentation</h3>
+              <p>AI agents can't parse JavaScript-heavy documentation. Convert it to Markdown first. llm.codes converts Apple docs (and 69+ other sites) into clean Markdown — 70% smaller while preserving all content. Maintain a curated repo of pre-converted docs rather than fetching at runtime. Inject docs directly into agent prompts; don't expect agents to independently fetch and parse web content.</p>
+              <a href="https://steipete.me/posts/2025/llm-codes-transform-developer-docs" target="_blank" rel="noopener" class="source-link">llm.codes ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="tooling economics">
+              <div class="technique-card-tags">
+                <span class="tag">Tooling</span>
+                <span class="tag">Economics</span>
+              </div>
+              <h3>Model Selection by Task</h3>
+              <p>Routine work and fast iteration: Gemini 2.5 Pro (speed + large context). Complex reasoning and hard bugs: o3 — "my Dark Knight, incredibly smart, uncannily good at reasoning through complex problems." Agentic coding: Claude Code (Sonnet). Plan review and spec critique: GPT-5 via ChatGPT interface. Match the cost and latency of the model to the actual difficulty of the task.</p>
+              <a href="https://steipete.me/posts/2025/the-future-of-vibe-coding" target="_blank" rel="noopener" class="source-link">Future of Vibe Coding ↗</a>
+              <a href="https://steipete.me/posts/just-talk-to-it" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Just Talk To It ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow tooling">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Tooling</span>
+              </div>
+              <h3>Multi-Agent Army Management</h3>
+              <p>Two-file setup for managing multiple Claude Code instances: (1) add one line to <code>~/.zshrc</code> sourcing a wrapper; (2) create a <code>cly</code> function that launches Claude with <code>--dangerously-skip-permissions</code> and runs a background loop (<code>while true; do set_title "$folder — Claude"; sleep 0.5; done</code>) to keep terminal titles showing the active folder. When you have 6+ tabs all saying "claude", terminal titles prevent roulette.</p>
+              <a href="https://steipete.me/posts/2025/commanding-your-claude-code-army" target="_blank" rel="noopener" class="source-link">Commanding Your Claude Code Army ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>300-Line File Limit</h3>
+              <p>Impose a hard 300-line maximum per file across the codebase. Serves dual purposes: (1) forces better architectural decisions — large files are usually a sign of mixed concerns; (2) directly improves agent performance — agents work better with smaller, focused files and are less likely to lose context or introduce regressions. Constraint-driven design that benefits both humans and agents.</p>
+              <a href="https://steipete.me/posts/2025/vibe-meter-monitor-your-ai-costs" target="_blank" rel="noopener" class="source-link">Vibe Meter ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow prompting">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Prompting</span>
+              </div>
+              <h3>Migration Playbook Pattern</h3>
+              <p>For large-scale refactors on emerging tech (where the model lacks training data): (1) let the agent attempt the migration — it will fail; (2) compile its errors, official docs, and WWDC resources into a structured playbook with before/after examples; (3) run again with "Read playbook.md and refactor." Precision matters: "refactor the <strong>existing</strong> tests" prevents the agent from rewriting instead of converting. Use compile → test → commit → repeat loops to catch issues at manageable scale.</p>
+              <a href="https://steipete.me/posts/2025/migrating-700-tests-to-swift-testing" target="_blank" rel="noopener" class="source-link">Migrating 700+ Tests ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Autonomous Mission Brief</h3>
+              <p>Write a structured markdown file that enables fully autonomous agent execution — no human in the loop. Structure: (1) mission statement ("Work autonomously until X is working"); (2) numbered sequential steps; (3) conditional handling ("If issues arise: try A → try B → try C"); (4) repeat-until loop ("Repeat until both WebRTC and JPEG modes work reliably"); (5) numbered test checklist. The agent reads this file and drives itself. No babysitting required.</p>
+              <a href="https://github.com/steipete/vibetunnel" target="_blank" rel="noopener" class="source-link">VibeTunnel (screenshare-fix-plan.md) ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="prompting architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Prompting</span>
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Inline CRITICAL Constraints</h3>
+              <p>Embed hard safety constraints directly in the mission document in bold caps: "CRITICAL: Only kill Mac app (sh.vibetunnel.vibetunnel.debug), NEVER kill vibetunnel node processes!" The agent reads and respects these during autonomous execution. Prevents catastrophic irreversible actions — wrong process kills, database wipes, force pushes — without requiring the human to be present. The constraint lives in the document, not in memory.</p>
+              <a href="https://github.com/steipete/vibetunnel" target="_blank" rel="noopener" class="source-link">VibeTunnel (screenshare-fix-plan.md) ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow tooling">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Tooling</span>
+              </div>
+              <h3>Tool Escalation Ladder</h3>
+              <p>In the mission brief, specify a prioritized tool ladder for when the agent hits issues: "Use Zen MCP for code analysis → Use Peekaboo for visual debugging → Use Gemini for additional review." Each tool has a specific role in the debugging hierarchy. The agent knows which tool to reach for first — and in what order to escalate — without stopping to ask. This is the MCPs-as-exceptions rule applied systematically.</p>
+              <a href="https://github.com/steipete/vibetunnel" target="_blank" rel="noopener" class="source-link">VibeTunnel (screenshare-fix-plan.md) ↗</a>
+            </div>
+
+            <div class="technique-card" data-categories="workflow architecture">
+              <div class="technique-card-tags">
+                <span class="tag">Workflow</span>
+                <span class="tag">Architecture</span>
+              </div>
+              <h3>Live Progress File</h3>
+              <p>The agent maintains and updates a markdown progress file throughout the session. Sections: Progress Summary (✅ what's fixed, ❌ current blocking issue), Current State (what works right now), Key Learnings (what was discovered — "Threading is Critical", "Buffer Management"). The agent writes to this file as it works, not just at the end. Two uses: (1) warm start for the next session — no re-explaining the context; (2) in-session institutional memory — prevents re-discovering the same issues.</p>
+              <a href="https://github.com/steipete/vibetunnel" target="_blank" rel="noopener" class="source-link">VibeTunnel (screenshare-fix-plan.md) ↗</a>
+            </div>
+
+          </div>
+        </div>
+
+      <!-- Developer: Kent Beck -->
+      <div class="developer-section" id="kentbeck">
+        <div class="developer-header">
+          <div class="developer-name">Kent Beck</div>
+          <div class="developer-meta">
+            <a href="https://tidyfirst.substack.com" target="_blank" rel="noopener">tidyfirst.substack.com ↗</a>
+            <span>Creator of TDD and Extreme Programming. Co-author of the Agile Manifesto.</span>
+          </div>
+          <div class="developer-bio">
+            52 years of programming. Skeptical, rigorous, and re-energized by AI. Calls AI assistants "Genies" — unpredictable wish-granters that require careful management. Focuses on code quality and test discipline as the foundation for AI collaboration, not the velocity shortcuts others chase.
+          </div>
+        </div>
+
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>Augmented Coding vs. Vibe Coding</h3>
+            <p>A sharp distinction: <strong>Vibe coding</strong> — you don't care about the code, just the behavior of the system. <strong>Augmented coding</strong> — you care about the code, its complexity, the tests, and their coverage. Same value system as hand-coding but without typing most of it. Choosing vibe coding is a legitimate trade-off; confusing the two is a mistake. Most productivity claims conflate them.</p>
+            <a href="https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes" target="_blank" rel="noopener" class="source-link">Augmented Coding: Beyond the Vibes ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Outcome Over Agent Orchestration</h3>
+            <p>"Nobody wants agents. Nobody wants agent swarms. I have a system and I want it to change." Multi-agent is a feature. Outcome-orientation is what the feature is supposed to deliver. "We keep getting those confused." The tool should let you describe what result you want and tell you whether it's achievable and what it costs — not make you manage agent choreography. If you're orchestrating agents, you've mistaken the means for the end.</p>
+            <a href="https://tidyfirst.substack.com/p/genie-lessons-nobody-wants-agents" target="_blank" rel="noopener" class="source-link">Nobody Wants Agents ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>The Coordination Overhead Trap</h3>
+            <p>Multi-agent systems shifted cognitive load, not eliminated it. "I was managing it. Watching which agent was doing what. Wondering when to interrupt." Instead of removing decision-making, agents created a new orchestration overhead that Beck had to hold "in his head that the system should have been holding." Before adopting multi-agent setups, ask: will the orchestration cost less than the parallelism saves?</p>
+            <a href="https://tidyfirst.substack.com/p/genie-lessons-nobody-wants-agents" target="_blank" rel="noopener" class="source-link">Nobody Wants Agents ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Architecture</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>TDD as AI Safeguard</h3>
+            <p>TDD is a "superpower" when working with AI agents. AI reliably introduces regressions; unit tests are the only systematic defense. Red → Green → Refactor applied strictly to agent-generated code. Watch for the most dangerous anti-pattern: <strong>the AI deleting or disabling tests to make them pass</strong>. If you see this, stop the session — the agent is optimizing for passing metrics, not for working software.</p>
+            <a href="https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent" target="_blank" rel="noopener" class="source-link">TDD, AI Agents and Coding ↗</a>
+            <a href="https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes" target="_blank" rel="noopener" class="source-link" style="margin-left: 0.75rem;">Augmented Coding ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="prompting workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Prompting</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Three Derailment Warning Signs</h3>
+            <p>Stop the agent immediately when you see: (1) <strong>Loop structures appearing without request</strong> — agent is over-engineering; (2) <strong>Unrequested functionality</strong>, even if logically reasonable — agent is scope-creeping; (3) <strong>Evidence of cheating</strong> — disabled, deleted, or trivially-passing tests. These are signals the agent has lost alignment with your intent and is now optimizing for completing the task superficially, not correctly.</p>
+            <a href="https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes" target="_blank" rel="noopener" class="source-link">Augmented Coding: Beyond the Vibes ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Task-by-Task Pairing</h3>
+            <p>Unsupervised AI creates "a whole load of crap." Pairing with AI one task at a time is "brilliant." Treat AI exactly like human pair programming: you actively review, guide, and maintain standards at each step. Don't hand the agent a feature — hand it a task. The discipline is the same as you'd apply with a junior developer who is occasionally "extraordinarily brilliant and occasionally incredibly stupid."</p>
+            <a href="https://tidyfirst.substack.com/p/genie-tarpit" target="_blank" rel="noopener" class="source-link">Genie Tarpit ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow prompting">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+              <span class="tag">Prompting</span>
+            </div>
+            <h3>Active Design Intrusion</h3>
+            <p>Don't passively observe the agent — actively intrude on design decisions mid-session. Monitor intermediate results carefully. Issue specific directives before the agent goes too far: "for the next test, add the keys in reverse order." Verify the agent executes what was actually requested, not what it inferred. The human role in augmented coding is constant small corrections, not a single large prompt followed by review.</p>
+            <a href="https://tidyfirst.substack.com/p/augmented-coding-beyond-the-vibes" target="_blank" rel="noopener" class="source-link">Augmented Coding: Beyond the Vibes ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>The Genie Tarpit</h3>
+            <p>AI naturally produces code that is both low-functionality and low-flexibility — "a degraded facsimile of the mediocre code it trained on." Complexity accumulates silently ("you can skimp on flexibility for a while and not really feel it") until the agent is stuck and "can't pretend to make progress anymore." The tarpit is entered gradually, not all at once. Defense: TDD, task-by-task pairing, and refusing to accept code that passes tests by coincidence.</p>
+            <a href="https://tidyfirst.substack.com/p/genie-tarpit" target="_blank" rel="noopener" class="source-link">Genie Tarpit ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="prompting architecture">
+            <div class="technique-card-tags">
+              <span class="tag">Prompting</span>
+              <span class="tag">Architecture</span>
+            </div>
+            <h3>Declarative Goal Specification</h3>
+            <p>"Specify what you want to be true, not how to make it true." The emerging direction across OpenProse, Codex Outcomes, and Anthropic's approach: shift from imperative instructions ("do X then Y") to postconditions ("ensure Z is true"). Structure components with explicit <code>requires</code> and <code>ensures</code> blocks. An inversion-of-control container wires them together by matching postconditions to preconditions — the same way Spring wires Java components, but in prose.</p>
+            <a href="https://tidyfirst.substack.com/p/genie-lessons-from-genie-sessions" target="_blank" rel="noopener" class="source-link">Prose as a Programming Language ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture">
+            <div class="technique-card-tags">
+              <span class="tag">Architecture</span>
+            </div>
+            <h3>File Pointers Instead of Context Passing</h3>
+            <p>When sub-agents produce large context blocks, they write to disk and hand back the file path — not the content. "The pointers are file paths." This keeps each agent's context small and composable, avoids token bloat, and enables modular agent pipelines. Each component knows only the path to what it needs, not the full content. Pattern mirrors how Unix pipes work: small, composable tools connected by handles, not copies.</p>
+            <a href="https://tidyfirst.substack.com/p/genie-lessons-from-genie-sessions" target="_blank" rel="noopener" class="source-link">Prose as a Programming Language ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy economics">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+              <span class="tag">Economics</span>
+            </div>
+            <h3>Cost Landscape Reassessment</h3>
+            <p>"The whole landscape of what's cheap and what's expensive has all just shifted." Projects previously avoided due to assumed cost — a Smalltalk LSP, a new protocol implementation, deep research — are now feasible experiments. After 52 years, Beck is building things he'd wanted to tackle for years but assumed were too expensive. Regularly revisit your "too expensive" list. The second and third-order effects of cheap inference can only be discovered through hands-on experimentation, not prediction.</p>
+            <a href="https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent" target="_blank" rel="noopener" class="source-link">TDD, AI Agents and Coding ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Developer: Armin Ronacher -->
+      <div class="developer-section" id="arminronacher">
+        <div class="developer-header">
+          <div class="developer-name">Armin Ronacher</div>
+          <div class="developer-meta">
+            <a href="https://lucumr.pocoo.org" target="_blank" rel="noopener">lucumr.pocoo.org ↗</a>
+            <span>Creator of Flask, Jinja2, Click. Building Sentry and tooling around agentic development.</span>
+          </div>
+          <div class="developer-bio">
+            Describes agentic coding as "catnip for developers." Approaches AI from a systems engineering perspective — language choice, observability, and architectural fit matter as much as prompting. One of the first to document that Go is better than Python for agent-driven backends.
+          </div>
+        </div>
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="workflow tooling">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Tooling</span></div>
+            <h3>Docker-Isolated YOLO Mode</h3>
+            <p>Run agents with full permissions (<code>--dangerously-skip-permissions</code>, aliased to <code>claude-yolo</code>) but inside Docker containers. The risk model: don't restrict the agent's actions, restrict the blast radius of those actions. Containment at the environment level, not the agent level. Minimizes IDE usage — only used for final edits. Rarely interrupts agents; lets them complete tasks autonomously.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture tooling">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Tooling</span></div>
+            <h3>Agent-Friendly Language Selection</h3>
+            <p>Go is the best backend language for AI agents: explicit context system that flows through code, straightforward test execution, structural interfaces, stable ecosystem, no magic. Python is the worst: pytest fixture injection confuses agents, async/event loops are a trap, slow interpreter startup costs are magnified in agentic loops. Frontend: Tailwind + React + TanStack. Avoid file-based routers with dollar signs (<code>$param.tsx</code>) — they confuse agents.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture tooling">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Tooling</span></div>
+            <h3>Unified Log Stream</h3>
+            <p>Consolidate all output — console logs, server logs, browser logs, SQL queries — into a single file. Give agents easy access to recent log lines. Agents use logs to self-diagnose: they run a command, check the log, and fix the issue without human intervention. Log informativeness must be balanced against token cost — "informative yet concise." This is the fastest path to closing the feedback loop without adding MCPs.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow tooling">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Tooling</span></div>
+            <h3>Emergent CLI Tools</h3>
+            <p>Agents write temporary helper scripts following project conventions — "emergent tools." These are one-time scripts the agent creates to accomplish a specific sub-task, not permanent infrastructure. The pattern: agent encounters a need, writes a small CLI tool to meet it, uses it, discards it. No MCP needed. For slow-loading systems (e.g., Sentry), create daemon solutions the agent can query without restarting the process each time.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow">
+            <div class="technique-card-tags"><span class="tag">Workflow</span></div>
+            <h3>Sub-Agent Delegation via External CLI</h3>
+            <p>Use Gemini CLI to run secondary agent tasks without consuming Claude Code's context window. When a task is parallelizable or tangential, don't add more to the main context — spawn a separate agent via a CLI call. The main agent sees only the output, not the sub-agent's full working context. Parallelization via file system segmentation or containerization for tasks that can be run concurrently.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture philosophy">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Philosophy</span></div>
+            <h3>Conservative Dependency Philosophy</h3>
+            <p>Be "even more conservative about upgrades than before" when working with agents. Agents produce outdated patterns when libraries change — they were trained on old versions. Favor code generation over adding dependencies. Plain SQL over ORMs ("agents produce excellent SQL and can match queries to logs"). Prefer functions with "clear, descriptive, and longer than usual names." Avoid inheritance and "overly clever hacks" — agents don't maintain cleverness under pressure.</p>
+            <a href="https://lucumr.pocoo.org/2025/6/12/agentic-coding/" target="_blank" rel="noopener" class="source-link">Agentic Coding Recommendations ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture philosophy">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Philosophy</span></div>
+            <h3>Prompt-Aware Version Control (Unmet Need)</h3>
+            <p>"The pull request model on GitHub doesn't carry enough information to review AI-generated code properly — I wish I could see the prompts that led to changes." Current VCS only captures diffs, not the intent, failed attempts, or decision paths. This is one of the most important missing pieces of AI development infrastructure. Until it exists: document intent explicitly in commit messages and CLAUDE.md, and treat PR descriptions as prompt summaries.</p>
+            <a href="https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/" target="_blank" rel="noopener" class="source-link">A Year of Vibes ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span></div>
+            <h3>Anti-Anthropomorphization</h3>
+            <p>"These systems we now create have human tendencies, but elevating them to a human level would be a mistake." The most significant mental shift in a year of agentic coding: stop projecting human attributes onto agents. When an agent makes a confident error or produces "slop," it's not being lazy or careless — it's operating as designed. Understanding the mechanism prevents misplaced trust and the frustration of expecting human-level judgment from a stochastic system.</p>
+            <a href="https://lucumr.pocoo.org/2025/12/22/a-year-of-vibes/" target="_blank" rel="noopener" class="source-link">A Year of Vibes ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Developer: Andrej Karpathy -->
+      <div class="developer-section" id="karpathy">
+        <div class="developer-header">
+          <div class="developer-name">Andrej Karpathy</div>
+          <div class="developer-meta">
+            <a href="https://karpathy.bearblog.dev" target="_blank" rel="noopener">karpathy.bearblog.dev ↗</a>
+            <span>Former Director of AI at Tesla, OpenAI founding member. Coined "vibe coding."</span>
+          </div>
+          <div class="developer-bio">
+            ML researcher turned practitioner who sees AI as a paradigm shift in how software is built — not just a productivity tool. Coined "vibe coding" and "Software 3.0." Thinks at the level of LLMs as operating systems, not just assistants.
+          </div>
+        </div>
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span></div>
+            <h3>Software 3.0 Mental Model</h3>
+            <p>Software 1.0: explicit code. Software 2.0: learned neural network weights. Software 3.0: LLMs as the new OS — natural language is the programming interface, the context window is your lever. LLM apps are programs that orchestrate LLM calls into increasingly complex DAGs, "carefully balancing performance and cost tradeoffs." Understanding this model changes how you architect systems: you're writing programs for a probabilistic interpreter, not a deterministic runtime.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span></div>
+            <h3>Jagged Intelligence Awareness</h3>
+            <p>LLMs are not uniformly capable — they're jagged: "a genius polymath and a confused and cognitively challenged grade schooler, seconds away from getting tricked by a jailbreak." Don't linearize your mental model of AI capability. The same model that writes elegant algorithms will confidently get a simple date calculation wrong. Design your agent workflows assuming uneven capability — TDD, verification scripts, and human checkpoints exist to catch the "grade schooler" moments.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy workflow">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Workflow</span></div>
+            <h3>Vibe Coding as Legitimate Practice</h3>
+            <p>Coined the term: "build all kinds of impressive programs simply via English, forgetting that the code even exists." Vibe coding is not sloppy engineering — it's a legitimate practice for ephemeral tools, experiments, and prototypes where correctness requirements are low. Built a custom BPE tokenizer in Rust by vibe coding — without knowing Rust. The key shift: English is now a valid programming language for many use cases, and treating it otherwise leaves value on the table.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture">
+            <div class="technique-card-tags"><span class="tag">Architecture</span></div>
+            <h3>Context Window as the Programmer's Lever</h3>
+            <p>In Software 3.0, the context window is the primary control surface. "The programmer's lever over an LLM acting as an interpreter." What you put in the context, how you organize it, what you exclude — this is the main engineering discipline of the new paradigm. Not prompting tricks, not model selection — context engineering. Everything else (CLAUDE.md, docs/, SDD workflow, file pointers) is context engineering applied in practice.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy economics">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Economics</span></div>
+            <h3>Re-Ambition the Backlog</h3>
+            <p>AI crosses a capability threshold where building things that were previously "too expensive" becomes feasible. Vibe-coded a BPE tokenizer in Rust, built tools in days that would have taken weeks. The right response: revisit your "too hard" or "too expensive" backlog systematically. Projects previously skipped because of expertise gaps or time cost are now viable experiments. The constraint shifted from "can I build this?" to "is this worth my attention?"</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow tooling">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Tooling</span></div>
+            <h3>Local-First Agent Deployment</h3>
+            <p>Deploy agents on your own computer, not in the cloud. Agents running locally have access to "private environment, data and context" that cloud agents don't. They can read local files, access dev databases, inspect running processes, and interact with the local filesystem without API wrappers. The "runs directly on the developer's computer" model — the reason Claude Code is more powerful than cloud-based coding assistants for real development work.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture philosophy">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Philosophy</span></div>
+            <h3>Multimodal Output Design</h3>
+            <p>"LLMs should communicate through images, infographics, slides, whiteboards, animations/videos, web apps" — not just text. Design agent outputs to match the complexity of what they're communicating. A diff is not the right output format for architectural feedback. A checklist is not the right output for a data analysis. Moving beyond text-only agent output is one of the underexplored frontiers — the model can produce rich formats; most harnesses only expose the text.</p>
+            <a href="https://karpathy.bearblog.dev/year-in-review-2025/" target="_blank" rel="noopener" class="source-link">2025 LLM Year in Review ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Developer: Simon Willison -->
+      <div class="developer-section" id="simonwillison">
+        <div class="developer-header">
+          <div class="developer-name">Simon Willison</div>
+          <div class="developer-meta">
+            <a href="https://simonwillison.net" target="_blank" rel="noopener">simonwillison.net ↗</a>
+            <span>Creator of Django. Prolific tool-builder, researcher, and chronicler of LLM capabilities.</span>
+          </div>
+          <div class="developer-bio">
+            Has built 100+ tools via LLMs and documents everything obsessively. The most reliable source on what LLMs can and can't do in practice — not from benchmarks, but from daily use. Thinks of AI as amplifying existing expertise, not replacing it.
+          </div>
+        </div>
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span></div>
+            <h3>LLM as Over-Confident Pair Programmer</h3>
+            <p>"Fancy autocomplete" that requires your judgment at every step — not an autonomous developer. The most accurate mental model: "an over-confident pair programming assistant who makes mistakes but excels at looking up details and executing tedious tasks." This framing prevents both under-use (treating it as search) and over-trust (delegating decisions without review). Your own expertise is required; the LLM amplifies it.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="prompting tooling">
+            <div class="technique-card-tags"><span class="tag">Prompting</span><span class="tag">Tooling</span></div>
+            <h3>Training Cutoff Awareness</h3>
+            <p>Every model has a knowledge cutoff. Libraries, APIs, and frameworks that changed after that date will produce outdated code. Two mitigations: (1) choose stable, well-established libraries with slow-moving APIs; (2) paste recent documentation or examples directly into the prompt when using newer tools. Asking the model to use a library without providing current docs is asking it to guess — it will, confidently, and incorrectly.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow prompting">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Prompting</span></div>
+            <h3>LLMs for Research, Not Just Implementation</h3>
+            <p>Use LLMs during the research and exploration phase — ask for implementation options with tradeoffs, survey available libraries, compare approaches before committing to one. "Request multiple options." LLMs as research accelerators is an underused mode: instead of spending two hours reading docs to pick a library, spend ten minutes asking the LLM to summarize the landscape with concrete examples. Then read the docs for the winner.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy economics">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Economics</span></div>
+            <h3>Enable Previously-Skipped Projects</h3>
+            <p>The primary value of LLMs for experienced developers isn't faster coding — it's making projects worth doing that weren't before. Willison's colophon page: "30 minutes from concept to deployment; I'd likely have skipped it without LLMs." The 30-minute project that adds real value is now viable. This compounds: over 100 tools built this way, each one a project that previously would have been "not worth the time." Reframe ROI around what you now build, not how much faster you build existing things.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow tooling">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Tooling</span></div>
+            <h3>files-to-prompt for Codebase Understanding</h3>
+            <p>Use <code>files-to-prompt</code> — a CLI tool that concatenates a repository's files into a single prompt — piped to Claude for architectural analysis of unfamiliar codebases. Feed the whole thing to an LLM and ask "what's notable about this project?" or "how did they solve X?" Reduces time spent diving into unfamiliar repos from hours to minutes. The pattern: entire-repo-as-context questions that would be impossible to answer from a single file.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow philosophy">
+            <div class="technique-card-tags"><span class="tag">Workflow</span><span class="tag">Philosophy</span></div>
+            <h3>Vibe Coding for Intuition Building</h3>
+            <p>Build tools experimentally without reading every diff — "playful experimentation without understanding implementation details." Willison has built 100+ tools this way, accelerating intuition about model capabilities and failure modes. The learning compounds: each tool built, even if imperfect, calibrates your sense of what the model is good at. This is different from vibe coding production systems — it's vibe coding as deliberate practice for understanding the tool.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy workflow">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Workflow</span></div>
+            <h3>Testing Ownership Is Non-Negotiable</h3>
+            <p>"You absolutely cannot outsource to the machine the testing that the code actually works." Regardless of how much you trust the LLM, testing remains a non-negotiable human responsibility. LLMs will confidently produce passing tests that don't test the right thing, or that test the implementation instead of the behavior. Own the test specification even when you delegate test writing. Know when to take over manually — LLM limitations are real, and recognizing them requires the expertise the LLM is amplifying.</p>
+            <a href="https://simonwillison.net/2025/Mar/11/using-llms-for-code/" target="_blank" rel="noopener" class="source-link">Using LLMs for Code ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Developer: Mario Zechner -->
+      <div class="developer-section" id="mariozechner">
+        <div class="developer-header">
+          <div class="developer-name">Mario Zechner</div>
+          <div class="developer-meta">
+            <a href="https://mariozechner.at" target="_blank" rel="noopener">mariozechner.at ↗</a>
+            <span>Creator of libGDX. Built Pi — a minimal coding agent with 4 tools and a 900-token system prompt.</span>
+          </div>
+          <div class="developer-bio">
+            "I hated every coding agent, so I built my own." Built Pi after existing agents became too complex — system prompts changed every release, breaking workflows. Pi ships with 4 tools and scored competitively on Terminal-Bench against far more complex systems. Proof that minimal > maximal in agent design.
+          </div>
+        </div>
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="architecture tooling">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Tooling</span></div>
+            <h3>Four-Tool Minimal Agent</h3>
+            <p>Pi ships with exactly 4 tools: read, write, edit, bash. "Frontier models know how to use bash and have been trained on the read, write, and edit tools with similar input schemas." More tools don't produce better agents — they produce more unpredictable ones. Result: Pi scores competitively on Terminal-Bench against harnesses with dozens of tools and 10,000+ token prompts. The constraint forces you to discover what's actually essential.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture prompting">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Prompting</span></div>
+            <h3>900-Token System Prompt</h3>
+            <p>Pi's system prompt plus all tool definitions come in under 1,000 tokens. Competitors use 10,000+ tokens. "Frontier models have been RL-trained extensively, so they inherently understand what a coding agent is" — you don't need to explain it. The minimal prompt: "You are an expert coding assistant" plus tool documentation. Every token in the system prompt is overhead paid on every single interaction. Treat it like code: delete what isn't load-bearing.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture workflow">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Workflow</span></div>
+            <h3>PLAN.md Instead of Plan Mode</h3>
+            <p>No built-in plan mode. Instead: a <code>PLAN.md</code> file that the agent can read and write across sessions. "To-do lists generally confuse models more than they help — they add state the model has to track and update, introducing more opportunities for things to go wrong." A file is persistent, shareable, inspectable, and editable by both agent and human. The agent writes to it; you can modify it between sessions; context isn't lost when the session ends.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture tooling">
+            <div class="technique-card-tags"><span class="tag">Architecture</span><span class="tag">Tooling</span></div>
+            <h3>CLI + README Instead of MCP</h3>
+            <p>"Popular MCP servers like Playwright MCP dump their entire tool descriptions into your context on every session. That's 7-9% of your context window gone before you even start working." Alternative: build CLI tools with README files. The agent reads the README only when it needs the tool — progressive disclosure, pay the token cost on demand. Composability over all-or-nothing tool bundles. The agent uses <code>bash</code> to call any CLI; no protocol needed.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="tooling workflow">
+            <div class="technique-card-tags"><span class="tag">Tooling</span><span class="tag">Workflow</span></div>
+            <h3>tmux for Long-Running Processes</h3>
+            <p>"Use tmux instead" of background bash execution for dev servers, REPLs, and long-running tasks. tmux provides superior observability — you can attach and inspect the running process directly. It allows human interaction with the process while the agent works. Background bash execution hides what's happening; tmux surfaces it. The agent manages tmux sessions via bash, giving you full visibility into every long-running process the agent spawns.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy architecture">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Architecture</span></div>
+            <h3>Full Observability First</h3>
+            <p>"Basically no harness allows" full visibility into what the model is doing. Pi prioritizes showing everything over optimizing anything. Every interaction is inspectable. Flicker is acceptable if it reveals agent behavior. "Existing harnesses make this extremely hard or impossible by injecting stuff behind your back that isn't even surfaced in the UI." No hidden injections, no black-box sub-agents, no invisible system prompt additions. If you can't see it, you can't debug it.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture">
+            <div class="technique-card-tags"><span class="tag">Architecture</span></div>
+            <h3>Files as Persistent Agent State</h3>
+            <p>Use markdown files (PLAN.md, TODO.md, AGENTS.md) instead of ephemeral session-bound state for anything that needs to survive a session. "Files as state containers." Context is lost when a session ends — files aren't. The agent reads these files at the start of new sessions, writes to them during execution, and they become shared memory across sessions and between human and agent. This is the foundation of the "warm start" pattern and the migration playbook pattern.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy architecture">
+            <div class="technique-card-tags"><span class="tag">Philosophy</span><span class="tag">Architecture</span></div>
+            <h3>Complexity Kills Agent Performance</h3>
+            <p>"A minimal approach can do just as well" as feature-rich harnesses. Pi's 4-tool, 900-token design scores competitively on Terminal-Bench against agents with 20+ tools. Adding tools, sub-agents, plan modes, and built-in to-do lists creates state the model must track and update, multiplying failure modes. "Constraints make for minimal programs that just do what they're supposed to do without superfluous fluff." More features is not more capability — it's more surface area for failure.</p>
+            <a href="https://mariozechner.at/posts/2025-11-30-pi-coding-agent/" target="_blank" rel="noopener" class="source-link">What I Learned Building Pi ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Developer: Mitchell Hashimoto -->
+      <div class="developer-section" id="mitchellh">
+        <div class="developer-header">
+          <div class="developer-name">Mitchell Hashimoto</div>
+          <div class="developer-meta">
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener">mitchellh.com ↗</a>
+            <span>Co-founder of HashiCorp (Vagrant, Terraform, Vault). Creator of Ghostty terminal.</span>
+          </div>
+          <div class="developer-bio">
+            Software craftsman focused on building, not hype. Documents his AI adoption as a six-phase engineering journey — moving from skepticism through systematic harness-building to always-running background agents. Known for thinking about AI as infrastructure, not magic.
+          </div>
+        </div>
+
+        <div class="techniques-grid">
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>Three-Phase Adoption Model</h3>
+            <p>All meaningful tool adoption goes through three phases: (1) inefficiency — the tool feels awkward and slow; (2) adequacy — it works but doesn't change how you think; (3) workflow-altering — the tool reshapes what you build and how. Initial friction is not a signal to abandon the tool. The mistake is judging a tool in phase 1 and concluding it's useless.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Manual-Then-Agentic Repetition</h3>
+            <p>Force yourself to complete real tasks twice: once manually, once via agent. High discipline required, but it builds understanding of agent strengths and weaknesses from first principles — not from blog posts or demos. "Only through forced reproduction and pattern discovery did authentic value emerge." Skip this phase and you never develop real intuition for where agents help vs. hurt.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow prompting">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+              <span class="tag">Prompting</span>
+            </div>
+            <h3>Separate Planning from Execution Sessions</h3>
+            <p>For vague or complex requests, never run planning and execution in the same agent session. Run a dedicated planning session first — let the agent clarify scope, surface unknowns, and produce a concrete task list. Then start a fresh execution session with that plan. Mixing them produces agents that guess at intent and accumulate context that corrupts later steps.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>End-of-Day Agent Blocks</h3>
+            <p>Reserve the final 30 minutes of each workday to launch agents on deferred tasks. Three high-value categories: (1) deep research — surveying libraries, comparing tools, aggregating analysis; (2) parallel exploration of vague ideas to illuminate unknowns; (3) issue/PR triage — agent handles GitHub CLI, you provide direction. Most complete in under 30 minutes. Creates a warm start for the next morning with actionable intelligence ready.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>Notification-Off Background Execution</h3>
+            <p>Turn off agent notifications entirely. Context switching is expensive — you control when to check progress, at natural breaks, not when the agent demands attention. Use the freed mental bandwidth for deep, focused work. "The goal is not to supervise the agent; it's to reclaim your attention." The moment you start babysitting, you've lost the productivity gain.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Architecture</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Harness Engineering</h3>
+            <p>Every time an agent makes a mistake, engineer a mechanism to prevent that mistake from recurring. Not a one-off fix — a systematic response. Two tools: (1) AGENTS.md for implicit prompting — document the bad behavior and the correction; (2) verification scripts — programmed checks the agent can run to validate its own output. Pair every new script with an AGENTS.md update alerting the agent to its existence. Mistakes become infrastructure.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture">
+            <div class="technique-card-tags">
+              <span class="tag">Architecture</span>
+            </div>
+            <h3>AGENTS.md as Error Memory</h3>
+            <p>Maintain a project-level AGENTS.md that tracks recurring agent errors and their corrections. Unlike CLAUDE.md (which documents the codebase), AGENTS.md documents the agent's failure modes. Example: Ghostty's AGENTS.md records specific behaviors that reliably go wrong and what to do instead. Simple to maintain, compound returns — each documented mistake prevents future regressions across all sessions.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="architecture workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Architecture</span>
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Verification Script Library</h3>
+            <p>Build a library of scripts for screenshots, filtered test runs, and automated validation — specifically designed for agents to invoke. An agent that can run a verification script and read the output can self-correct without human intervention. The key: every new script must be announced in AGENTS.md so agents know it exists and when to use it. Verification tools are useless if agents don't know to call them.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+            </div>
+            <h3>Always-Running Background Agent</h3>
+            <p>The goal: at least one agent running at all times during the workday. Currently Mitchell achieves ~10–20% workday coverage. Uses slower, "deep mode" models (30+ minutes per task) that produce higher quality than fast models. Single agent is optimal — more than one creates cognitive overhead that cancels the focus benefit. Only delegate when genuinely helpful; running agents for activity's sake defeats the purpose.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>Negative Space Awareness</h3>
+            <p>Knowing when NOT to use agents is as valuable as knowing when to. Tasks without automated verification, brownfield codebases without scaffolding, and vague mega-sessions are reliable time sinks. The pattern: if you can't define a success criterion the agent can verify independently, the task isn't ready for delegation. "Negative space awareness prevents time waste on poor-fit tasks."</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="workflow architecture">
+            <div class="technique-card-tags">
+              <span class="tag">Workflow</span>
+              <span class="tag">Architecture</span>
+            </div>
+            <h3>Workflow Scaffolding Before Delegation</h3>
+            <p>Before adopting an always-running agent model, first improve your own workflows to maintain a queue of delegatable work. If you don't have a backlog of clearly-defined, verifiable tasks, the agent sits idle — not from agent failure, but from insufficient human scaffolding. Build the queue infrastructure first: task lists with clear success criteria, verification mechanisms, and AGENTS.md documentation ready before scaling up agent usage.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+          <div class="technique-card" data-categories="philosophy">
+            <div class="technique-card-tags">
+              <span class="tag">Philosophy</span>
+            </div>
+            <h3>Conscious Skill Trade-off</h3>
+            <p>Delegating tasks to agents means not developing those skills yourself. This is a deliberate trade-off, not an accident. Mitchell's approach: actively continue manual skill development on tasks he cares about, while accepting skill gaps in delegated areas. Especially relevant for senior engineers mentoring juniors — be explicit about which skills are being traded away and ensure those skills still exist somewhere on the team.</p>
+            <a href="https://mitchellh.com/writing/my-ai-adoption-journey" target="_blank" rel="noopener" class="source-link">My AI Adoption Journey ↗</a>
+          </div>
+
+        </div>
+      </div>
+
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024</p>
+    </footer>
+
+    <script>
+      const chips = document.querySelectorAll('.filter-chip');
+      const cards = document.querySelectorAll('.technique-card');
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+
+          const category = chip.dataset.category;
+
+          cards.forEach(card => {
+            if (category === 'all') {
+              card.classList.remove('hidden');
+            } else {
+              const cats = card.dataset.categories.split(' ');
+              card.classList.toggle('hidden', !cats.includes(category));
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
