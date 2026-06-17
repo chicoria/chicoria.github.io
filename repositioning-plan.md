@@ -266,7 +266,7 @@ AUTOMATE: Claude Code · AI Agent Engineering · Agentic Workflows · Prompt Eng
 
 ---
 
-### Slice 14 — Featured Section ☐
+### Slice 14 — Featured Section ✅
 
 **Navigate:** Profile → Featured section → Reorder / Add
 
