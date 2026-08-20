@@ -1,6 +1,29 @@
+# macOS
 .DS_Store
-*.log
+
+# Node
 node_modules/
+
+# Segredos e ambiente
 .env
 .env.local
 
+# LaTeX — artefactos de compilacao
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
+# Claude Code — configuracao local da maquina
+.claude/settings.local.json
+
+# Rascunhos de trabalho (prompts, ids, notas soltas)
+linha-carreira/scratchpad/
+
+# LaTeX — PDF de trabalho (as versoes datadas vivem em cv-pdf/)
+cv-latex/*.pdf
